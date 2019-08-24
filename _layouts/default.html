@@ -49,10 +49,10 @@
       <footer class="inner">
         <!--add previous and next page url link-->
         {% if page.previous %}
-        <a id ="previous_post" href="{{page.previous.url}}">上一篇 {{page.previous.title}}</a>
+        <a id ="previous_post" href="{{page.previous.url}}">Prev: {{page.previous.title}}</a>
         {% endif %}
         {% if page.next %}
-        <a id ="next_post" href="{{page.next.url}}">下一篇 {{page.previous.title}}</a>
+        <a id ="next_post" href="{{page.next.url}}">Next: {{page.next.title}}</a>
         {% endif %}
 
         {% if site.github.is_project_page %}
