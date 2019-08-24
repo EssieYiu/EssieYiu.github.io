@@ -24,4 +24,12 @@ layout: default
   {%- endif -%}
 
   <a class="u-url" href="{{ page.url | relative_url }}" hidden></a>
+  
+  <!--add previous and next page url link-->
+  {% if page.previous != nil %}
+  <a id ="previous_post" href="{{page.previous.url}}">上一篇 {{page.previous.title}}</a>
+  {% endif %}
+  {% if page.next != nil %}
+  <a id ="next_post" href="{{page.next.url}}">下一篇 {{page.previous.title}}</a>
+  {% endif %}
 </article>
