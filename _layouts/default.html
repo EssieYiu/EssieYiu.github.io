@@ -47,6 +47,14 @@
     <!-- FOOTER  -->
     <div id="footer_wrap" class="outer">
       <footer class="inner">
+        <!--add previous and next page url link-->
+        {% if page.previous != nil %}
+        <a id ="previous_post" href="{{page.previous.url}}">上一篇 {{page.previous.title}}</a>
+        {% endif %}
+        {% if page.next != nil %}
+        <a id ="next_post" href="{{page.next.url}}">下一篇 {{page.previous.title}}</a>
+        {% endif %}
+        
         {% if site.github.is_project_page %}
         <p class="copyright">{{ site.title | default: site.github.repository_name }} maintained by <a href="{{ site.github.owner_url }}">{{ site.github.owner_name }}</a></p>
         {% endif %}
