@@ -24,13 +24,19 @@
   font-size:16px;
   color: #f2f2f2;
   display: block;
-  float: left;
-  margin: 0px 0px 30px 0px;
+  margin: 0px 0px 10px 0px;
+  text-decoration:none;
 }
 #next_post{
   font-size:16px;
   color: #f2f2f2;
   display: block;
-  float: right;
-  margin: 0px 0px 30px 0px;
+  margin: 0px 0px 10px 0px;
+  text-decoration: none;
+}
+#next_post:hover{
+  text-decoration: underline;
+}
+#previous_post:hover{
+  text-decoration: underline;
 }
