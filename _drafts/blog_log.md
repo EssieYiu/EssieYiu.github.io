@@ -11,3 +11,8 @@
 ## 20190824
 
 添加了上一篇与下一篇的链接，修改了default.html和asset/style.scss文件
+
+## 20190828
+
+使用gitalk添加了评论功能，在about页面。修改了layout的page.html增加评论区
+
