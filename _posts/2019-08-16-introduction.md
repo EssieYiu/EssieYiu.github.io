@@ -12,7 +12,7 @@ categories: my-post
 
 To do
 
-![]({{site.url}}../../../../assets/images/icon.png)
+![]({{site.url}}/../../../../assets/images/icon.png)
 
 how can I get the image work?
 
