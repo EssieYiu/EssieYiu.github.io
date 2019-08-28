@@ -12,6 +12,10 @@ hexo generate生成静态文件
 
 hexo server 启动服务器
 
+### 布署
+
+hexo clean
+
 hexo deploy
 
 ## 其他

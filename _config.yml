@@ -31,10 +31,11 @@ plugins:
 defaults:
   -
     scope:
-      path: ""
+      path: "_posts"
       type: "posts"
     values:
       layout: "post"
+      excerpt_seperator: <!--more-->
 
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
