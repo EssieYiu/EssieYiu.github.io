@@ -40,3 +40,13 @@
 #previous_post:hover{
   text-decoration: underline;
 }
+//set my background
+body{
+  background: url(../images//bg1.jpg);
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+#main_content_wrap{
+  background: rgba(#f2f2f2,0.7);
+}

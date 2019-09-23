@@ -16,3 +16,9 @@
 
 使用gitalk添加了评论功能，在about页面。修改了layout的page.html增加评论区
 
+## 20190924
+
+添加了icon和背景，图片均放在asset文件夹下
+
+修改了css中的style文件。
+
