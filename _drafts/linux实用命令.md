@@ -146,3 +146,48 @@ gdb-peda$ break *(main+132)
 gdb-peda$ printf "%s", (char*)flag_buf
 ```
 
+## scp
+
+scp local_file remote_username@remote_ip:remote_folder/file
+
+scp -r local_folder remote_username@remote_ip:remote_folder
+
+scp -r localdir username@remote_ip:remote_dir
+
+端口 -p port
+
+### 修改ssh密码
+
+passwd{username}
+
+### 修改mysql密码
+
+mysql>set password=password('new password')
+
+mysql>flush privileges
+
+## 备份数据库
+
+mysqldump -u root -p --databases databasename > /tmp/db.sql
+
+恢复
+
+mysql>source FILE_PATH
+
+source ~/bd.sql
+
+### 3. 源码备份
+
+```
+# 打包目录tar -zcvf archive_name.tar.gz directory_to_compress# 解包tar -zxvf archive_name.tar.gz
+```
+
+之后使用 scp 命令或者 winscp，mobaxterm 等工具下载打包后的源码
+
+\# 批量加waf /var/www/html/ 目录下每个 php 文件前加上 <?php require_once "/tmp/waf.php";?>
+
+find /var/www/html/ -path /var/www/html/124687a7bc37d57cc9ecd1cbd9d676f7 -prune -o  -type f -name '*.php'|xargs  sed -i '1i<?php require_once "/tmp/waf.php";?>'
+
+
+
+find /opt -iname "*" -atime 1 -type f [-print]   #找出 /opt 下一天前访问过的文件
