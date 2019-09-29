@@ -1,12 +1,10 @@
 ---
-title: picoCTF_2018_Web_Writeup
-date:2019-09-29
+title: picoCTF 2018 Web Writeup
+date: 2019-09-29
 catagories: ctf
 ---
 
 
-
-# PicoCTF 2018 Web Writeup
 
 ## valut
 
