@@ -40,6 +40,7 @@
           <div class="grid">
             <nav class="main-nav">
               {% assign category = page.categories | join: ' ' | split: ' ' | last %}
+              console.log(category)
               <ul>
                 <li class="{% if category == 'home' %}current{% endif %}">
                 <a class="nav-link" href="{{ site.baseurl }}">Home</a>
