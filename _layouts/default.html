@@ -39,7 +39,9 @@
           <!--category list-->
           <div class="grid">
             <nav class="main-nav">
+              <!--
               {% assign category = page.categories | join: ' ' | split: ' ' | last %}
+              -->
               <ul>
                 {% for category in site.categories %}
                 {% if category == "Home" %}
