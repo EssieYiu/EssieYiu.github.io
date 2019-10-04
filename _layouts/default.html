@@ -42,25 +42,25 @@
               {% assign category = page.categories | join: ' ' | split: ' ' | last %}
               <ul>
                 <li class="{% if category == 'home' %}current{% endif %}">
-                <a href="{{ site.baseurl }}/home">Home</a>
+                <a class="nav-link" href="{{ site.baseurl }}/home">Home</a>
                 </li>
                 <li class="{% if category == 'note' %}current{% endif %}">
-                <a href="{{ site.baseurl }}/note">Note</a>
+                <a class="nav-link" href="{{ site.baseurl }}/note">Note</a>
                 </li>
                 <li class="{% if category == 'CTF' %}current{% endif %}">
-                <a href="{{ site.baseurl }}/CTF">CTF</a>
+                <a class="nav-link" href="{{ site.baseurl }}/CTF">CTF</a>
                 </li>
                 <li class="{% if category == 'basic' %}current{% endif %}">
-                <a href="{{ site.baseurl }}/basic">Basic</a>
+                <a class="nav-link" href="{{ site.baseurl }}/basic">Basic</a>
                 </li>
                 <li class="{% if category == 'reading' %}current{% endif %}">
-                <a href="{{ site.baseurl }}/reading">Reading</a>
+                <a class="nav-link" href="{{ site.baseurl }}/reading">Reading</a>
                 </li>
                 <li class="{% if category == 'other' %}current{% endif %}">
-                <a href="{{ site.baseurl }}/other">Other</a>
+                <a class="nav-link" href="{{ site.baseurl }}/other">Other</a>
                 </li>
                 <li class="{% if category == 'about' %}current{% endif %}">
-                <a href="{{ site.baseurl }}/about">About</a>
+                <a class="nav-link" href="{{ site.baseurl }}/about">About</a>
                 </li>
               </ul>
             </nav>
