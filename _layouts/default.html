@@ -39,23 +39,7 @@
           <!--category list-->
           <div class="grid">
             <nav class="main-nav">
-              <!--
               {% assign category = page.categories | join: ' ' | split: ' ' | last %}
-              -->
-              <ul>
-                {% for category in site.categories %}
-                {% if category == "Home" %}
-                <li class = "current">
-                  <a class = "nav-link" href="{{site.baseurl}}">{{category}}</a>
-                </li>
-                {%elsif%}
-                <li class = "current">
-                  <a class = "nav-link" href="{{site.baseurl}}/{{category}}">{{category}}</a>
-                </li>
-                {% endif %}
-                {% endfor %}
-              </ul>
-              <!--
               <ul>
                 <li class="{% if category == 'home' %}current{% endif %}">
                 <a class="nav-link" href="{{ site.baseurl }}">Home</a>
@@ -79,7 +63,6 @@
                 <a class="nav-link" href="{{ site.baseurl }}/about">About</a>
                 </li>
               </ul>
-              --->
             </nav>
           </div>
 
