@@ -27,7 +27,7 @@
 
           <h1 id="project_title">{{ site.title | default: site.github.repository_name }}</h1>
           <h2 id="project_tagline">{{ site.description | default: site.github.project_tagline }}</h2>
-
+<!--
           {% for page in site.pages %}
             {% if page.title == "About" %}
             <a id = "home_page" href="{{page.url}}">{{page.title}}</a>
@@ -35,6 +35,36 @@
             <a id = "about_page" href="{{page.url}}">{{page.title}}</a>
             {% endif %}
           {% endfor %}
+-->
+          <!--category list-->
+          <div class="grid">
+            <nav class="main-nav">
+              {% assign category = page.categories | join: ' ' | split: ' ' | last %}
+              <ul>
+                <li class="{% if category == 'home' %}current{% endif %}">
+                <a href="{{ site.baseurl }}/home">Home</a>
+                </li>
+                <li class="{% if category == 'note' %}current{% endif %}">
+                <a href="{{ site.baseurl }}/note">Note</a>
+                </li>
+                <li class="{% if category == 'CTF' %}current{% endif %}">
+                <a href="{{ site.baseurl }}/CTF">CTF</a>
+                </li>
+                <li class="{% if category == 'basic' %}current{% endif %}">
+                <a href="{{ site.baseurl }}/basic">Basic</a>
+                </li>
+                <li class="{% if category == 'reading' %}current{% endif %}">
+                <a href="{{ site.baseurl }}/reading">Reading</a>
+                </li>
+                <li class="{% if category == 'other' %}current{% endif %}">
+                <a href="{{ site.baseurl }}/other">Other</a>
+                </li>
+                <li class="{% if category == 'about' %}current{% endif %}">
+                <a href="{{ site.baseurl }}/about">About</a>
+                </li>
+              </ul>
+            </nav>
+          </div>
 
           {% if site.show_downloads %}
             <section id="downloads">

@@ -4,5 +4,6 @@
 
 layout: home
 title: Home
+categories: home
 ---
 
