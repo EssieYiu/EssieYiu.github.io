@@ -23,5 +23,9 @@
 修改了css中的style文件。
 
 ## 20191004
-使用categories对文章进行分类，并在不同的目录下展示出来
+使用mathjax渲染数学公式，在defualt.html的head中加入了两个链接
 
+使用categories对文章进行分类，并在不同的目录下展示出来
+在每个categories的文件夹都有index.html，内容主要是列出本分类的文章
+在default.html的header部分插入了navigation的列表，指向每个分类的主页
+修改了style.css，对文章的链接和分类的链接a标签进行了区分
