@@ -60,8 +60,9 @@ a{
   float: right;
   margin: 0px 10px 0px 10px;
 }
-li{
-  text-decoration-style: none;
+.current{
+  color:#f2f2f2;
   display: inline-block;
+  text-decoration-style: none;
   margin: 0px 10px 0px 10px;
 }

@@ -42,7 +42,7 @@
               {% assign category = page.categories | join: ' ' | split: ' ' | last %}
               <ul>
                 <li class="{% if category == 'home' %}current{% endif %}">
-                <a href="{{ site.baseurl }}">Home</a>
+                <a href="{{ site.baseurl }}/home">Home</a>
                 </li>
                 <li class="{% if category == 'note' %}current{% endif %}">
                 <a href="{{ site.baseurl }}/note">Note</a>
