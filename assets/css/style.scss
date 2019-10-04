@@ -61,10 +61,7 @@ body{
   margin: 0px 10px 0px 10px;
 }
 .current{
-  color:#f2f2f2;
-  display: inline;
-  list-style-type:none;
-  margin: 0px 10px 0px 10px;
+  font-weight: bold;
 }
 .nav-link{
   color: #f2f2f2;
@@ -72,10 +69,10 @@ body{
 }
 ul{
   list-style-type: none;
-  display: inline;
 }
 li{
   display: inline;
+  margin:0px 10px 0px 10px;
 }
 .post-article{
   display: block;

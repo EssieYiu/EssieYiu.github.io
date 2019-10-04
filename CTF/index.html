@@ -7,9 +7,7 @@ categories: CTF
   {%- if page.title -%}
     <h1 class="page-heading">{{ page.title }}</h1>
   {%- endif -%}
-<!--
-  {{ content }}
--->
+  
   {% assign category = page.categories | join: ' ' | split: ' ' | last %}
   {%- if site.categories[category].size > 0 -%}
     <h2 class="post-list-heading">{{ page.list_title | default: "Posts" }}</h2>
