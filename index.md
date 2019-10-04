@@ -5,6 +5,5 @@
 layout: home
 title: Home
 categories: home
-permalink: /home/
 ---
 
