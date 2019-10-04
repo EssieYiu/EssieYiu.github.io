@@ -4,6 +4,6 @@
 
 layout: home
 title: Home
-categories: Home
+categories: home
 ---
 
