@@ -8,7 +8,7 @@ categories: reading
   {%- if page.title -%}
     <h1 class="page-heading">{{ page.title }}</h1>
   {%- endif -%}
-
+  <p>我飘飘无所似，不过幽幽一身影</p>
   {% assign category = page.categories | join: ' ' | split: ' ' | last %}
   {%- if site.categories[category].size > 0 -%}
     <h2 class="post-list-heading">{{ page.list_title | default: "Posts" }}</h2>
