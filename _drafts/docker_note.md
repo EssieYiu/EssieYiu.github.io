@@ -65,3 +65,29 @@ docker-compose build
 docker-compose up [-d]
 ```
 
+## 删除
+
+删除镜像docker image rm image_id
+
+删除容器docker rm container_id
+
+删除所有exit的容器
+
+sudo docker rm $(sudo docker ps -qf status=exited)
+
+
+
+## docker save
+
+```bash
+docker save [options] image_name [image...]
+```
+
+-o 输出的文件
+
+如
+
+```bash
+docker save -o my_ubuntu.tar ubuntu_image
+```
+
