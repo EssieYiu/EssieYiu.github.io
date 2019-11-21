@@ -10,6 +10,8 @@ e.g.$_SERVER['PHP_SELF']
 
 'PHP_SELF'：当前执行脚本的文件名。
 
+REQUEST_URI:URI用来指定要访问的页面，如/index.html
+
 $_GET：通过URL参数传递给当前脚本的变量的数组
 
 e.g.something($_GET["name"])
@@ -24,7 +26,7 @@ $_COOKIE：通过 HTTP Cookies 方式传递给当前脚本的变量的数组
 
 $_SESSION:当前脚本可用 SESSION 变量的数组
 
-$_REQUEST:默认情况下包含了$_GET,$_POST,$_COOKIE的数组
+$_ REQUEST:默认情况下包含了$_ GET,$_ POST,$_COOKIE的数组
 
 $_ENV:通过环境方式传递给当前脚本的变量的数组。
 
@@ -55,11 +57,7 @@ You are <?php echo (int)$_POST['age'];?> years old.
 
 #### 注释
 
-//注释注释
-
-#注释注释
-
-/ * 注释 */
+//注释注释     #注释注释    / * 注释 */
 
 ### 变量类型
 
@@ -98,6 +96,14 @@ array转换成object将使键名成为属性名并具有相对应的值
 isset检查是否设置了某个变量
 
 var_dump 用于输出变量的相关信息
+
+strstr(str1,str2)判断str2是否str1的字串，并返回从str2第一次出现的位置开始到str1结尾的子串
+
+substr(string1, startPos,[length])子串，字符位置从0开始计数，startPos开始取子串的索引值
+
+str_replace(search, replace, subject, [count])将subject中全部的search都被replace替换掉，并返回结果
+
+parse_str(encoded_string, [result])将字符串解析成多个变量并设置到当前作用域
 
 ### 魔术常量
 
