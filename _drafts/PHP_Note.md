@@ -105,6 +105,8 @@ str_replace(search, replace, subject, [count])将subject中全部的search都被
 
 parse_str(encoded_string, [result])将字符串解析成多个变量并设置到当前作用域
 
+eregi(pattern, string,[regs])存在空字符截断漏洞，正则匹配
+
 ### 魔术常量
 
 __ LINE __文件中的当前行号
@@ -144,3 +146,67 @@ serialize()函数会检查类中是否存在一个魔术方法__sleep()。如果
 serialize()：序列化
 
 unserialize()：反序列化
+
+## 伪协议
+
+### file://
+
+在双off条件下也可以使用
+
+allow_url_fopen:off/on
+
+allow_url_include:off/on
+
+用于访问本地文件系统
+
+### php://
+
+php://filter双off也可以使用
+
+php://input, php://stdin, php://memory, php://temp需开启allow_url_include
+
+#### php://filter
+
+它是一种元封装器，设计用于数据流打开时的筛选过滤应用。
+
+```
+resource=<要过滤的数据流> 参数是必须的。指定了要筛选过滤的数据流
+read=<读链的筛选列表> 参数可选，可以设定一个或多个过滤器名称，以管道符|分割
+write=<写链的筛选列表> 同上
+<;两个链的筛选列表> 任何没有以read=或write=作前缀的筛选器列表会视情况应用于读或写链
+```
+
+例子，任意读取文件的payload
+
+```php
+php://filter/read=convert.base64-encode/resource=upload.php
+```
+
+字符串过滤器
+
+```php
+string.rot13
+string.toupper
+string.tolower
+string.strip_tags
+```
+
+例如
+
+```php
+<?php
+$filename = $_GET['a'];
+$data = "test test";
+file_put_content($filename,$data);
+?>
+```
+
+可以往服务器中写入一个文件内容全为小写且文件名为test.php的文件
+
+```
+?a=php://filter/write=string.tolower/resource=test.php
+```
+
+#### php://input
+
+是个可以访问请求的原始数据的只读流，可以读取到 post没有解析的原始数据，将post请求中的post数据作为php代码执行。enctype="multipart/form-data"的时候php://input是无效的
