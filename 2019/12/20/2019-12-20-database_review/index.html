@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="（未完）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据库复习总结">
+<meta property="og:url" content="http://yoursite.com/2019/12/20/2019-12-20-database_review/index.html">
+<meta property="og:site_name" content="Essie&#39;s Blog">
+<meta property="og:description" content="（未完）">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2019-12-19T16:00:00.000Z">
+<meta property="article:modified_time" content="2019-12-30T15:26:45.803Z">
+<meta property="article:author" content="Essie">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/12/20/2019-12-20-database_review/"/>
+
+
+
+
+
+  <title>数据库复习总结 | Essie's Blog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Essie's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/20/2019-12-20-database_review/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Essie">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Essie's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">数据库复习总结</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-12-20T00:00:00+08:00">
+                2019-12-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/note/" itemprop="url" rel="index">
+                    <span itemprop="name">note</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>（未完）</p>
+<a id="more"></a>
+<h2 id="1-引言"><a href="#1-引言" class="headerlink" title="1 引言"></a>1 引言</h2><p><strong>数据字典</strong>是指对数据的数据项、数据结构、数据流、数据存储、处理逻辑等进行定义和描述，其目的是对数据流程图中的各个元素做出详细的说明，使用数据字典为简单的建模项目。简而言之，数据字典是描述数据的信息集合，是对系统中使用的所有数据元素的定义的集合</p>
+<p><strong>DBMS</strong>：数据库管理系统，有一个互相关联的数据的集合和一组用以访问这些数据的程序组成。这个数据集合通常称作数据库。</p>
+<p><strong>SQL</strong>：结构化查询语言，structured query language</p>
+<p><strong>DML</strong>：数据操纵语言</p>
+<p><strong>DDL</strong>：数据定义语言</p>
+<p><strong>物理数据独立性</strong>：应用程序如果不依赖于物理模式，它们就被称为是具有物理数据独立性，因此即使物理模式改变了它们也无需重写</p>
+<h2 id="2-关系模型介绍"><a href="#2-关系模型介绍" class="headerlink" title="2 关系模型介绍"></a>2 关系模型介绍</h2><h3 id="关系数据库的结构"><a href="#关系数据库的结构" class="headerlink" title="关系数据库的结构"></a>关系数据库的结构</h3><p>关系数据库由<strong>表</strong>的集合构成，每个表有唯一的名字</p>
+<p><strong>关系</strong>用来指代表，<strong>元组</strong>用来指代行，<strong>属性</strong>指代表中的列</p>
+<p><strong>关系实例</strong>：包含的一组特定的行</p>
+<p>属性的<strong>域</strong>：对于关系的每个属性，都存在一个允许取值的集合</p>
+<p>我们要求对所有关系r而言，r的所有属性的域都是原子的</p>
+<h3 id="数据库模式"><a href="#数据库模式" class="headerlink" title="数据库模式"></a>数据库模式</h3><p><strong>数据库模式</strong>：数据库的逻辑设计</p>
+<p><strong>数据库实例</strong>：给定时刻数据库中数据的一个快照</p>
+<p><strong>关系模式</strong>：对应于程序设计中的“类型定义”，由属性序列及各属性对应域组成</p>
+<h3 id="码"><a href="#码" class="headerlink" title="码"></a><u>码</u></h3><p><strong>超码</strong>是一个或多个属性的集合，这些属性的组合可以使我们在一个关系中唯一地标识一个元组</p>
+<p>如果K是一个超码，那么K的任意超集也是超码</p>
+<p><strong>候选码</strong>：是超码，它的任意真子集都不能成为超码，它就是最小超码</p>
+<p><strong>主码</strong>：被数据库设计者选中的、主要用来在一个关系中区分不同元组的候选码</p>
+<p><strong>外码</strong>：一个关系模式r1在它的属性中包括另一个关系模式r2的主码，那么这个属性在r1上称作参照r2的外码。关系r1也称为外码依赖的参照关系，r2叫做外码的被参照关系。</p>
+<h2 id="3-初级SQL"><a href="#3-初级SQL" class="headerlink" title="3 初级SQL"></a>3 初级SQL</h2><h3 id="数据定义"><a href="#数据定义" class="headerlink" title="数据定义"></a>数据定义</h3><h4 id="基本类型"><a href="#基本类型" class="headerlink" title="基本类型"></a>基本类型</h4><p>char, varchar, int, numeric, real, double, float,</p>
+<h4 id="基本模式定义"><a href="#基本模式定义" class="headerlink" title="基本模式定义"></a>基本模式定义</h4><p>创建department关系模式</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> department</span><br><span class="line">	(dept_name <span class="built_in">varchar</span>(<span class="number">20</span>) <span class="keyword">not</span> <span class="literal">null</span>,</span><br><span class="line">	building <span class="built_in">varchar</span>(<span class="number">15</span>),</span><br><span class="line">	budget <span class="built_in">numeric</span>(<span class="number">12</span>,<span class="number">2</span>), //定点数，<span class="number">12</span>位数字，<span class="number">2</span>位在小数点右边</span><br><span class="line">	primary <span class="keyword">key</span> (dept_name)); //完整性约束</span><br></pre></td></tr></table></figure>
+<h4 id="完整性约束"><a href="#完整性约束" class="headerlink" title="完整性约束"></a>完整性约束</h4><p><strong>primary key</strong>(a,b,c):属性a,b,c构成关系的主码</p>
+<p><strong>Foreign key</strong>(a,b,c) <strong>references</strong> s:关系中任意元组在属性(a,b,c)上的取值必须对应于关系s中某元组在主码属性上的取值</p>
+<p><strong>Not null</strong>：表明在该属性上不允许空值</p>
+<p><u>SQL禁止破坏完整性约束的任何数据库更新</u></p>
+<h3 id="数据库的修改"><a href="#数据库的修改" class="headerlink" title="数据库的修改"></a>数据库的修改</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">//插入</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> instructor</span><br><span class="line">    <span class="keyword">values</span>(<span class="number">10211</span>,<span class="string">'Smith'</span>,<span class="string">'Biology'</span>,<span class="number">66000</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> instructor</span><br><span class="line">    <span class="keyword">select</span> <span class="keyword">ID</span>, <span class="keyword">name</span>, dept_name, <span class="number">18000</span></span><br><span class="line">    <span class="keyword">from</span> student</span><br><span class="line">    <span class="keyword">where</span> dept_name = <span class="string">'Music'</span> <span class="keyword">and</span> tot_cred&gt;<span class="number">144</span>;</span><br><span class="line">    //在查询结果的基础上插入元组</span><br><span class="line">//删除</span><br><span class="line"><span class="keyword">delete</span> <span class="keyword">from</span> student ;</span><br><span class="line"><span class="keyword">drop</span> <span class="keyword">table</span> r; //整个关系模式都删掉</span><br><span class="line"><span class="keyword">delete</span> <span class="keyword">from</span> r; //删掉关系中的所有元组</span><br><span class="line"><span class="keyword">delete</span> <span class="keyword">from</span> r <span class="keyword">where</span> P; //删除满足条件P的r中的元组</span><br><span class="line">//在已有关系中中增加或去掉属性,新属性上的取值为null</span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> r <span class="keyword">add</span> A D;</span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> r <span class="keyword">drop</span> A;</span><br><span class="line">//更新</span><br><span class="line"><span class="keyword">update</span> instructor</span><br><span class="line"><span class="keyword">set</span> salary = salary*<span class="number">1.05</span></span><br><span class="line"><span class="keyword">where</span> salary &lt; (<span class="keyword">select</span> <span class="keyword">avg</span>(salary) <span class="keyword">from</span> instructor);</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>只能删除整个元组，而不能只删除某些属性上的值</p>
+</li>
+<li><p>delete命令只能作用于一个关系</p>
+</li>
+<li><p>在执行插入前线执行完select语句是非常重要的，例如在student上没有主码约束的话，下面的请求会插入无数元组</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> student </span><br><span class="line">	selcet * <span class="keyword">from</span> student</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>case结构</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">case</span><br><span class="line">	when pred1, then result1</span><br><span class="line">	when pred2, then result2</span><br><span class="line">	…</span><br><span class="line">	else result0</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">update instructor</span><br><span class="line">set salary &#x3D; case </span><br><span class="line">			when salary &lt;&#x3D; 10000 then salary*1.05</span><br><span class="line">			when salary</span><br><span class="line">			else salary*1.03</span><br><span class="line">			end</span><br></pre></td></tr></table></figure>
+<h3 id="SQL查询"><a href="#SQL查询" class="headerlink" title="SQL查询"></a>SQL查询</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> xx,xx <span class="keyword">from</span> table1,table2 <span class="keyword">where</span> predicate</span><br></pre></td></tr></table></figure>
+<p>select * 表示选择所有属性</p>
+<h4 id="单关系查询"><a href="#单关系查询" class="headerlink" title="单关系查询"></a>单关系查询</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">select distinct dept_name from instructor;</span><br><span class="line">&#x2F;&#x2F;distinct强行删除重复</span><br><span class="line">select all dept_name from instructor;</span><br><span class="line">&#x2F;&#x2F;all指明不去重</span><br><span class="line">select ID, salary*1.1 from instructor;</span><br><span class="line">&#x2F;&#x2F;可以使用+-*&#x2F;运算表达式</span><br><span class="line">select name from instructor where dept_name&#x3D;&#39;Comp.Sci&#39; and salary &gt; 70000;</span><br><span class="line">&#x2F;&#x2F;where子句中允许使用and or not，也可以有&gt;&lt; &lt;&#x3D; &gt;&#x3D; &lt;&gt;等</span><br></pre></td></tr></table></figure>
+<h4 id="多关系查询"><a href="#多关系查询" class="headerlink" title="多关系查询"></a>多关系查询</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select name, instructor.dept_name, building from instructor, department where instructoe.dept_name&#x3D;department.dept_name</span><br></pre></td></tr></table></figure>
+<p>出现在多个表格中的属性名，如这里的dept_name，关系名用作前缀来区分</p>
+<h4 id="自然连接-natural-join"><a href="#自然连接-natural-join" class="headerlink" title="自然连接 natural join"></a>自然连接 natural join</h4><p>自然连接运算作用于两个关系，并产生一个关系作为结果，它只考虑那些在两个关系模式中都出现的属性上取值相同的元组对</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select name, course_id from instructor natural join teaches</span><br></pre></td></tr></table></figure>
+<h4 id="join…using"><a href="#join…using" class="headerlink" title="join…using"></a>join…using</h4><p>指定需要取值相同的列，进行连接</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select name, title from (instructor natural join teaches) join course using (course_id)</span><br></pre></td></tr></table></figure>
+<h3 id="附加的基本运算"><a href="#附加的基本运算" class="headerlink" title="附加的基本运算"></a>附加的基本运算</h3><h4 id="更名运算-as"><a href="#更名运算-as" class="headerlink" title="更名运算 as"></a>更名运算 as</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> T.name, S.course_id</span><br><span class="line"><span class="keyword">from</span> instructor <span class="keyword">as</span> T, teaches <span class="keyword">as</span> S</span><br><span class="line"><span class="keyword">where</span> T.ID = S.ID;</span><br></pre></td></tr></table></figure>
+<h4 id="字符串运算"><a href="#字符串运算" class="headerlink" title="字符串运算"></a>字符串运算</h4><p>字符串相等运算大小写敏感</p>
+<h5 id="通配符"><a href="#通配符" class="headerlink" title="通配符"></a>通配符</h5><ul>
+<li>百分号<code>%</code>：匹配任意子串</li>
+<li>下划线<code>_</code>：匹配任意一个字符</li>
+</ul>
+<p>使用<code>like</code>：匹配模式，反斜杠<code>\</code>转义</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">like '%Comp%' //匹配任何包含Comp子串的字符串</span><br><span class="line">like '___' //匹配只包含三个字符的字符串</span><br><span class="line">like 'ab\%cd%' //匹配以ab%cd开头的字符串</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> dept_name <span class="keyword">from</span> department <span class="keyword">where</span> building <span class="keyword">like</span> <span class="string">'%Watsons%'</span></span><br></pre></td></tr></table></figure>
+<h4 id="排序元组的显示次序-order-by"><a href="#排序元组的显示次序-order-by" class="headerlink" title="排序元组的显示次序 order by"></a>排序元组的显示次序 order by</h4><p>asc表示升序（默认），desc表示降序</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> instructor <span class="keyword">order</span> <span class="keyword">by</span> salary <span class="keyword">desc</span>, <span class="keyword">name</span> <span class="keyword">asc</span></span><br></pre></td></tr></table></figure>
+<h4 id="where子句谓词"><a href="#where子句谓词" class="headerlink" title="where子句谓词"></a>where子句谓词</h4><p><strong>between, not between</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">name</span></span><br><span class="line"><span class="keyword">from</span> instructor </span><br><span class="line"><span class="keyword">where</span> salary <span class="keyword">between</span> <span class="number">9000</span> <span class="keyword">and</span> <span class="number">10000</span></span><br></pre></td></tr></table></figure>
+<p><strong>(a,b,c,…)表示n维元组</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">name</span>, course_id</span><br><span class="line"><span class="keyword">from</span> instructor, teaches</span><br><span class="line"><span class="keyword">where</span> (instructor.ID, dept_name) = (teaches.ID,<span class="string">'Biology'</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="集合运算"><a href="#集合运算" class="headerlink" title="集合运算"></a>集合运算</h3><p><code>union</code>，<code>intersect</code>,  <code>except</code>对应集合论中$\bigcup, \bigcap, -$的操作</p>
+<p>使用这三个操作默认去重，保留重复要使用<code>all</code></p>
+<h3 id="空值-Null-values"><a href="#空值-Null-values" class="headerlink" title="空值 Null values"></a>空值 Null values</h3><p>用<strong>is null</strong>判断空值</p>
+<p>涉及空值的任何比较运算的结果视为unknown</p>
+<p>unknown or true = true</p>
+<p>unknown and flase = flase</p>
+<p>unknown and/or  的其它情况和not unknown均为unknown</p>
+<h3 id="聚集函数"><a href="#聚集函数" class="headerlink" title="聚集函数"></a>聚集函数</h3><ul>
+<li>avg 平均</li>
+<li>min 最小</li>
+<li>max 最大</li>
+<li>sum 总和</li>
+<li>count 计数</li>
+</ul>
+<p>注意sum和avg的输入必须是数字集，其它的可以不是</p>
+<h4 id="基本聚集"><a href="#基本聚集" class="headerlink" title="基本聚集"></a>基本聚集</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">avg</span>(salary) <span class="keyword">as</span> avg_salary <span class="keyword">from</span> instructor <span class="keyword">where</span> dept_name = <span class="string">'Comp.Sci'</span></span><br></pre></td></tr></table></figure>
+<p>默认有all，保留重复元素（如计算平均值时很重要）</p>
+<p>若要去掉重复元素，使用distinct</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">count</span>(<span class="keyword">distinct</span> <span class="keyword">ID</span>)</span><br><span class="line"><span class="keyword">from</span> teaches</span><br><span class="line"><span class="keyword">where</span> semester = <span class="string">'Spring'</span> <span class="keyword">and</span> <span class="keyword">year</span> = <span class="number">2010</span>;</span><br></pre></td></tr></table></figure>
+<p>SQL不允许在用count(*)的时候使用distinct</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">count</span>(*)</span><br><span class="line"><span class="keyword">from</span> course;</span><br></pre></td></tr></table></figure>
+<h4 id="group-by分组聚集"><a href="#group-by分组聚集" class="headerlink" title="group by分组聚集"></a>group by分组聚集</h4><p><u><strong>Select 后面跟的选择属性集合需要是group by后面跟的属性集合的子集，否则属性需要出现在聚集函数内部</strong></u></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> dept_name,<span class="keyword">avg</span>(salary) <span class="keyword">as</span> avg_salary</span><br><span class="line"><span class="keyword">from</span> instructor</span><br><span class="line"><span class="keyword">group</span> <span class="keyword">by</span> dept_name; //找出每个系的平均工资</span><br></pre></td></tr></table></figure>
+<h4 id="Having子句"><a href="#Having子句" class="headerlink" title="Having子句"></a>Having子句</h4><p>分组限定条件，having子句中的谓词在<strong>形成分组之后才起作用</strong>，针对group by子句构成的分组</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> dept_name, <span class="keyword">avg</span>(salary) <span class="keyword">as</span> avg_salary</span><br><span class="line"><span class="keyword">from</span> instructor</span><br><span class="line"><span class="keyword">group</span> <span class="keyword">by</span> dept_name</span><br><span class="line"><span class="keyword">having</span> <span class="keyword">avg</span>(salary) &gt; <span class="number">42000</span>;</span><br></pre></td></tr></table></figure>
+<p><u>与select子句情况类似，任何出现在having子句中，但<strong>没有被聚集的属性必须出现在group by子句中</strong>，否则查询就是错误的</u></p>
+<h4 id="对空值和布尔值的聚集"><a href="#对空值和布尔值的聚集" class="headerlink" title="对空值和布尔值的聚集"></a>对空值和布尔值的聚集</h4><p><strong><u>除了count(*)以外，聚合函数忽略输入集合中的空值</u></strong></p>
+<p>由于空值被忽略，有可能造册灰姑娘参加函数运算的输入值集合为空集。<strong>规定空集的count运算值为0</strong>，其他聚合运算在输入为空集的情况下<strong>返回一个空值</strong></p>
+<p>布尔值有两个聚合函数：Some,every——可以用来处理布尔值的集合</p>
+<h3 id="嵌套子查询"><a href="#嵌套子查询" class="headerlink" title="嵌套子查询"></a>嵌套子查询</h3><p>select-from-where表达式嵌套在另一个查询的where子句中</p>
+<h4 id="集合成员资格-in-not-in"><a href="#集合成员资格-in-not-in" class="headerlink" title="集合成员资格 in/not in"></a>集合成员资格 in/not in</h4><p>in/not in 测试元组是否集合中的成员</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">select distinct course_id </span><br><span class="line">from section </span><br><span class="line">where semester&#x3D;&#39;Fall&#39; and year &#x3D; 2009 and course_id in </span><br><span class="line">	(select course_id </span><br><span class="line">     from section </span><br><span class="line">     where semester &#x3D; &#39;Spring&#39; and year &#x3D; 2010)</span><br></pre></td></tr></table></figure>
+<h4 id="集合的比较"><a href="#集合的比较" class="headerlink" title="集合的比较"></a>集合的比较</h4><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>comparison</th>
+<th>&gt;</th>
+<th>&lt;</th>
+<th>&gt;=</th>
+<th>&lt;=</th>
+<th>&lt;&gt;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>some</td>
+<td>略</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>all</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>in等价于<code>=some</code></p>
+<p>not in等价于 <code>&lt;&gt;all</code></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">name</span> </span><br><span class="line"><span class="keyword">from</span> instructor</span><br><span class="line"><span class="keyword">where</span> salary &gt; <span class="keyword">some</span> (<span class="keyword">select</span> salary</span><br><span class="line">                     <span class="keyword">from</span> instructor</span><br><span class="line">                     <span class="keyword">where</span> dept_name = <span class="string">'Biology'</span>);</span><br></pre></td></tr></table></figure>
+<h4 id="空关系测试-exist-not-exist"><a href="#空关系测试-exist-not-exist" class="headerlink" title="空关系测试 exist/not exist"></a>空关系测试 exist/not exist</h4><p>exist结构在作为参数的子查询非空的时候返回true</p>
+<p><strong>Exist</strong> r 等价于r不为空值</p>
+<p><strong>Not exist</strong> r 等价于r为空值</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">//找到所有参加了生物系的所有课程的学生</span><br><span class="line"><span class="keyword">select</span> <span class="keyword">distinct</span> S.ID, S.name</span><br><span class="line"><span class="keyword">from</span> student <span class="keyword">as</span> S</span><br><span class="line"><span class="keyword">where</span> <span class="keyword">not</span> <span class="keyword">exists</span> </span><br><span class="line">	((<span class="keyword">select</span> course_id </span><br><span class="line">	 <span class="keyword">from</span> course</span><br><span class="line">	 <span class="keyword">where</span> dept_name = <span class="string">'Biology'</span>)</span><br><span class="line">	 <span class="keyword">except</span></span><br><span class="line">	 (<span class="keyword">select</span> T.course_id </span><br><span class="line">	 <span class="keyword">from</span> takes <span class="keyword">as</span> T</span><br><span class="line">	 <span class="keyword">where</span> S.ID = T.ID));</span><br></pre></td></tr></table></figure>
+<p>注意$X \subseteq Y \iff X-Y=\varnothing$</p>
+<p>来自外层查询的一个相关名称（S）可以用在where子句的子查询中。使用了来自外层查询相关名称的子查询被称作<strong>相关子查询</strong></p>
+<h4 id="重复元组存在性测试-unique"><a href="#重复元组存在性测试-unique" class="headerlink" title="重复元组存在性测试 unique"></a>重复元组存在性测试 unique</h4><p>如果作为参数的子查询结果中没有重复的元组，unique结构将返回true值</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">//找出所有在2009年最多开设一次的课程</span><br><span class="line"><span class="keyword">select</span> T.course_id</span><br><span class="line"><span class="keyword">from</span> courses <span class="keyword">as</span> T</span><br><span class="line"><span class="keyword">where</span> <span class="keyword">unique</span>(<span class="keyword">select</span> R.course_id</span><br><span class="line">             <span class="keyword">from</span> <span class="keyword">section</span> <span class="keyword">as</span> R </span><br><span class="line">             <span class="keyword">where</span> T.course_id = R.course_id <span class="keyword">and</span></span><br><span class="line">                R.year = <span class="number">2009</span>);</span><br></pre></td></tr></table></figure>
+<h4 id="from子句中的子查询"><a href="#from子句中的子查询" class="headerlink" title="from子句中的子查询"></a>from子句中的子查询</h4><p>可以使用as子句给此<strong>子查询的结果关系起名字</strong>，并对属性进行重命名</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> dept_name, avg_salary</span><br><span class="line"><span class="keyword">from</span> (<span class="keyword">select</span> dept_name, <span class="keyword">avg</span>(salary) <span class="keyword">as</span> avg_salary</span><br><span class="line">        <span class="keyword">from</span> instructor</span><br><span class="line">        <span class="keyword">group</span> <span class="keyword">by</span> dept_name)</span><br><span class="line">        <span class="keyword">as</span> dept_avg(dept_name,avg_salary)</span><br><span class="line"><span class="keyword">where</span> avg_salary &gt; <span class="number">42000</span>;</span><br></pre></td></tr></table></figure>
+<p>子查询的结果关系被命名为dept_avg，属性名是dept_name 和 avg_salary</p>
+<h4 id="with子句"><a href="#with子句" class="headerlink" title="with子句"></a>with子句</h4><p>提供定义临时关系的方法，这个定义只对包含with子句的查询有效</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> max_budget(<span class="keyword">value</span>) <span class="keyword">as</span> </span><br><span class="line">    (<span class="keyword">select</span> <span class="keyword">max</span>(budget)</span><br><span class="line">     <span class="keyword">from</span> department)</span><br><span class="line"><span class="keyword">select</span> budget</span><br><span class="line"><span class="keyword">from</span> department, max_budget</span><br><span class="line"><span class="keyword">where</span> department.budget = max_budget.value;</span><br></pre></td></tr></table></figure>
+<h4 id="标量子查询"><a href="#标量子查询" class="headerlink" title="标量子查询"></a>标量子查询</h4><p>子查询只返回包含<strong>单个属性的单个元组</strong></p>
+<p>sql允许标量子查询出现在返回单个值的表达能够出现的任何地方</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">//查询每个系的导师数量</span><br><span class="line"><span class="keyword">select</span> dept_name,</span><br><span class="line">    (<span class="keyword">select</span> <span class="keyword">count</span>(*)</span><br><span class="line">     <span class="keyword">from</span> instructor</span><br><span class="line">     <span class="keyword">where</span> department.dept_name = instructor.dept_name)</span><br><span class="line">     <span class="keyword">as</span> num_instructors</span><br><span class="line"><span class="keyword">from</span> department;</span><br></pre></td></tr></table></figure>
+<h2 id="4-中级SQL"><a href="#4-中级SQL" class="headerlink" title="4 中级SQL"></a>4 中级SQL</h2><h3 id="连接表达式"><a href="#连接表达式" class="headerlink" title="连接表达式"></a>连接表达式</h3><h3 id="连接条件-on"><a href="#连接条件-on" class="headerlink" title="连接条件 on"></a>连接条件 on</h3><p>与自然连接的区别：自然连接相同的字段出现一次，而这里出现两次；若想只显示一次，则需要select指定字段</p>
+<p>on条件可以表示任何SQL谓词，可以表示比自然连接更丰富的连接条件</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> student <span class="keyword">join</span> takes <span class="keyword">on</span> student.ID = takes.ID</span><br></pre></td></tr></table></figure>
+<h4 id="外连接"><a href="#外连接" class="headerlink" title="外连接"></a>外连接</h4><p>外连接在结果中<strong>创建包含空值元组</strong>的方式，保留了在连接中丢失的元组</p>
+<p><strong>左外连接</strong>left outer join，只保留出现在左外连接运算之前（左边）的关系的元组</p>
+<p><strong>右外连接</strong>right outer join，只保留出现在右外连接运算之前（右边）的关系的元组</p>
+<p><strong>全外连接</strong>full outer join，保留出现在两个关系中的元组</p>
+<p>前面不保留未匹配元组的连接运算被称作<strong>内连接</strong>运算</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;找出一门课也没有选的学生</span><br><span class="line">select ID from student natural left outer join takes</span><br><span class="line">where course_id is null</span><br></pre></td></tr></table></figure>
+<p>在左外连接中，左侧关系中不匹配右侧关系任何元组的元组被添上空值并加到结果中。上面的左外连接使得结果中没有选课的学生的元组也得以保留，相对应的属于takes字段的部分为null。</p>
+<p>on子句可以和外连接一起使用。on和where在外连接中的表现是不同的。on条件是外连接声明的一部分，但where子句却不是。</p>
+<hr>
+<p>外连接，三种，都要掌握，左外右外全外</p>
+<p>视图的概念，如何create视图，基本sql语句</p>
+<p>视图的更新要注意什么（什么时候可以更新，什么不能）</p>
+<p>授权，authorization，sql语句要会写</p>
+<p>权限的传递（如何进行传递）</p>
+<h2 id="6-形式化关系查询语言"><a href="#6-形式化关系查询语言" class="headerlink" title="6 形式化关系查询语言"></a>6 形式化关系查询语言</h2><p>注意关系代数的基本操作，要会写</p>
+<p>基本的关系代数式子</p>
+<p>能写出基本的查询</p>
+<p>外连接的关系代数写法</p>
+<p>看一下元组关系演算（很基本的查询会写就可）</p>
+<h2 id="7-数据库设计和E-R模型"><a href="#7-数据库设计和E-R模型" class="headerlink" title="7 数据库设计和E-R模型"></a>7 数据库设计和E-R模型</h2><p>ER图，数据库的设计阶段，design process（名词都是要记住的）</p>
+<p>什么是弱实体集，和强实体集有什么区别</p>
+<p>ER图画法规范，用教材上的规范</p>
+<p>根据实际的需求画出ER图</p>
+<p>知道一些规则，怎么转化成实际的关系模式</p>
+<p>关系模式还原成ER图</p>
+<p>联系转化成关系，如何转化，主码如何进行选择（多方）</p>
+<h2 id="8-关系数据库设计"><a href="#8-关系数据库设计" class="headerlink" title="8 关系数据库设计"></a>8 关系数据库设计</h2><p>理论性比较强</p>
+<p>主要就是分解，为什么要进行分解</p>
+<p>进行分解的时候哪些依据可以使用？</p>
+<p>函数依赖（概念</p>
+<p>使用函数依赖进行基本推导Armstrong公理</p>
+<p>平凡依赖</p>
+<p>BC范式的概念（基本要求</p>
+<p>属性的闭包，怎么求，概念是</p>
+<p>怎么证明超码，候选码</p>
+<p>正则覆盖</p>
+<p>多值依赖：了解概念就可</p>
+<p>四种范式，注意冗余度，高低</p>
+<h2 id="11-索引和散列"><a href="#11-索引和散列" class="headerlink" title="11 索引和散列"></a>11 索引和散列</h2><p>索引</p>
+<p>唯一索引的概念</p>
+<p>如何使用sql进行定义</p>
+<p>主索引，辅助索引，以及应用的场合</p>
+<p>B+ 树的构造</p>
+<p>基本的搜索代价（公式）</p>
+<h2 id="12-查询处理"><a href="#12-查询处理" class="headerlink" title="12 查询处理"></a>12 查询处理</h2><p>选择操作的代价分析（多种情况</p>
+<p>sorting的归并排序（只要求掌握二路的）</p>
+<p>二路做一个外部的归并排序</p>
+<p>连接操作，嵌套循环nested loop和block nested loop</p>
+<p>掌握基本的操作</p>
+<p>对它们的代价进行分析</p>
+<h2 id="13-查询优化"><a href="#13-查询优化" class="headerlink" title="13 查询优化"></a>13 查询优化</h2><p>掌握等价转化的基本规则</p>
+<p>掌握选择操作有关的</p>
+<h2 id="14-事务"><a href="#14-事务" class="headerlink" title="14 事务"></a>14 事务</h2><p>事务是访问并可能更新各种数据项的一个程序执行单元，用形如<code>begin transaction</code>和<code>end transaction</code>语句来界定。</p>
+<h3 id="事务的ACID特性"><a href="#事务的ACID特性" class="headerlink" title="事务的ACID特性"></a>事务的ACID特性</h3><ul>
+<li><strong>原子性</strong>：事务的所有操作在数据库中要么全部正确反应出来，要么完全不反应。<ul>
+<li>保证原子性的思路：对于事务要执行写操作的数据项，数据库系统在磁盘上记录其旧值。记录在日志文件中。</li>
+</ul>
+</li>
+<li><strong>一致性</strong>：隔离执行事务时，保持数据库的一致性。<ul>
+<li>例如：A向B转账，一致性要求事务执行前后不改变A+B的和</li>
+</ul>
+</li>
+<li><strong>隔离性</strong>：尽管多个事务可能并发执行，每个事务都感觉不到系统中有其他事务在执行。<ul>
+<li>事务的隔离性确保事务并发执行后的系统状态与这些事务以某种次序<strong>一个接一个地执行</strong>后的状态是等价的。确保隔离性是数据库系统中<strong>并发控制系统</strong>的责任</li>
+</ul>
+</li>
+<li><strong>持久性</strong>：一个事务成功完成后，它对数据库的改变必须是永久的，即使出现系统故障。（确保以下两条中的任何一条来达到持久性）<ul>
+<li>事务做的更新在事务结束前已经写入磁盘</li>
+<li>有关事务已执行的更新信息已写到磁盘上，并且此类信息必须充分，能让数据库在系统出现故障后重新启动时重新构造更新</li>
+</ul>
+</li>
+</ul>
+<h3 id="存储结构"><a href="#存储结构" class="headerlink" title="存储结构"></a>存储结构</h3><ul>
+<li><strong>易失性存储器</strong>：信息通常在系统崩溃后不会幸存</li>
+<li><strong>非易失性存储器</strong>：信息会在系统崩溃后幸存</li>
+<li><strong>稳定性存储器</strong>：信息永远不会丢失（丢失的可能性微乎其微）</li>
+</ul>
+<p>事务修改写入稳定性存储器（持久性），日志记录写入稳定性存储器（原子性）</p>
+<h3 id="事务原子性和持久性"><a href="#事务原子性和持久性" class="headerlink" title="事务原子性和持久性"></a>事务原子性和持久性</h3><p><strong>中止</strong>事务造成的变更被撤销，称事务<strong>已回滚</strong>，典型方法：维护<strong>日志</strong>。</p>
+<p>撤销<strong>已提交</strong>事务方法：执行一个<strong>补偿事务</strong>。</p>
+
+<p>进入中止状态后，系统有两种选择：</p>
+<ul>
+<li><strong>重启</strong>事务：仅当引起事务中止的是<em>硬件错误</em>而不是事务内部逻辑的软件错误。</li>
+<li><strong>杀死</strong>事务：通常是事务<em>内部逻辑</em>造成的错误</li>
+</ul>
+<h3 id="事务隔离性"><a href="#事务隔离性" class="headerlink" title="事务隔离性"></a>事务隔离性</h3><ul>
+<li>提高吞吐量和资源利用率：I/O活动可以和CPU处理并行执行</li>
+<li>减少等待时间：不同时长事务共享CPU周期和磁盘存取。减少执行事务时不可预测的延迟。</li>
+</ul>
+<p>不是所有的并发执行都能得到正确的结果。</p>
+<p>并发调度的原则：要和某一个串行调度等价。这样可以保证数据库的一致性</p>
+<h3 id="可串行化"><a href="#可串行化" class="headerlink" title="可串行化"></a>可串行化</h3><p>如果某调度和某一个串行调度等价，那么称其串行等价的。</p>
+<ul>
+<li>冲突可串行化</li>
+<li>视图可串行化</li>
+</ul>
+<h4 id="指令冲突"><a href="#指令冲突" class="headerlink" title="指令冲突"></a>指令冲突</h4><p>对同一个数据，至少有一个是write指令的时候，这两条指令是冲突的</p>
+<ol>
+<li>I=read(Q), J=read(Q)，顺序无关紧要。非冲突</li>
+<li>I=read(Q), J=write(Q)，次序重要。冲突</li>
+<li>I=write(Q), J=read(Q)，次序重要。冲突</li>
+<li>I=write(Q), J=write(Q)，次序重要，影响后面读Q的指令。冲突</li>
+</ol>
+<p>如果调度S可以经过一系列非冲突指令交换成S‘，称S和S’冲突等价。（注意是交换两个事务不冲突的指令，单个事务的内部读写顺序仍然相同）</p>
+<p>若一个调度S与一个串行调度冲突等价，则称调度S是<strong>冲突可串行化</strong>的。</p>
+<h4 id="优先图"><a href="#优先图" class="headerlink" title="优先图"></a>优先图</h4><p>有向边Ti-&gt;Tj表示在Ti和Tj至少有一个是写，且Ti在Tj之前执行。</p>
+<p>如果优先图有环，则是非冲突可串行化的。</p>
+<p>串行化顺序可以通过拓扑排序得到。</p>
+<h4 id="视图可串行化"><a href="#视图可串行化" class="headerlink" title="视图可串行化"></a>视图可串行化</h4><p>如果一个调度S的视图等价于一个串行调度的视图，那么称它为视图可串行化的。</p>
+<h3 id="事务隔离和原子性"><a href="#事务隔离和原子性" class="headerlink" title="事务隔离和原子性"></a>事务隔离和原子性</h3><h4 id="可恢复调度"><a href="#可恢复调度" class="headerlink" title="可恢复调度"></a>可恢复调度</h4><p>可恢复调度应满足：对每对事务Ti和Tj，若Tj读取了之前由Ti所写的数据项，则Ti先于Tj提交</p>
+<h4 id="无级联调度"><a href="#无级联调度" class="headerlink" title="无级联调度"></a>无级联调度</h4><p>无级联调度应满足：对于每对事务Ti和Tj，如果Tj读取了先前由Ti所写的数据项，则Ti必须在Tj这一读操作前提交。</p>
+<p>每一个无级联调度都是可恢复调度。</p>
+<p>缺点：并发性差。</p>
+<h3 id="事务隔离性级别"><a href="#事务隔离性级别" class="headerlink" title="事务隔离性级别"></a>事务隔离性级别</h3><ul>
+<li>可串行化serializable：通常保证可串行化调度。</li>
+<li>可重复读repeatable read：只允许读取已提交数据，而且在一个事务两次读取一个数据项期间，其他事务不得更新该数据。但该事务不要求与其他事务可串行化。</li>
+<li>已提交读read commited：只允许读取已提交数据，但不要求可重复读。比如，在事务两次读取一个数据项期间，另一个事务更新了该数据并提交</li>
+<li>未提交读read uncommited：允许读取未提交数据。这是SQL允许的最低一致性级别</li>
+</ul>
+<p>以上所有隔离性级别都不允许<strong>脏写</strong>，即如果一个数据项已经被另外一个尚未提交或终止的事务写入，则不允许对该数据项执行写操作</p>
+<h2 id="15-并发控制"><a href="#15-并发控制" class="headerlink" title="15 并发控制"></a>15 并发控制</h2><p>基本的锁，兼容矩阵（两种锁）</p>
+<p>死锁的概念，</p>
+<p>死锁的检测方法</p>
+<h2 id="16-恢复系统"><a href="#16-恢复系统" class="headerlink" title="16 恢复系统"></a>16 恢复系统</h2><h3 id="日志记录"><a href="#日志记录" class="headerlink" title="日志记录"></a>日志记录</h3><h3 id="恢复算法"><a href="#恢复算法" class="headerlink" title="恢复算法"></a>恢复算法</h3><p>redo，undo</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/11/08/2019-11-08-SHA1%E5%AE%9E%E7%8E%B0/" rel="next" title="密码学笔记4——SHA1实现">
+                <i class="fa fa-chevron-left"></i> 密码学笔记4——SHA1实现
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/12/20/2019-12-20-%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%8D%E4%B9%A0%E6%80%BB%E7%BB%93/" rel="prev" title="数据库复习总结">
+                数据库复习总结 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Essie</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%20%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">categories</span>
+                
+              </div>
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-引言"><span class="nav-number">1.</span> <span class="nav-text">1 引言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-关系模型介绍"><span class="nav-number">2.</span> <span class="nav-text">2 关系模型介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#关系数据库的结构"><span class="nav-number">2.1.</span> <span class="nav-text">关系数据库的结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据库模式"><span class="nav-number">2.2.</span> <span class="nav-text">数据库模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#码"><span class="nav-number">2.3.</span> <span class="nav-text">码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-初级SQL"><span class="nav-number">3.</span> <span class="nav-text">3 初级SQL</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数据定义"><span class="nav-number">3.1.</span> <span class="nav-text">数据定义</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#基本类型"><span class="nav-number">3.1.1.</span> <span class="nav-text">基本类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#基本模式定义"><span class="nav-number">3.1.2.</span> <span class="nav-text">基本模式定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#完整性约束"><span class="nav-number">3.1.3.</span> <span class="nav-text">完整性约束</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据库的修改"><span class="nav-number">3.2.</span> <span class="nav-text">数据库的修改</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SQL查询"><span class="nav-number">3.3.</span> <span class="nav-text">SQL查询</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#单关系查询"><span class="nav-number">3.3.1.</span> <span class="nav-text">单关系查询</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#多关系查询"><span class="nav-number">3.3.2.</span> <span class="nav-text">多关系查询</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#自然连接-natural-join"><span class="nav-number">3.3.3.</span> <span class="nav-text">自然连接 natural join</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#join…using"><span class="nav-number">3.3.4.</span> <span class="nav-text">join…using</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#附加的基本运算"><span class="nav-number">3.4.</span> <span class="nav-text">附加的基本运算</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#更名运算-as"><span class="nav-number">3.4.1.</span> <span class="nav-text">更名运算 as</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#字符串运算"><span class="nav-number">3.4.2.</span> <span class="nav-text">字符串运算</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#通配符"><span class="nav-number">3.4.2.1.</span> <span class="nav-text">通配符</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#排序元组的显示次序-order-by"><span class="nav-number">3.4.3.</span> <span class="nav-text">排序元组的显示次序 order by</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#where子句谓词"><span class="nav-number">3.4.4.</span> <span class="nav-text">where子句谓词</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#集合运算"><span class="nav-number">3.5.</span> <span class="nav-text">集合运算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#空值-Null-values"><span class="nav-number">3.6.</span> <span class="nav-text">空值 Null values</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#聚集函数"><span class="nav-number">3.7.</span> <span class="nav-text">聚集函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#基本聚集"><span class="nav-number">3.7.1.</span> <span class="nav-text">基本聚集</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#group-by分组聚集"><span class="nav-number">3.7.2.</span> <span class="nav-text">group by分组聚集</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Having子句"><span class="nav-number">3.7.3.</span> <span class="nav-text">Having子句</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#对空值和布尔值的聚集"><span class="nav-number">3.7.4.</span> <span class="nav-text">对空值和布尔值的聚集</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#嵌套子查询"><span class="nav-number">3.8.</span> <span class="nav-text">嵌套子查询</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#集合成员资格-in-not-in"><span class="nav-number">3.8.1.</span> <span class="nav-text">集合成员资格 in&#x2F;not in</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#集合的比较"><span class="nav-number">3.8.2.</span> <span class="nav-text">集合的比较</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#空关系测试-exist-not-exist"><span class="nav-number">3.8.3.</span> <span class="nav-text">空关系测试 exist&#x2F;not exist</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#重复元组存在性测试-unique"><span class="nav-number">3.8.4.</span> <span class="nav-text">重复元组存在性测试 unique</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#from子句中的子查询"><span class="nav-number">3.8.5.</span> <span class="nav-text">from子句中的子查询</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#with子句"><span class="nav-number">3.8.6.</span> <span class="nav-text">with子句</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#标量子查询"><span class="nav-number">3.8.7.</span> <span class="nav-text">标量子查询</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-中级SQL"><span class="nav-number">4.</span> <span class="nav-text">4 中级SQL</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#连接表达式"><span class="nav-number">4.1.</span> <span class="nav-text">连接表达式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#连接条件-on"><span class="nav-number">4.2.</span> <span class="nav-text">连接条件 on</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#外连接"><span class="nav-number">4.2.1.</span> <span class="nav-text">外连接</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-形式化关系查询语言"><span class="nav-number">5.</span> <span class="nav-text">6 形式化关系查询语言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-数据库设计和E-R模型"><span class="nav-number">6.</span> <span class="nav-text">7 数据库设计和E-R模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-关系数据库设计"><span class="nav-number">7.</span> <span class="nav-text">8 关系数据库设计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-索引和散列"><span class="nav-number">8.</span> <span class="nav-text">11 索引和散列</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#12-查询处理"><span class="nav-number">9.</span> <span class="nav-text">12 查询处理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#13-查询优化"><span class="nav-number">10.</span> <span class="nav-text">13 查询优化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#14-事务"><span class="nav-number">11.</span> <span class="nav-text">14 事务</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#事务的ACID特性"><span class="nav-number">11.1.</span> <span class="nav-text">事务的ACID特性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#存储结构"><span class="nav-number">11.2.</span> <span class="nav-text">存储结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#事务原子性和持久性"><span class="nav-number">11.3.</span> <span class="nav-text">事务原子性和持久性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#事务隔离性"><span class="nav-number">11.4.</span> <span class="nav-text">事务隔离性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#可串行化"><span class="nav-number">11.5.</span> <span class="nav-text">可串行化</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#指令冲突"><span class="nav-number">11.5.1.</span> <span class="nav-text">指令冲突</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#优先图"><span class="nav-number">11.5.2.</span> <span class="nav-text">优先图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#视图可串行化"><span class="nav-number">11.5.3.</span> <span class="nav-text">视图可串行化</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#事务隔离和原子性"><span class="nav-number">11.6.</span> <span class="nav-text">事务隔离和原子性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#可恢复调度"><span class="nav-number">11.6.1.</span> <span class="nav-text">可恢复调度</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#无级联调度"><span class="nav-number">11.6.2.</span> <span class="nav-text">无级联调度</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#事务隔离性级别"><span class="nav-number">11.7.</span> <span class="nav-text">事务隔离性级别</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#15-并发控制"><span class="nav-number">12.</span> <span class="nav-text">15 并发控制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#16-恢复系统"><span class="nav-number">13.</span> <span class="nav-text">16 恢复系统</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#日志记录"><span class="nav-number">13.1.</span> <span class="nav-text">日志记录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#恢复算法"><span class="nav-number">13.2.</span> <span class="nav-text">恢复算法</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Essie</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
