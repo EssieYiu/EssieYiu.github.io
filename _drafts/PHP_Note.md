@@ -107,6 +107,14 @@ parse_str(encoded_string, [result])将字符串解析成多个变量并设置到
 
 eregi(pattern, string,[regs])存在空字符截断漏洞，正则匹配
 
+extract从数组中将变量导入当前的符号表
+
+## 文件操作相关函数
+
+### file_get_contents
+
+
+
 ### 魔术常量
 
 __ LINE __文件中的当前行号
