@@ -90,9 +90,28 @@
 <meta property="og:image" content="https://essieyiu.github.io/2019/12/30/databaseReview/ER_mapping.jpg">
 <meta property="og:image" content="https://essieyiu.github.io/2019/12/30/databaseReview/ER_participate.jpg">
 <meta property="og:image" content="https://essieyiu.github.io/2019/12/30/databaseReview/ER_complex.jpg">
+<meta property="og:image" content="https://essieyiu.github.io/2019/12/30/databaseReview/b_leaf.jpg">
+<meta property="og:image" content="https://essieyiu.github.io/2019/12/30/databaseReview/databaseReview/b_leaf.jp">
+<meta property="og:image" content="https://essieyiu.github.io/2019/12/30/databaseReview/databaseReview/b_splitFather.jp">
+<meta property="og:image" content="https://essieyiu.github.io/2019/12/30/databaseReview/b_splitFather.jpg">
+<meta property="og:image" content="https://essieyiu.github.io/2019/12/30/databaseReview/databaseReview/b_delete.jp">
+<meta property="og:image" content="https://essieyiu.github.io/2019/12/30/databaseReview/b_delete.jpg">
+<meta property="og:image" content="https://essieyiu.github.io/2019/12/30/databaseReview/databaseReview/query_process.jp">
+<meta property="og:image" content="https://essieyiu.github.io/2019/12/30/databaseReview/query_process.jpg">
+<meta property="og:image" content="https://essieyiu.github.io/2019/12/30/databaseReview/databaseReview/merge.jp">
+<meta property="og:image" content="https://essieyiu.github.io/2019/12/30/databaseReview/merge.jpg">
+<meta property="og:image" content="https://essieyiu.github.io/2019/12/30/databaseReview/databaseReview/nested.jp">
+<meta property="og:image" content="https://essieyiu.github.io/2019/12/30/databaseReview/nested.jpg">
+<meta property="og:image" content="https://essieyiu.github.io/2019/12/30/databaseReview/databaseReview/block_nested.jp">
+<meta property="og:image" content="https://essieyiu.github.io/2019/12/30/databaseReview/block_nested.jpg">
+<meta property="og:image" content="https://essieyiu.github.io/2019/12/30/databaseReview/databaseReview/merge_join.jp">
+<meta property="og:image" content="https://essieyiu.github.io/2019/12/30/databaseReview/merge_join.jpg">
+<meta property="og:image" content="https://essieyiu.github.io/2019/12/30/databaseReview/databaseReview/hash_join.jp">
+<meta property="og:image" content="https://essieyiu.github.io/2019/12/30/databaseReview/hash_join.jpg">
 <meta property="og:image" content="https://essieyiu.github.io/2019/12/30/databaseReview/14-1.jpg">
+<meta property="og:image" content="https://essieyiu.github.io/2019/12/30/databaseReview/databaseReview/14-1.jp">
 <meta property="article:published_time" content="2019-12-30T15:34:12.000Z">
-<meta property="article:modified_time" content="2020-01-04T15:26:20.432Z">
+<meta property="article:modified_time" content="2020-01-05T15:22:00.952Z">
 <meta property="article:author" content="Essie">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://essieyiu.github.io/2019/12/30/databaseReview/ER_structure.jpg">
@@ -361,13 +380,13 @@
 </li>
 <li><p>delete命令只能作用于一个关系</p>
 </li>
-<li><p>在执行插入前线执行完select语句是非常重要的，例如在student上没有主码约束的话，下面的请求会插入无数元组</p>
+<li><p>在执行插入前先执行完select语句是非常重要的，例如在student上没有主码约束的话，下面的请求会插入无数元组</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> student </span><br><span class="line">	selcet * <span class="keyword">from</span> student</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <p>case结构</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">case</span><br><span class="line">	when pred1, then result1</span><br><span class="line">	when pred2, then result2</span><br><span class="line">	…</span><br><span class="line">	else result0</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">update</span> instructor</span><br><span class="line"><span class="keyword">set</span> salary = <span class="keyword">case</span> </span><br><span class="line">			<span class="keyword">when</span> salary &lt;= <span class="number">10000</span> <span class="keyword">then</span> salary*<span class="number">1.05</span></span><br><span class="line">			<span class="keyword">when</span> salary</span><br><span class="line">			<span class="keyword">else</span> salary*<span class="number">1.03</span></span><br><span class="line">			<span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">update</span> instructor</span><br><span class="line"><span class="keyword">set</span> salary = <span class="keyword">case</span> </span><br><span class="line">			<span class="keyword">when</span> salary &lt;= <span class="number">10000</span> <span class="keyword">then</span> salary*<span class="number">1.05</span></span><br><span class="line">			<span class="keyword">when</span> salary &lt;= <span class="number">20000</span> <span class="keyword">then</span> salary*<span class="number">1.04</span></span><br><span class="line">			<span class="keyword">else</span> salary*<span class="number">1.03</span></span><br><span class="line">			<span class="keyword">end</span></span><br></pre></td></tr></table></figure>
 <h3 id="SQL查询"><a href="#SQL查询" class="headerlink" title="SQL查询"></a>SQL查询</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> xx,xx <span class="keyword">from</span> table1,table2 <span class="keyword">where</span> predicate</span><br></pre></td></tr></table></figure>
 <p>select * 表示选择所有属性</p>
 <h4 id="单关系查询"><a href="#单关系查询" class="headerlink" title="单关系查询"></a>单关系查询</h4><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">distinct</span> dept_name <span class="keyword">from</span> instructor;</span><br><span class="line">//distinct强行删除重复</span><br><span class="line"><span class="keyword">select</span> <span class="keyword">all</span> dept_name <span class="keyword">from</span> instructor;</span><br><span class="line">//all指明不去重</span><br><span class="line"><span class="keyword">select</span> <span class="keyword">ID</span>, salary*<span class="number">1.1</span> <span class="keyword">from</span> instructor;</span><br><span class="line">//可以使用+-*/运算表达式</span><br><span class="line"><span class="keyword">select</span> <span class="keyword">name</span> <span class="keyword">from</span> instructor <span class="keyword">where</span> dept_name=<span class="string">'Comp.Sci'</span> <span class="keyword">and</span> salary &gt; <span class="number">70000</span>;</span><br><span class="line">//where子句中允许使用and or not，也可以有&gt;&lt; &lt;= &gt;= &lt;&gt;等</span><br></pre></td></tr></table></figure>
@@ -633,12 +652,12 @@ _{dept\_name}G_{average(salary)}(instructor)</script><figure class="highlight sq
 </ul>
 <h4 id="查询示例"><a href="#查询示例" class="headerlink" title="查询示例"></a>查询示例</h4><p>找出所有工资在80000美元以上的教师的元组</p>
 <p>${t|t \in instructor \land t[salary]&gt;80000}$</p>
-<p>假设只要ID属性，要引入$\exist$</p>
+<p>假设只要ID属性，要引入$\exists$</p>
 <script type="math/tex; mode=display">
-\{t|\exist s \in instructor(t[ID]=s[ID] \land s[salary] > 80000)\}</script><p>元组变量t只定义在ID属性上，因此结果得到ID上的关系</p>
+\{t|\exists s \in instructor(t[ID]=s[ID] \land s[salary] > 80000)\}</script><p>元组变量t只定义在ID属性上，因此结果得到ID上的关系</p>
 <p>在多个关系中进行查询，找出位置在Watson楼的系中的所有教师姓名</p>
 <script type="math/tex; mode=display">
-\{t|\exist s \in instructor(t[name]=s[name] \land \exist u \in department(u[dept_name]=s[dept_name] \land u[building]='Watson'))\}</script><h2 id="7-数据库设计和E-R模型"><a href="#7-数据库设计和E-R模型" class="headerlink" title="7 数据库设计和E-R模型"></a>7 数据库设计和E-R模型</h2><h3 id="设计过程概览"><a href="#设计过程概览" class="headerlink" title="设计过程概览"></a>设计过程概览</h3><p><strong>设计阶段</strong></p>
+\{t|\exists s \in instructor(t[name]=s[name] \land \exists u \in department(u[dept_name]=s[dept_name] \land u[building]='Watson'))\}</script><h2 id="7-数据库设计和E-R模型"><a href="#7-数据库设计和E-R模型" class="headerlink" title="7 数据库设计和E-R模型"></a>7 数据库设计和E-R模型</h2><h3 id="设计过程概览"><a href="#设计过程概览" class="headerlink" title="设计过程概览"></a>设计过程概览</h3><p><strong>设计阶段</strong></p>
 <ul>
 <li>描述用户需求</li>
 <li>概念设计（常用实体-联系模型表示）</li>
@@ -754,7 +773,7 @@ _{dept\_name}G_{average(salary)}(instructor)</script><figure class="highlight sq
 <li>$(\alpha \bigcup \beta)$</li>
 <li>$(R-(\beta - \alpha))$</li>
 </ul>
-<h5 id="BCNF和依赖保持"><a href="#BCNF和依赖保持" class="headerlink" title="BCNF和依赖保持"></a>BCNF和依赖保持</h5><p>BCNF可以做到无损链接，但是并不总是做到依赖分解</p>
+<h5 id="BCNF和依赖保持"><a href="#BCNF和依赖保持" class="headerlink" title="BCNF和依赖保持"></a>BCNF和依赖保持</h5><p>BCNF可以做到无损连接，但是并不总是做到依赖保持</p>
 <h4 id="第三范式"><a href="#第三范式" class="headerlink" title="第三范式"></a>第三范式</h4><p>具有函数依赖集F的关系模式R属于第三范式的条件是：对于$F^+$中所有形如$\alpha \rightarrow \beta$的函数依赖，至少以下一项成立：</p>
 <ul>
 <li>$\alpha \rightarrow \beta$是一个平凡的函数依赖</li>
@@ -771,11 +790,97 @@ _{dept\_name}G_{average(salary)}(instructor)</script><figure class="highlight sq
 <p>ArmStrong公理是正确且有效的，这些规则是完备的</p>
 <p>便于计算的规则</p>
 <ul>
-<li>合并律$$</li>
-<li>分解律</li>
-<li>伪传递律</li>
+<li>合并律：$若\alpha \rightarrow \beta和\alpha \rightarrow \gamma成立，则\alpha \rightarrow \beta\gamma成立$</li>
+<li>分解律：$若\alpha \rightarrow \beta\gamma成立，则\alpha \rightarrow \beta和\alpha \rightarrow \gamma成立$</li>
+<li>伪传递律：$若\alpha \rightarrow \beta和\gamma\beta \rightarrow \delta成立，则\alpha\gamma \rightarrow \delta成立$</li>
 </ul>
-<p>理论性比较强</p>
+<p><strong>计算$F^+$</strong></p>
+<p>$F^+=F$</p>
+<p>​    repeat</p>
+<p>​        for each $F^+$中的函数依赖f</p>
+<p>​            在f上应用自反律和增补律</p>
+<p>​            将结果加入到$F^+$中</p>
+<p>​        for each $F^+$中的一对函数依赖$f_1$和$f_2$</p>
+<p>​            if $f_1$和$f_2$可以使用传递律结合起来</p>
+<p>​                将结果加入到$F^+$中</p>
+<p>​    until $F^+$不再发生变化</p>
+<h4 id="属性集的闭包"><a href="#属性集的闭包" class="headerlink" title="属性集的闭包"></a>属性集的闭包</h4><p>如果$\alpha \rightarrow \beta$，我们称属性B被$\alpha$函数确定。<strong>要判断集合$\alpha$是否为超码，须计算$\alpha$函数确定的属性集</strong>。一种方法是计算$F^+$，找出左半部为$\alpha$的函数依赖，并合并这些函数依赖的右半部，但是开销很大。</p>
+<p>令$\alpha$为一个属性集。我们将函数依赖集F下被$\alpha$函数确定的所有属性的集合称为F下$\alpha$的闭包，记为$\alpha^+$</p>
+<p><strong>计算$\alpha^+$</strong></p>
+<p>result := $\alpha$</p>
+<p>​    repeat</p>
+<p>​        for each 函数依赖$\beta \rightarrow \gamma$ in F do</p>
+<p>​            begin</p>
+<p>​                if $\beta \subseteq result$ then $result := result \bigcup \gamma$;</p>
+<p>​            end</p>
+<p>​    until （result不变）</p>
+<h4 id="正则覆盖"><a href="#正则覆盖" class="headerlink" title="正则覆盖"></a>正则覆盖</h4><p>无关属性：如果去除函数依赖中的一个属性不改变该函数依赖集的闭包，则称该属性是无关的。形式化定义如下：考虑函数依赖集F及F中的函数依赖$\alpha \rightarrow \beta$</p>
+<ul>
+<li>如果 $A \in \alpha$并且F逻辑蕴含$(F-{\alpha \rightarrow \beta}\bigcup {(\alpha-A) \rightarrow \beta})$，则属性A在$\alpha$中是无关的【考虑函数依赖的左边：$\alpha$不需要A也能推出$\beta$】</li>
+<li>如果$A \in \beta$并且函数依赖集$(F-{\alpha \rightarrow \beta})\bigcup {\alpha \rightarrow(\beta - A )})$逻辑蕴含F，则属性A在$\beta$中是无关的【考虑函数依赖的右边：$\beta$中的A属性可以被其他的函数依赖推出来】</li>
+</ul>
+<p>注意蕴含的方向，如果左半部分和右半部分交换，蕴含关系将总是成立的。</p>
+<p>F的正则覆盖$F_c$是一个依赖集，使得F逻辑蕴含$F_c$中的所有依赖，并且$F_c$逻辑蕴含F中的所有依赖。此外$F_c$必须具有如下性质：</p>
+<ul>
+<li>$F_c$中任何函数依赖都不含无关属性</li>
+<li>$F_c$中函数依赖的<strong>左半部都是唯一的</strong>，即$F_c$中不存在两个依赖$\alpha_1 \rightarrow \beta_1$和$\alpha_2 \rightarrow \beta_2$满足$\alpha_1 = \alpha_2$</li>
+</ul>
+<p><strong>计算正则覆盖</strong></p>
+<p>$F_c=F$</p>
+<p>​    repeat</p>
+<p>​        使用<strong>合并律</strong>将$F_c$中所有形如$\alpha_1 \rightarrow \beta_1$和$\alpha_1 \rightarrow \beta_2$的依赖替换为$\alpha_1 \rightarrow \beta_1\beta_2$</p>
+<p>​        在$F_c$中寻找一个函数依赖$\alpha \rightarrow \beta$，它在$\alpha$或在$\beta$中具有一个<strong>无关属性</strong></p>
+<p>​        /*注意使用的是$F_c$而不是F检验无关属性*/</p>
+<p>​        如果找到一个无关属性，则将它从$F_c$中的$\alpha \rightarrow \beta$中删除</p>
+<p>​    until ($F_c$不变)</p>
+<h4 id="无损分解"><a href="#无损分解" class="headerlink" title="无损分解"></a>无损分解</h4><p><strong>无损分解</strong>：令r(R)为一个关系模式，F为r(R)上的函数依赖集。令$R_1$和$R_2$为R的分解。如果用两个关系模式r($R_1$)，r($R_2$)替代r(R)时没有信息损失，则我们称该分解是无损分解。用关系代数可以表示为:</p>
+<script type="math/tex; mode=display">
+\Pi_{R_1}(r) \bowtie \Pi_{R_2}(r) = r</script><p>分解后的两个模式自然连接的结果和原来被分解的模式一样。</p>
+<p>不是无损分解的分解称为<strong>有损分解</strong>。</p>
+<p>用函数依赖来说明无损分解</p>
+<p>$R_1,R_2$是R的无损分解如果以下函数依赖中至少有一个属于$F^+$：</p>
+<ul>
+<li>$R_1 \bigcap R_2 \rightarrow R_1$</li>
+<li>$R_1 \bigcap R_2 \rightarrow R_2$</li>
+</ul>
+<p>即如果<strong>$R_1 \bigcap R_2$是$R_1$或$R_2$的超码</strong>，R上的分解就是无损分解。</p>
+<h4 id="保持依赖"><a href="#保持依赖" class="headerlink" title="保持依赖"></a>保持依赖</h4><p>令F为模式R上的一个函数依赖集，$R_1,R_2,…R_n$为R的一个分解。F在$R_i$上的<strong>限定</strong>是$F^+$中所有只包含$R_i$中属性的函数依赖的集合$F_i$。</p>
+<p>令$F’ = F_1 \bigcup F_2 \bigcup …\bigcup F_n$。我们称具有性质$F’^+=F^+$的分解为<strong>保持依赖的分解</strong>。</p>
+<p><strong>避免计算$F^+$的验证保持依赖的方法</strong></p>
+<p>result = $\alpha$</p>
+<p>repeat</p>
+<p>​    for each 分解后的$R_i$</p>
+<p>​        $t = (result \bigcap R_i)^+ \bigcap R_i$</p>
+<p>​        $result = result \bigcup t$</p>
+<p>​    until (result没有变化)</p>
+<h3 id="分解算法"><a href="#分解算法" class="headerlink" title="分解算法"></a>分解算法</h3><h4 id="BCNF分解"><a href="#BCNF分解" class="headerlink" title="BCNF分解"></a>BCNF分解</h4><h5 id="BCNF的判定方法"><a href="#BCNF的判定方法" class="headerlink" title="BCNF的判定方法"></a>BCNF的判定方法</h5><p>简化判定一个关系是否BCNF：</p>
+<ul>
+<li>检查非平凡依赖$\alpha \rightarrow \beta$，计算属性的闭包$\alpha^+$，检查它是否包含R中的所有属性，即验证它是否R的超码</li>
+<li>检查关系R是否BCNF，检查F中的依赖就可以了【F中的依赖满足，$F^+$的也会满足】</li>
+</ul>
+<p>分解后的关系$R_i$判定是否BCNF：</p>
+<ul>
+<li>对于$R_i$中属性的每个子集$\alpha$，确保$\alpha^+$（F下的属性闭包）要么不包含$R_i - \alpha$的任何属性，要么包含$R_i$的所有属性</li>
+</ul>
+<h5 id="BCNF分解算法"><a href="#BCNF分解算法" class="headerlink" title="BCNF分解算法"></a>BCNF分解算法</h5><p>result := {R}</p>
+<p>​    done := false;</p>
+<p>​    计算$F^+$;</p>
+<p>​    while (not done) do</p>
+<p>​        if (result中存在模式$R_i$不属于BCNF)</p>
+<p>​        then begin</p>
+<p>​            令$\alpha \rightarrow \beta$为一个在$R_i$上成立的非平凡函数依赖，满足$\alpha \rightarrow R_i$不属于$F^+$，并且$\alpha \bigcap \beta = \emptyset$;</p>
+<p>​            $result := (result-R_i)\bigcup (R_i-\beta)\bigcup (\alpha,\beta)$;</p>
+<p>​        end</p>
+<p>​        else done := done</p>
+<h4 id="3NF分解"><a href="#3NF分解" class="headerlink" title="3NF分解"></a>3NF分解</h4><h4 id="BCNF和3NF的比较"><a href="#BCNF和3NF的比较" class="headerlink" title="BCNF和3NF的比较"></a>BCNF和3NF的比较</h4><p>3NF优点：保持依赖，无损分解</p>
+<p>BCNF不一定是依赖保持的</p>
+<h3 id="多值依赖"><a href="#多值依赖" class="headerlink" title="多值依赖"></a>多值依赖</h3><p>令r(R)为一关系模式，并令$\alpha \subseteq R 且 \beta \subseteq R$。多值依赖$\alpha \rightarrow \rightarrow \beta$在R上成立的条件是，在关系r(R)的任意合法实例中，对于r中任意一对满足$t_1[\alpha]=t_2[\alpha]$的元组对$t_1和t_2$，r中都存在元组$t_3$和$t_4$，使得</p>
+<script type="math/tex; mode=display">
+t_1[\alpha]=t_2[\alpha]=t3[\alpha]=t_4[\alpha]\\
+t_3[\beta] = t1[\beta]\\
+t_3[R-\beta]=t_2[R-\beta]\\
+t_4[\beta] = t_2[\beta]\\
+t_4[R-\beta]=t_1[R-\beta]</script><h4 id="冗余度排序"><a href="#冗余度排序" class="headerlink" title="冗余度排序"></a>冗余度排序</h4><p>4NF &lt; BCNF &lt; 3NF &lt; 1NF</p>
 <p>主要就是分解，为什么要进行分解</p>
 <p>进行分解的时候哪些依据可以使用？</p>
 <p>函数依赖（概念</p>
@@ -787,20 +892,239 @@ _{dept\_name}G_{average(salary)}(instructor)</script><figure class="highlight sq
 <p>正则覆盖</p>
 <p>多值依赖：了解概念就可</p>
 <p>四种范式，注意冗余度，高低</p>
-<h2 id="11-索引和散列"><a href="#11-索引和散列" class="headerlink" title="11 索引和散列"></a>11 索引和散列</h2><p>索引</p>
-<p>唯一索引的概念</p>
-<p>如何使用sql进行定义</p>
-<p>主索引，辅助索引，以及应用的场合</p>
-<p>B+ 树的构造</p>
-<p>基本的搜索代价（公式）</p>
-<h2 id="12-查询处理"><a href="#12-查询处理" class="headerlink" title="12 查询处理"></a>12 查询处理</h2><p>选择操作的代价分析（多种情况</p>
-<p>sorting的归并排序（只要求掌握二路的）</p>
-<p>二路做一个外部的归并排序</p>
-<p>连接操作，嵌套循环nested loop和block nested loop</p>
-<p>掌握基本的操作</p>
-<p>对它们的代价进行分析</p>
+<h2 id="11-索引和散列"><a href="#11-索引和散列" class="headerlink" title="11 索引和散列"></a>11 索引和散列</h2><h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><p>基本索引类型：</p>
+<ul>
+<li>顺序索引</li>
+<li>散列索引</li>
+</ul>
+<h3 id="顺序索引"><a href="#顺序索引" class="headerlink" title="顺序索引"></a>顺序索引</h3><p><strong>聚集索引（主索引）</strong>：包含记录的文件按照某个搜索码指定的顺序排序</p>
+<p><strong>非聚集索引（辅助索引）</strong>：搜索码指定的顺序与文件中记录的物理顺序不同</p>
+<p>在搜索码上有聚集索引的文件称作<strong>索引顺序文件</strong>。</p>
+<p><strong>索引项/索引记录</strong>：由一个搜索码值和指向具有该搜索码值的一条或多条记录的指针构成。</p>
+<p>两类顺序索引：</p>
+<ul>
+<li><strong>稠密索引</strong>：在稠密索引中，文件中的的每个搜索码值都有一个索引项</li>
+<li><strong>稀疏索引</strong>：在稀疏索引中，只为搜索码的某些值建立索引项</li>
+</ul>
+<p><strong>多级索引</strong>：具有两级多两级以上的索引称为多级索引</p>
+<p>如在原始的内层索引上构造一个稀疏的外层索引</p>
+<h3 id="B-树索引文件"><a href="#B-树索引文件" class="headerlink" title="$B^+$树索引文件"></a>$B^+$树索引文件</h3><p>$B^+$树索引采用平衡树结构，其中树根到树叶的每条路径的长度相同。树种每个非叶节点有$\lceil n/2\rceil \sim n$个子女，其中n对于特定的树是固定的。（n可以理解为节点最大指针数，故节点最大能放n-1个值）</p>
+<h4 id="B-树的结构"><a href="#B-树的结构" class="headerlink" title="$B^+$树的结构"></a>$B^+$树的结构</h4><img src="/2019/12/30/databaseReview/b_leaf.jpg" class="">
+<p><img src="databaseReview/b_leaf.jp" alt=""></p>
+<p><strong>叶子节点</strong></p>
+<p>对 $i=1,2,…,n-1$，指针$P_i$指向具有搜索码值$K_i$的一条文件记录。</p>
+<p>指针$P_n$用来指向按照搜索码顺序的下一个叶子节点（一般右边兄弟节点）</p>
+<p>叶子节点包含的值的范围是$\lceil(n-1)/2\rceil \sim (n-1)$</p>
+<p><strong>非叶节点</strong></p>
+<p>形成叶节点上的一个多级（稀疏）索引</p>
+<p>在$P_1$指向的子树中的所有的搜索码值都比$K_1$小</p>
+<p>对于$P<em>i$所指向的子树，里面搜索码的值大于等于$K</em>{i-1}$，小于等于$K_i$</p>
+<p>$P<em>n$所指向的子树，里面搜索码的值大于等于$K</em>{n-1}$</p>
+<p><strong>根节点</strong></p>
+<p>包含的指针数可以小于$\lceil n/2 \rceil$</p>
+<p>除非整棵树只有一个节点，否则根节点必须至少包含两个指针</p>
+<h4 id="B-树的更新"><a href="#B-树的更新" class="headerlink" title="$B^+$树的更新"></a>$B^+$树的更新</h4><h5 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h5><p>在一个已经建好的树中插入/构造一个二叉树</p>
+<ol>
+<li><p>先找到搜索码在叶子节点上的位置</p>
+</li>
+<li><p>如果搜索码值已经出现在叶子节点上</p>
+</li>
+<li><ol>
+<li>把新记录插到原表里面</li>
+<li>如果必要的话，添加一个指针到桶/链表里面，物理地址插入到叶子节点里来</li>
+</ol>
+</li>
+<li><p>若搜索码值没有出现</p>
+</li>
+<li><ol>
+<li>把记录添加到主文件中，如果必要的话创建一个桶</li>
+<li>对索引树作修改。如果当前叶子节点还有空间，把key-value和pointer加进去，要排序</li>
+<li>否则，分割节点（当前叶子节点没有空间了）</li>
+</ol>
+</li>
+</ol>
+<p>分割叶子节点：</p>
+<p>取n对search-key-value和poniter，排好序，分成两部分，前一部分留在旧节点，剩下的放到新节点里面</p>
+<p>记新节点为p，令k为p中最小的key-value，<strong>在被分割节点（旧节点）的父节点中插入(k,p)</strong>【注意，(k,p)这个值既出现在新叶子节点中，也出现在父节点中，这个父节点也成为新节点的父节点】</p>
+<p>分割父节点：</p>
+<p>若父节点是满的，对父节点进行分割，之后再分割子节点</p>
+<p><strong>分割节点自下往上，直到找到一个不是满的节点</strong></p>
+<p>最坏情况导致树的高度增加1，根节点也进行了分割</p>
+<p>分割父节点的时候，分成了两部分新的节点，第二部分的第一个节点直接向上挪动，而不会再出现在原先的节点中。例如：</p>
+<p><img src="databaseReview/b_splitFather.jp" alt=""></p>
+<img src="/2019/12/30/databaseReview/b_splitFather.jpg" class="">
+<h5 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h5><p>寻找要删除的记录，将它从主文件和桶中删除</p>
+<p>从叶子节点上删除指针和搜索码</p>
+<p>如果节点N因删除而条目太少，而且它有一个兄弟节点可以进行合并的，则进行合并：</p>
+<ol>
+<li>把两个节点的所有的搜索码值和指针插入到单一节点中，删除另外一个节点</li>
+<li>删除$(K_{i-1},P_i)$,$P_i$是原来指向被删除的节点的指针，来自被删节点的父节点，<strong>递归地重复这个过程</strong></li>
+<li>若N和N’不是叶子节点：复制搜索码$K_{i-1}$到新的节点</li>
+</ol>
+<p>否则，如果节点N因删除而条目太少，而且兄弟节点不能进行合并，那么<strong>重新分配指针</strong>：</p>
+<ol>
+<li>重新分配，在叶子节点，直接从兄弟节点拉过来就可</li>
+<li>若N和N’不是叶子节点，N实际上从父节点借一个条目，然后，父节点再从N’借一个</li>
+</ol>
+<p>一般能合并的话优先考虑具有相同父母的兄弟节点</p>
+<p>先尝试进行合并，不能合并再借</p>
+<p>重新分配，一般借一个码值就可以了</p>
+<p><img src="databaseReview/b_delete.jp" alt=""></p>
+<img src="/2019/12/30/databaseReview/b_delete.jpg" class="">
+<h4 id="不唯一的搜索码"><a href="#不唯一的搜索码" class="headerlink" title="不唯一的搜索码"></a>不唯一的搜索码</h4><p>假如一个关系可以拥有多个包含同一搜索码值的记录，那么该搜索码称为<strong>不唯一搜索码</strong>。</p>
+<p>不唯一搜索码影响查找效率。</p>
+<p>一种解决方法：原始搜索码+额外的属性=复合搜索码。这个额外属性也称<strong>唯一化属性</strong>。</p>
+<h4 id="B-树更新的复杂性"><a href="#B-树更新的复杂性" class="headerlink" title="$B^+$树更新的复杂性"></a>$B^+$树更新的复杂性</h4><p>在最坏情况下，一次插入的I/O操作次数可能正比于$log_{\lceil n/2 \rceil}(N)$，其中n值节点中指针最大值，N是索引文件的记录条数。</p>
+<p>删除也是。</p>
+<h3 id="散列索引"><a href="#散列索引" class="headerlink" title="散列索引"></a>散列索引</h3><h4 id="静态散列"><a href="#静态散列" class="headerlink" title="静态散列"></a>静态散列</h4><p>$H(K_i)$给出了存放记录的桶的地址。</p>
+<p>桶溢出处理：线性探查法</p>
+<h4 id="动态散列"><a href="#动态散列" class="headerlink" title="动态散列"></a>动态散列</h4><p>桶号可以进行扩展。</p>
+<p>可扩展散列：其中一个桶满了的时候，所有的桶进行double，桶号就变了，可以利用的哈希桶也增多了。mysql使用的</p>
+<h3 id="有序索引和哈希的比较"><a href="#有序索引和哈希的比较" class="headerlink" title="有序索引和哈希的比较"></a>有序索引和哈希的比较</h3><p>哈希只能做一个精确值的查找，但是范围查找难做到</p>
+<p>哈希精确值查找效率高</p>
+<p><strong>主索引不能为空，唯一索引可以取空值</strong></p>
+<h2 id="12-查询处理"><a href="#12-查询处理" class="headerlink" title="12 查询处理"></a>12 查询处理</h2><h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>查询处理的过程如下</p>
+<p><img src="databaseReview/query_process.jp" alt=""></p>
+<img src="/2019/12/30/databaseReview/query_process.jpg" class="">
+<h3 id="查询代价的度量"><a href="#查询代价的度量" class="headerlink" title="查询代价的度量"></a>查询代价的度量</h3><p>主要因素：磁盘交互时间</p>
+<p>简化起见，忽略CPU时间，仅用磁盘存取代价来度量查询计划的代价。</p>
+<p>Number of seeks*average-seek-cost寻址</p>
+<p>Number of read*average-block-read-cost读</p>
+<p>Number of blocks written*average-block-write-cost写</p>
+<p>读和写：block transfers</p>
+<p>我们用传送磁盘块数number of block transfer以及搜索磁盘次数number of seeks来度量查询计划的代价</p>
+<p>$t_T$：time to transfer block传输盘块的时间</p>
+<p>$t_S$：time for seek one 搜索磁盘的时间</p>
+<h3 id="选择操作"><a href="#选择操作" class="headerlink" title="选择操作"></a>选择操作</h3><h4 id="使用文件扫描和索引的选择"><a href="#使用文件扫描和索引的选择" class="headerlink" title="使用文件扫描和索引的选择"></a>使用文件扫描和索引的选择</h4><h5 id="线性查找"><a href="#线性查找" class="headerlink" title="线性查找"></a>线性查找</h5><p><strong>A1 线性查找</strong>：在线性搜索中，系统扫描每一个文件块，对所有记录都进行测试，看它们是否满足选择条件</p>
+<h5 id="索引扫描"><a href="#索引扫描" class="headerlink" title="索引扫描"></a>索引扫描</h5><p><strong>A2 主索引，码属性等值比较</strong>：对于具有主索引的码属性的等值比较，我们可以使用索引检索到满足相应等值条件的唯一一条记录</p>
+<p><strong>A3 主索引，非码属性等值比较</strong>：当选择条件是基于非码属性A的等值比较时，我们可以利用主索引检索到多条记录</p>
+<p><strong>A4 辅助索引，等值比较</strong>：若等值条件是码属性上的，则该策略可检索到唯一一条记录；若索引字段是非码属性，则可能检索到多条记录。</p>
+<h4 id="涉及选择的比较"><a href="#涉及选择的比较" class="headerlink" title="涉及选择的比较"></a>涉及选择的比较</h4><p>考虑形如$\sigma_{A \leq v}(r)$</p>
+<p><strong>A5 主索引，比较</strong>：在选择条件是比较时，可以使用顺序主索引（如$B^+$树主索引）</p>
+<p><strong>A6 辅助索引，比较</strong></p>
+<h4 id="复杂选择的实现"><a href="#复杂选择的实现" class="headerlink" title="复杂选择的实现"></a>复杂选择的实现</h4><ul>
+<li>合取</li>
+<li>析取</li>
+<li>取反</li>
+</ul>
+<p>A7 利用一个索引的合取选择</p>
+<p>A8 使用组合索引的合取选择</p>
+<p>A9 通过标识符的交实现合取选择</p>
+<p>A10 通过标识符的并实现析取选择</p>
+<h3 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h3><h4 id="外部排序归并算法"><a href="#外部排序归并算法" class="headerlink" title="外部排序归并算法"></a>外部排序归并算法</h4><p>M表示内存缓冲区中可以用于排序的块数。</p>
+<ol>
+<li>建立多个排好序的归并段。</li>
+<li>对归并段进行归并。暂定归并段的总数N小于M，这样我们可以为每个归并段文件分配一个块，此外剩下的空间还应能容纳存放结果的一个块。</li>
+</ol>
+<p><strong>二路归并排序</strong>（要掌握）</p>
+<p>通常M=3，两个块放输入，一个块放输出</p>
+<p><img src="databaseReview/merge.jp" alt=""></p>
+<img src="/2019/12/30/databaseReview/merge.jpg" class="">
+<h4 id="外部排序归并的代价分析"><a href="#外部排序归并的代价分析" class="headerlink" title="外部排序归并的代价分析"></a>外部排序归并的代价分析</h4><p>记$b<em>r$代表包含关系r中记录的磁盘块数。第一阶段读入关系的每一数据块并写出，共需$2b_r$次磁盘块传输。初始归并段数为$\lceil b_r/M \rceil$。每一趟归并会使归并段疏密减少为原来的$1/(M-1)$。<u>总共所需归并趟数为$\lceil log</em>{M-1}(b_r/M)\rceil$&lt;/u&gt;</p>
+<p>关系外排序的磁盘块传输总数：$b<em>r(2\lceil log</em>{M-1}(b_r/M)\rceil +1)$</p>
+<p>bbbb..[]</p>
+<h3 id="连接运算"><a href="#连接运算" class="headerlink" title="连接运算"></a>连接运算</h3><p>用等值连接表示形如$r \bowtie_{r.A=s.B} s$的连接</p>
+<h4 id="嵌套循环连接"><a href="#嵌套循环连接" class="headerlink" title="嵌套循环连接"></a>嵌套循环连接</h4><ul>
+<li><p>嵌套循环连接算法的代价很大，因为该算法逐个检查两个关系中的每一对元组</p>
+</li>
+<li><p>在最坏情况下，缓冲区只能容纳每个关系中的一个元组，这时共需$n_r \times b_s +b_r$次块传输</p>
+</li>
+<li><p>如果一个关系能完全放在内存中，那么把这个关系作为内层关系来处理是有好处的。因为这样内层循环关系只需要读一次</p>
+</li>
+</ul>
+<p><img src="databaseReview/nested.jp" alt=""></p>
+<img src="/2019/12/30/databaseReview/nested.jpg" class="">
+<h4 id="块嵌套循环连接"><a href="#块嵌套循环连接" class="headerlink" title="块嵌套循环连接"></a>块嵌套循环连接</h4><ul>
+<li><p>在最坏的情况下，对于外层关系中的每一个块，内层关系s的每一块只须读一次，而不是对外层关系的每一个元组读一次。因此，在最坏情况下，共需$b_r *b_s +b_r$次块传输</p>
+</li>
+<li><p>显然，如果内存不能容纳任何一个关系，则使用较小的关系作为外层关系更有效</p>
+</li>
+<li>在最好的情况下，内存能容纳内层关系，需要$b_r+b_s$次块传输加上两次磁盘搜索（把较小的关系作为内层关系）</li>
+</ul>
+<p><img src="databaseReview/block_nested.jp" alt=""></p>
+<img src="/2019/12/30/databaseReview/block_nested.jpg" class="">
+<h4 id="索引嵌套循环连接"><a href="#索引嵌套循环连接" class="headerlink" title="索引嵌套循环连接"></a>索引嵌套循环连接</h4><p>在嵌套循环连接中， 如果内层关系中的连接属性上有索引，则可以使用索引查找替代文件扫描</p>
+<p>对于外层关系的r的每一个元组，需要在关系s的索引上进行查找，检索相关元组。</p>
+<p>在最坏情况下，缓冲区只能容纳关系r的一块和索引的一块。</p>
+<p>此时，读取关系r需要$b_r$次IO操作，这里$b_r$指包含关系r中记录的磁盘块数</p>
+<h4 id="归并连接"><a href="#归并连接" class="headerlink" title="归并连接"></a>归并连接</h4><p>可用于计算自然连接和等值连接</p>
+<p>代价：$b_r+b_s$次块传输+$\lceil b_r+b_b \rceil + \lceil b_s/b_b \rceil$次搜索</p>
+<p><img src="databaseReview/merge_join.jp" alt=""></p>
+<img src="/2019/12/30/databaseReview/merge_join.jpg" class="">
+<h4 id="散列连接"><a href="#散列连接" class="headerlink" title="散列连接"></a>散列连接</h4><p>可以实现自然连接和等值连接</p>
+<p>在哈希连接算法中，用散列函数h来划分两个关系的元组，此算法的基本思想是把这两个关系的元组划分成在连接属性值上具有相同散列值的元组集合。</p>
+<p><img src="databaseReview/hash_join.jp" alt=""></p>
+<img src="/2019/12/30/databaseReview/hash_join.jpg" class="">
 <h2 id="13-查询优化"><a href="#13-查询优化" class="headerlink" title="13 查询优化"></a>13 查询优化</h2><p>掌握等价转化的基本规则</p>
 <p>掌握选择操作有关的</p>
+<h3 id="等价规则"><a href="#等价规则" class="headerlink" title="等价规则"></a>等价规则</h3><ol>
+<li><p>合取选择运算可分解为单个选择运算的序列。该变换称为$\sigma$的级联</p>
+<script type="math/tex; mode=display">
+\sigma_{\theta_1 \wedge \theta_2}(E) = \sigma_{\theta_1}(\sigma_{\theta_2}(E))</script></li>
+<li><p>选择运算满足交换律</p>
+<script type="math/tex; mode=display">
+\sigma_{\theta_1}(\sigma_{\theta_2}(E)) = \sigma_{\theta_2}(\sigma_{\theta_1}(E))</script></li>
+<li><p>一系列投影运算中只有最后一个是必须的，其余的可省略。该转换也可称为$\sigma$的级联</p>
+<script type="math/tex; mode=display">
+\Pi_{L_1}(\Pi_{L_2}(..(\Pi_{L_n}(E))...)=\Pi_{L_1}(E)</script></li>
+<li><p>选择操作可与笛卡尔积以及$\theta$连接相结合</p>
+<ol>
+<li>$\sigma<em>{\theta}(E_1 \times E_2) = E_1 \bowtie</em>{\theta} E_2$</li>
+<li>$\sigma<em>{\theta_1}(E_1 \bowtie</em>{\theta<em>2} E_2)=E_1 \bowtie</em>{\theta_1 \wedge \theta_2}E2$</li>
+</ol>
+</li>
+<li><p>$\theta$连接运算满足交换律</p>
+<script type="math/tex; mode=display">
+E_1 \bowtie_{\theta} E_2 = E_2 \bowtie_{\theta} E_1</script></li>
+<li><ol>
+<li>自然连接运算满足结合律<script type="math/tex; mode=display">
+(E_1\bowtie E_2)\bowtie E_3 = E_1 \bowtie(E_2\bowtie E_3)</script></li>
+</ol>
+</li>
+<li><p>$\theta$连接具有以下方式的结合律</p>
+<script type="math/tex; mode=display">
+   (E_1 \bowtie_{\theta_1} E_2)\bowtie_{\theta_2 \wedge \theta_3} E_3 = E_1 \bowtie_{\theta_1 \wedge \theta_3}(E_2 \bowtie_{\theta_2} E_3)</script><p>   其中$\theta_2$只涉及$E_2,E_3$的属性。由于其中任意一个条件都可为空，因此笛卡尔积运算也满足结合律。连接运算满足结合律、交换律在查询优化中对于重排连接顺序是很重要的。</p>
+</li>
+<li><p>选择运算在下面两个条件下对$\theta$连接运算具有分配律</p>
+<ol>
+<li><p>当选择条件$\theta_0$中的所有属性只涉及参与连接运算的表达式之一（比如$E_1$）时，满足分配律</p>
+<script type="math/tex; mode=display">
+\sigma_{\theta_0}(E_1 \bowtie_{\theta} E_2) = (\sigma_{\theta_0}(E_1))\bowtie_{\theta} E_2</script></li>
+<li><p>当选择条件$\theta_1$只涉及$E_1$的属性，选择条件$\theta_2$只涉及$E_2$的属性时，满足分配律</p>
+<script type="math/tex; mode=display">
+\sigma_{\theta_1 \wedge \theta_2}(E_1 \bowtie_{\theta} E_2) = (\sigma_{\theta_1}(E_1)) \bowtie_{\theta} (\sigma_{\theta_2}(E_2))</script></li>
+</ol>
+</li>
+<li><p>投影运算在下面条件下对$\theta$连接运算具有分配律</p>
+<ol>
+<li><p>令$L_1,L_2$分别代表$E_1,E_2$的属性。假设连接条件$\theta$只涉及$L_1 \bigcup L_2$中的属性，则：</p>
+<script type="math/tex; mode=display">
+\Pi_{L_1 \bigcup L_2}(E_1 \bowtie_{\theta}E_2)=(\Pi_{L_1}(E_1))\bowtie_{\theta} (\Pi_{L_2}(E_2)))</script></li>
+<li><p>考虑连接$E<em>1 \bowtie</em>{\theta} E_2$。令$L_1,L_2$分别代表$E_1,E_2$的属性集；令$L_3$是$E_1$出现在连接条件$\theta$但不在$L_1 \bigcup L_2$中的属性；令$L_4$是$E_2$出现在连接条件$\theta$中但不在$L_1\bigcup L_2$中的属性，那么</p>
+<script type="math/tex; mode=display">
+\Pi_{L_1 \bigcup L_2}(E_1 \bowtie_{\theta}E_2) = \Pi_{L_1 \bigcup L_2}((\Pi_{L_1\bigcup L_3}(E_1)\bowtie_{\theta}(\Pi_{L_2\bigcup L_4}(E_2))))</script></li>
+</ol>
+</li>
+</ol>
+<ol>
+<li><p>集合的并与交满足交换律</p>
+<script type="math/tex; mode=display">
+E_1 \bigcup E_2 = E_2 \bigcup E_1\\
+E_1 \bigcap E_2 = E_2 \bigcap E_1</script></li>
+<li><p>集合的并与交满足结合律</p>
+<script type="math/tex; mode=display">
+(E_1 \bigcup E_2) \bigcup E_3= E_1 \bigcup (E_2 \bigcup E_3)\\
+(E_1 \bigcap E_2) \bigcap E_3= E_1 \bigcap (E_2 \bigcap E_3)</script></li>
+<li><p>选择运算对并、交、差运算具有分配律</p>
+<script type="math/tex; mode=display">
+\sigma_P(E_1 - E_2) = \sigma_P(E_1)-\sigma_P(E_2)</script><p>上述等价规则将<code>-</code>替换成$\bigcup,\bigcap$也成立，进一步有</p>
+<script type="math/tex; mode=display">
+\sigma_P(E_1 - E_2) = \sigma_P(E_1)-E_2</script><p>上述等价规则将<code>-</code>替换成$\bigcap$时成立，但$\bigcup$不成立</p>
+</li>
+<li><p>投影运算对并运算具有分配律</p>
+<script type="math/tex; mode=display">
+\Pi_L(E_1\bigcup E_2) = (\Pi_L(E_1)\bigcup \Pi_L(E_2))</script></li>
+</ol>
 <h2 id="14-事务"><a href="#14-事务" class="headerlink" title="14 事务"></a>14 事务</h2><p>事务是访问并可能更新各种数据项的一个程序执行单元，用形如<code>begin transaction</code>和<code>end transaction</code>语句来界定。</p>
 <h3 id="事务的ACID特性"><a href="#事务的ACID特性" class="headerlink" title="事务的ACID特性"></a>事务的ACID特性</h3><ul>
 <li><strong>原子性</strong>：事务的所有操作在数据库中要么全部正确反应出来，要么完全不反应。<ul>
@@ -830,6 +1154,7 @@ _{dept\_name}G_{average(salary)}(instructor)</script><figure class="highlight sq
 <h3 id="事务原子性和持久性"><a href="#事务原子性和持久性" class="headerlink" title="事务原子性和持久性"></a>事务原子性和持久性</h3><p><strong>中止</strong>事务造成的变更被撤销，称事务<strong>已回滚</strong>，典型方法：维护<strong>日志</strong>。</p>
 <p>撤销<strong>已提交</strong>事务方法：执行一个<strong>补偿事务</strong>。</p>
 <img src="/2019/12/30/databaseReview/14-1.jpg" class="">
+<p><img src="databaseReview/14-1.jp" alt=""></p>
 <p>进入中止状态后，系统有两种选择：</p>
 <ul>
 <li><strong>重启</strong>事务：仅当引起事务中止的是<em>硬件错误</em>而不是事务内部逻辑的软件错误。</li>
@@ -870,10 +1195,207 @@ _{dept\_name}G_{average(salary)}(instructor)</script><figure class="highlight sq
 <li>未提交读read uncommited：允许读取未提交数据。这是SQL允许的最低一致性级别</li>
 </ul>
 <p>以上所有隔离性级别都不允许<strong>脏写</strong>，即如果一个数据项已经被另外一个尚未提交或终止的事务写入，则不允许对该数据项执行写操作</p>
-<h2 id="15-并发控制"><a href="#15-并发控制" class="headerlink" title="15 并发控制"></a>15 并发控制</h2><p>基本的锁，兼容矩阵（两种锁）</p>
-<p>死锁的概念，</p>
-<p>死锁的检测方法</p>
-<h2 id="16-恢复系统"><a href="#16-恢复系统" class="headerlink" title="16 恢复系统"></a>16 恢复系统</h2><h3 id="日志记录"><a href="#日志记录" class="headerlink" title="日志记录"></a>日志记录</h3><h3 id="恢复算法"><a href="#恢复算法" class="headerlink" title="恢复算法"></a>恢复算法</h3><p>redo，undo</p>
+<h2 id="15-并发控制"><a href="#15-并发控制" class="headerlink" title="15 并发控制"></a>15 并发控制</h2><h3 id="锁"><a href="#锁" class="headerlink" title="锁"></a>锁</h3><ul>
+<li>共享的：S锁，如果事务获得了数据项Q上的S锁，则它可以读Q</li>
+<li>排他的：X锁，如果事务获得了数据项Q上的X锁，它既可读又可写Q</li>
+</ul>
+<p>使用lock-S(Q)表示申请共享锁，lock-X(Q)表示申请排他锁，unlock(Q)表示释放锁</p>
+<p><strong>锁相容性矩阵</strong></p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th></th>
+<th>S</th>
+<th>X</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>S</td>
+<td>true</td>
+<td>false</td>
+</tr>
+<tr>
+<td>X</td>
+<td>false</td>
+<td>false</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>只有两个S锁是兼容的</p>
+<h3 id="死锁"><a href="#死锁" class="headerlink" title="死锁"></a>死锁</h3><p>事务都在等待其他事务释放锁，哪一个事务都不能正常执行。</p>
+<p>如果在申请对另一数据项加锁之前我们不对当前锁住的数据项解锁，则可能会发生死锁。</p>
+<p>死锁比产生不一致状态要好，死锁可以通过回滚来解决。</p>
+<h3 id="两阶段封锁协议"><a href="#两阶段封锁协议" class="headerlink" title="两阶段封锁协议"></a>两阶段封锁协议</h3><p>该协议要求每个事务分两个阶段提出加锁和解锁申请</p>
+<ol>
+<li><strong>增长阶段</strong>：事务可以获得锁，但不能释放锁</li>
+<li><strong>缩减阶段</strong>：事务可以释放锁，但不能获得锁</li>
+</ol>
+<p>两阶段封锁协议保证冲突可串行化。</p>
+<p>对于任何事务，在调度中该事务获得其最后加锁的位置称为事务的<strong>封锁点</strong>。</p>
+<p><strong>严格两阶段封锁协议</strong>：还要求事务持有的所有排他锁必须在事务提交后方可释放</p>
+<p><strong>强两阶段封锁协议</strong>：要求事务提交之前不得释放任何锁</p>
+<h3 id="死锁处理"><a href="#死锁处理" class="headerlink" title="死锁处理"></a>死锁处理</h3><h4 id="死锁预防"><a href="#死锁预防" class="headerlink" title="死锁预防"></a>死锁预防</h4><ul>
+<li>要求每个事务在它执行之前获得所有要用到的数据项的锁</li>
+<li>只能按照制定好的偏序访问数据项</li>
+</ul>
+<p><strong>更多的死锁预防策略</strong></p>
+<p>时间戳</p>
+<ol>
+<li><p>wait-die机制（基于非抢占技术）</p>
+<p>当事务Ti申请的数据项当前被Tj所持有，仅当Ti的时间戳小于Tj的时间戳时，允许Ti等待，否则Ti回滚（死亡）【“年老”的事务可以等待，“年轻”的事务立即回滚】</p>
+</li>
+<li><p>wound-wait机制（基于抢占技术）</p>
+<p>当事务Ti申请的数据项当前被Tj所持有，仅当Ti的时间戳大于Tj的时间戳时，允许Ti等待，否则，Tj回滚。【“年轻”的事务可以等待，“年老”的事务立即回滚】</p>
+</li>
+<li><p>基于锁超时</p>
+<p>申请的事务至多等待一段给定的时间，若在此期间内未授予该事务锁，则称该事务超时，此时事务自己回滚并重启。【可能会出现“饿死”】</p>
+</li>
+</ol>
+<h4 id="死锁检测与恢复"><a href="#死锁检测与恢复" class="headerlink" title="死锁检测与恢复"></a>死锁检测与恢复</h4><p><strong>死锁检测</strong></p>
+<p>等待图：边集E的每一元素是Ti-&gt;Tj，表示事务Ti在等待Tj释放所需数据项</p>
+<p>当它存在<strong>环</strong>的话，就会进入<strong>死锁</strong>的状态（offline的方式，那么就需要知道所有事务的加锁请求）</p>
+<p><strong>死锁恢复</strong></p>
+<p>解除死锁的最通常做法是回滚一个或多个事务</p>
+<p>1.选择牺牲者：决定回滚哪一些事务</p>
+<p>2.回滚</p>
+<p>Total rollback：回滚整个事务，重启它</p>
+<p>Partial rollback：仅回滚必要的打破死锁的部分</p>
+<p>3.饿死：总是被选择为牺牲者的事务可能会饿死</p>
+<h2 id="16-恢复系统"><a href="#16-恢复系统" class="headerlink" title="16 恢复系统"></a>16 恢复系统</h2><h3 id="故障分类"><a href="#故障分类" class="headerlink" title="故障分类"></a>故障分类</h3><ul>
+<li><p>Transaction failure事务故障</p>
+</li>
+<li><ul>
+<li>Logical errors逻辑错误</li>
+<li>System errors系统错误</li>
+</ul>
+</li>
+<li><p>System crash系统崩溃</p>
+</li>
+<li><p>Disk failure磁盘故障</p>
+</li>
+</ul>
+<h3 id="日志记录"><a href="#日志记录" class="headerlink" title="日志记录"></a>日志记录</h3><p>假设日志保存在稳定性存储器中</p>
+<p>日志主要记录数据库的更新操作（插入，删除，更新，select操作没必要进行恢复）</p>
+<p>将一个更新日志记录表示为<code>&lt;Ti,Xj,V1,V2&gt;</code>表明事务Ti对数据项Xj进行了写操作，操作前Xj的值是V1，操作后是V2</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;Ti start&gt; 事务开始</span><br><span class="line">&lt;Ti commit&gt; 事务提交</span><br><span class="line">&lt;Ti abort&gt; 事务中止</span><br></pre></td></tr></table></figure>
+<h3 id="数据库修改"><a href="#数据库修改" class="headerlink" title="数据库修改"></a>数据库修改</h3><h4 id="立即修改immediate-modification"><a href="#立即修改immediate-modification" class="headerlink" title="立即修改immediate-modification"></a>立即修改immediate-modification</h4><p>数据库修改在事务提交commit之前发生</p>
+<ul>
+<li>更新日志记录必须在数据库之前写</li>
+<li>输出更新块到磁盘可能发生在任何时间（在事务commit之前或之后）</li>
+</ul>
+<p>【很灵活，但撤销比较麻烦，有些数据存到buffer/disk，有些没存，commit之前/后故障，commit前故障，要撤销，commit后故障，重新算一遍，没被写的保留的数据要写出去】</p>
+<h4 id="延迟修改deferred-modification"><a href="#延迟修改deferred-modification" class="headerlink" title="延迟修改deferred-modification"></a>延迟修改deferred-modification</h4><p>直到事务commit的临界点，才修改数据库，输出到buffer/disk</p>
+<p>【简单，但效率低】</p>
+<h3 id="使用日志来重做和撤销事务"><a href="#使用日志来重做和撤销事务" class="headerlink" title="使用日志来重做和撤销事务"></a>使用日志来重做和撤销事务</h3><p>日志只需要记录写操作，读操作并不需要记录</p>
+<h4 id="并发控制和恢复"><a href="#并发控制和恢复" class="headerlink" title="并发控制和恢复"></a>并发控制和恢复</h4><p>所有的事务共享一个buffer和一个日志</p>
+<p>如果事务T要对一个东西进行修改，其它事务要直到Tcommit或者abort了才能够对这个东西进行修改（加锁）</p>
+<h4 id="取消和重做操作undo-amp-redo"><a href="#取消和重做操作undo-amp-redo" class="headerlink" title="取消和重做操作undo&amp;redo"></a>取消和重做操作undo&amp;redo</h4><p>undo一个日志记录<Ti,X,V1,V2>写<strong>旧值</strong>V1到X</p>
+<p>redo一个日志记录<Ti,X,V1,V2>写<strong>新值</strong>V2到X</p>
+<h5 id="事务的取消和重做"><a href="#事务的取消和重做" class="headerlink" title="事务的取消和重做"></a>事务的取消和重做</h5><p>undo是<strong>从后往前</strong>的，从日志的对Ti的最后一个记录开始</p>
+<ul>
+<li>每次一个数据项被恢复到它的旧值V，一个特殊的日志记录<Ti,X,V>被写出【称补偿记录compensation】</li>
+<li>当事务的undo完成之后，日志记录<code>&lt;Ti abort&gt;</code>就被写出</li>
+</ul>
+<p>redo<strong>从前往后</strong>，从日志对Ti的第一个记录开始</p>
+<ul>
+<li>在这种情况下不再添加新的日志记录，没有必要添加</li>
+</ul>
+<p>undo的事情是没有完成的</p>
+<p>redo这些事情是本身已经完成了的，commit之后来了故障，可能是立即修改，可能IO并没空闲，没有被及时写道磁盘上。它已经commit了，只是相关的修改没有写到磁盘上，只能重做了。</p>
+<h5 id="从失败中恢复"><a href="#从失败中恢复" class="headerlink" title="从失败中恢复"></a>从失败中恢复</h5><ul>
+<li><p>需要undo，如果日志：</p>
+</li>
+<li><ul>
+<li>包含记录<code>&lt;Ti start&gt;</code></li>
+<li>但没有<code>&lt;Ti commit&gt;</code>或<code>&lt;Ti abort&gt;</code></li>
+</ul>
+</li>
+<li><p>需要redo，如果日志：</p>
+</li>
+<li><ul>
+<li>包含<code>&lt;Ti start&gt;</code></li>
+<li>包含<code>&lt;Ti commit&gt;</code>或<code>&lt;Ti abort&gt;</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="检查点"><a href="#检查点" class="headerlink" title="检查点"></a>检查点</h3><p>主要是便于恢复，不用扫描整个日志。周期性往日志中加检查点。恢复时从检查点开始扫描日志即可。</p>
+<p>检查点的执行过程如下：</p>
+<ol>
+<li>将当前位于主存中的所有日志记录输出到稳定存储器</li>
+<li>将所有修改的缓冲块输出到磁盘</li>
+<li>将一个日志记录<code>&lt;checkpoint L&gt;</code>输出到稳定存储器，其中L是执行检查点时正活跃的事务的列表。</li>
+</ol>
+<h3 id="恢复算法"><a href="#恢复算法" class="headerlink" title="恢复算法"></a>恢复算法</h3><h4 id="日志记录Logging（在正常操作的时候）"><a href="#日志记录Logging（在正常操作的时候）" class="headerlink" title="日志记录Logging（在正常操作的时候）"></a>日志记录Logging（在正常操作的时候）</h4><ul>
+<li><code>&lt;Ti start&gt;</code> 在事务开始的时候</li>
+<li><code>&lt;Ti,Xj,V1,V2&gt;</code>对于每一个更新</li>
+<li><code>&lt;Ti commit&gt;</code>在事务结束的时候</li>
+</ul>
+<h4 id="事务回滚Transaction-rollback"><a href="#事务回滚Transaction-rollback" class="headerlink" title="事务回滚Transaction rollback"></a>事务回滚Transaction rollback</h4><ul>
+<li><p>令Ti为要回滚的事务</p>
+</li>
+<li><p>从后向前扫描，对每一个这样的记录<code>&lt;Ti,Xj,V1,V2&gt;</code></p>
+</li>
+<li><ul>
+<li><p>操作undo，通过写V1到Xj</p>
+</li>
+<li><p>写一个记录<code>&lt;Ti,Xj,V1&gt;</code></p>
+</li>
+<li><ul>
+<li>这样的记录被称作弥补记录</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>一旦记录<code>&lt;Ti start&gt;</code>被读到，停止扫描，且写日志<code>&lt;Ti abort&gt;</code></p>
+</li>
+</ul>
+<h3 id="故障恢复"><a href="#故障恢复" class="headerlink" title="故障恢复"></a>故障恢复</h3><p>redo阶段，重放所有事务的升级，不论它们是否commit/abort/incomplete</p>
+<p>undo阶段，重做所有的不完整的事务</p>
+<h3 id="Redo-phase"><a href="#Redo-phase" class="headerlink" title="Redo phase"></a>Redo phase</h3><ol>
+<li><p>寻找最后的<code>&lt;checkpoints L&gt;</code>记录，设置undo-list为L </p>
+</li>
+<li><p>从前往后从<code>&lt;checkpoints L&gt;</code>记录开始扫描</p>
+</li>
+<li><ol>
+<li>当一个记录<code>&lt;Ti, Xj, V1,V2&gt;/&lt;Ti,Xj,Vj&gt;</code>被找到，redo它，通过写V2到Xj</li>
+<li>当一个记录<code>&lt;Ti start&gt;</code>被找到，添加Ti 到undo list</li>
+<li>当一个记录<code>&lt;Ti commit&gt;</code>或者<code>&lt;Ti abort&gt;</code>被找到，把它从undo-list中移除</li>
+</ol>
+</li>
+</ol>
+<h3 id="Undo-phase"><a href="#Undo-phase" class="headerlink" title="Undo phase"></a>Undo phase</h3><ol>
+<li><p>从后往前扫描</p>
+</li>
+<li><ol>
+<li><p>当一个日志记录<code>&lt;Ti, Xj, V1, V2&gt;</code>被找到，且Ti在undo-list中，undo它：</p>
+</li>
+<li><ol>
+<li>写V1到Xj</li>
+<li>写日志<code>&lt;Ti,Xj,V1&gt;</code></li>
+</ol>
+</li>
+</ol>
+</li>
+<li><ol>
+<li>当日志记录<code>&lt;Ti start&gt;</code>被发现，且Ti在undo-list中</li>
+</ol>
+</li>
+<li><ol>
+<li><ol>
+<li>写日志<code>&lt;Ti abort&gt;</code></li>
+<li>将Ti从undo-list中移除</li>
+</ol>
+</li>
+</ol>
+</li>
+<li><ol>
+<li>当undo-list为空则停止</li>
+</ol>
+</li>
+</ol>
 
       
     </div>
@@ -1029,7 +1551,7 @@ _{dept\_name}G_{average(salary)}(instructor)</script><figure class="highlight sq
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-引言"><span class="nav-number">1.</span> <span class="nav-text">1 引言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-关系模型介绍"><span class="nav-number">2.</span> <span class="nav-text">2 关系模型介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#关系数据库的结构"><span class="nav-number">2.1.</span> <span class="nav-text">关系数据库的结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据库模式"><span class="nav-number">2.2.</span> <span class="nav-text">数据库模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#码"><span class="nav-number">2.3.</span> <span class="nav-text">码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-初级SQL"><span class="nav-number">3.</span> <span class="nav-text">3 初级SQL</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数据定义"><span class="nav-number">3.1.</span> <span class="nav-text">数据定义</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#基本类型"><span class="nav-number">3.1.1.</span> <span class="nav-text">基本类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#基本模式定义"><span class="nav-number">3.1.2.</span> <span class="nav-text">基本模式定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#完整性约束"><span class="nav-number">3.1.3.</span> <span class="nav-text">完整性约束</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据库的修改"><span class="nav-number">3.2.</span> <span class="nav-text">数据库的修改</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SQL查询"><span class="nav-number">3.3.</span> <span class="nav-text">SQL查询</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#单关系查询"><span class="nav-number">3.3.1.</span> <span class="nav-text">单关系查询</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#多关系查询"><span class="nav-number">3.3.2.</span> <span class="nav-text">多关系查询</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#自然连接-natural-join"><span class="nav-number">3.3.3.</span> <span class="nav-text">自然连接 natural join</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#join…using"><span class="nav-number">3.3.4.</span> <span class="nav-text">join…using</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#附加的基本运算"><span class="nav-number">3.4.</span> <span class="nav-text">附加的基本运算</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#更名运算-as"><span class="nav-number">3.4.1.</span> <span class="nav-text">更名运算 as</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#字符串运算"><span class="nav-number">3.4.2.</span> <span class="nav-text">字符串运算</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#通配符"><span class="nav-number">3.4.2.1.</span> <span class="nav-text">通配符</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#排序元组的显示次序-order-by"><span class="nav-number">3.4.3.</span> <span class="nav-text">排序元组的显示次序 order by</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#where子句谓词"><span class="nav-number">3.4.4.</span> <span class="nav-text">where子句谓词</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#集合运算"><span class="nav-number">3.5.</span> <span class="nav-text">集合运算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#空值-Null-values"><span class="nav-number">3.6.</span> <span class="nav-text">空值 Null values</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#聚集函数"><span class="nav-number">3.7.</span> <span class="nav-text">聚集函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#基本聚集"><span class="nav-number">3.7.1.</span> <span class="nav-text">基本聚集</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#group-by分组聚集"><span class="nav-number">3.7.2.</span> <span class="nav-text">group by分组聚集</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Having子句"><span class="nav-number">3.7.3.</span> <span class="nav-text">Having子句</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#对空值和布尔值的聚集"><span class="nav-number">3.7.4.</span> <span class="nav-text">对空值和布尔值的聚集</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#嵌套子查询"><span class="nav-number">3.8.</span> <span class="nav-text">嵌套子查询</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#集合成员资格-in-not-in"><span class="nav-number">3.8.1.</span> <span class="nav-text">集合成员资格 in&#x2F;not in</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#集合的比较"><span class="nav-number">3.8.2.</span> <span class="nav-text">集合的比较</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#空关系测试-exist-not-exist"><span class="nav-number">3.8.3.</span> <span class="nav-text">空关系测试 exist&#x2F;not exist</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#重复元组存在性测试-unique"><span class="nav-number">3.8.4.</span> <span class="nav-text">重复元组存在性测试 unique</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#from子句中的子查询"><span class="nav-number">3.8.5.</span> <span class="nav-text">from子句中的子查询</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#with子句"><span class="nav-number">3.8.6.</span> <span class="nav-text">with子句</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#标量子查询"><span class="nav-number">3.8.7.</span> <span class="nav-text">标量子查询</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-中级SQL"><span class="nav-number">4.</span> <span class="nav-text">4 中级SQL</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#连接表达式"><span class="nav-number">4.1.</span> <span class="nav-text">连接表达式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#连接条件-on"><span class="nav-number">4.1.1.</span> <span class="nav-text">连接条件 on</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#外连接"><span class="nav-number">4.1.2.</span> <span class="nav-text">外连接</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#视图"><span class="nav-number">4.2.</span> <span class="nav-text">视图</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#视图定义"><span class="nav-number">4.2.1.</span> <span class="nav-text">视图定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#视图更新"><span class="nav-number">4.2.2.</span> <span class="nav-text">视图更新</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#事务"><span class="nav-number">4.3.</span> <span class="nav-text">事务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#完整性约束-1"><span class="nav-number">4.4.</span> <span class="nav-text">完整性约束</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#not-null约束"><span class="nav-number">4.4.1.</span> <span class="nav-text">not null约束</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#unique约束"><span class="nav-number">4.4.2.</span> <span class="nav-text">unique约束</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#check子句"><span class="nav-number">4.4.3.</span> <span class="nav-text">check子句</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#参照完整性"><span class="nav-number">4.4.4.</span> <span class="nav-text">参照完整性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#事务中对完整性约束的违反"><span class="nav-number">4.4.5.</span> <span class="nav-text">事务中对完整性约束的违反</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#复杂check条件和断言"><span class="nav-number">4.4.6.</span> <span class="nav-text">复杂check条件和断言</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SQL的数据类型与模式"><span class="nav-number">4.5.</span> <span class="nav-text">SQL的数据类型与模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#授权"><span class="nav-number">4.6.</span> <span class="nav-text">授权</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#权限"><span class="nav-number">4.6.1.</span> <span class="nav-text">权限</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#角色"><span class="nav-number">4.6.2.</span> <span class="nav-text">角色</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#视图的授权"><span class="nav-number">4.6.3.</span> <span class="nav-text">视图的授权</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#模式的授权"><span class="nav-number">4.6.4.</span> <span class="nav-text">模式的授权</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#权限的收回"><span class="nav-number">4.6.5.</span> <span class="nav-text">权限的收回</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-形式化关系查询语言"><span class="nav-number">5.</span> <span class="nav-text">6 形式化关系查询语言</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#关系代数"><span class="nav-number">5.1.</span> <span class="nav-text">关系代数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#基本运算"><span class="nav-number">5.1.1.</span> <span class="nav-text">基本运算</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#附加的运算"><span class="nav-number">5.1.2.</span> <span class="nav-text">附加的运算</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#扩展的运算"><span class="nav-number">5.1.3.</span> <span class="nav-text">扩展的运算</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#关系代数优先权"><span class="nav-number">5.1.4.</span> <span class="nav-text">关系代数优先权</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#元组关系演算"><span class="nav-number">5.2.</span> <span class="nav-text">元组关系演算</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#查询示例"><span class="nav-number">5.2.1.</span> <span class="nav-text">查询示例</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-数据库设计和E-R模型"><span class="nav-number">6.</span> <span class="nav-text">7 数据库设计和E-R模型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#设计过程概览"><span class="nav-number">6.1.</span> <span class="nav-text">设计过程概览</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实体-联系模型"><span class="nav-number">6.2.</span> <span class="nav-text">实体-联系模型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#实体集"><span class="nav-number">6.2.1.</span> <span class="nav-text">实体集</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#联系集"><span class="nav-number">6.2.2.</span> <span class="nav-text">联系集</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#属性"><span class="nav-number">6.2.3.</span> <span class="nav-text">属性</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#约束"><span class="nav-number">6.3.</span> <span class="nav-text">约束</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#映射基数"><span class="nav-number">6.3.1.</span> <span class="nav-text">映射基数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#参与约束"><span class="nav-number">6.3.2.</span> <span class="nav-text">参与约束</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#码-1"><span class="nav-number">6.3.3.</span> <span class="nav-text">码</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实体-联系图"><span class="nav-number">6.4.</span> <span class="nav-text">实体-联系图</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#基本结构"><span class="nav-number">6.4.1.</span> <span class="nav-text">基本结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#映射基数-1"><span class="nav-number">6.4.2.</span> <span class="nav-text">映射基数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#参与度"><span class="nav-number">6.4.3.</span> <span class="nav-text">参与度</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#复杂的属性"><span class="nav-number">6.4.4.</span> <span class="nav-text">复杂的属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#角色-1"><span class="nav-number">6.4.5.</span> <span class="nav-text">角色</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#非二元的联系"><span class="nav-number">6.4.6.</span> <span class="nav-text">非二元的联系</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#弱实体集"><span class="nav-number">6.5.</span> <span class="nav-text">弱实体集</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#转换为关系模式"><span class="nav-number">6.6.</span> <span class="nav-text">转换为关系模式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#具有简单属性的强实体集的表示"><span class="nav-number">6.6.1.</span> <span class="nav-text">具有简单属性的强实体集的表示</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#具有复杂属性的强实体集的表示"><span class="nav-number">6.6.2.</span> <span class="nav-text">具有复杂属性的强实体集的表示</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#弱实体集的表示"><span class="nav-number">6.6.3.</span> <span class="nav-text">弱实体集的表示</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#联系集的表示"><span class="nav-number">6.6.4.</span> <span class="nav-text">联系集的表示</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#模式的冗余"><span class="nav-number">6.6.4.1.</span> <span class="nav-text">模式的冗余</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#模式的合并"><span class="nav-number">6.6.4.2.</span> <span class="nav-text">模式的合并</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-关系数据库设计"><span class="nav-number">7.</span> <span class="nav-text">8 关系数据库设计</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#原子域和第一范式"><span class="nav-number">7.1.</span> <span class="nav-text">原子域和第一范式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用函数依赖进行分解"><span class="nav-number">7.2.</span> <span class="nav-text">使用函数依赖进行分解</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#码和函数依赖"><span class="nav-number">7.2.1.</span> <span class="nav-text">码和函数依赖</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Boyce-Codd范式-2-5范式"><span class="nav-number">7.2.2.</span> <span class="nav-text">Boyce-Codd范式(2.5范式)</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#分解成BCNF"><span class="nav-number">7.2.2.1.</span> <span class="nav-text">分解成BCNF</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#BCNF和依赖保持"><span class="nav-number">7.2.2.2.</span> <span class="nav-text">BCNF和依赖保持</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第三范式"><span class="nav-number">7.2.3.</span> <span class="nav-text">第三范式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#函数依赖理论"><span class="nav-number">7.3.</span> <span class="nav-text">函数依赖理论</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#函数依赖集的闭包"><span class="nav-number">7.3.1.</span> <span class="nav-text">函数依赖集的闭包</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-索引和散列"><span class="nav-number">8.</span> <span class="nav-text">11 索引和散列</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#12-查询处理"><span class="nav-number">9.</span> <span class="nav-text">12 查询处理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#13-查询优化"><span class="nav-number">10.</span> <span class="nav-text">13 查询优化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#14-事务"><span class="nav-number">11.</span> <span class="nav-text">14 事务</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#事务的ACID特性"><span class="nav-number">11.1.</span> <span class="nav-text">事务的ACID特性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#存储结构"><span class="nav-number">11.2.</span> <span class="nav-text">存储结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#事务原子性和持久性"><span class="nav-number">11.3.</span> <span class="nav-text">事务原子性和持久性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#事务隔离性"><span class="nav-number">11.4.</span> <span class="nav-text">事务隔离性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#可串行化"><span class="nav-number">11.5.</span> <span class="nav-text">可串行化</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#指令冲突"><span class="nav-number">11.5.1.</span> <span class="nav-text">指令冲突</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#优先图"><span class="nav-number">11.5.2.</span> <span class="nav-text">优先图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#视图可串行化"><span class="nav-number">11.5.3.</span> <span class="nav-text">视图可串行化</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#事务隔离和原子性"><span class="nav-number">11.6.</span> <span class="nav-text">事务隔离和原子性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#可恢复调度"><span class="nav-number">11.6.1.</span> <span class="nav-text">可恢复调度</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#无级联调度"><span class="nav-number">11.6.2.</span> <span class="nav-text">无级联调度</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#事务隔离性级别"><span class="nav-number">11.7.</span> <span class="nav-text">事务隔离性级别</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#15-并发控制"><span class="nav-number">12.</span> <span class="nav-text">15 并发控制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#16-恢复系统"><span class="nav-number">13.</span> <span class="nav-text">16 恢复系统</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#日志记录"><span class="nav-number">13.1.</span> <span class="nav-text">日志记录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#恢复算法"><span class="nav-number">13.2.</span> <span class="nav-text">恢复算法</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-引言"><span class="nav-number">1.</span> <span class="nav-text">1 引言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-关系模型介绍"><span class="nav-number">2.</span> <span class="nav-text">2 关系模型介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#关系数据库的结构"><span class="nav-number">2.1.</span> <span class="nav-text">关系数据库的结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据库模式"><span class="nav-number">2.2.</span> <span class="nav-text">数据库模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#码"><span class="nav-number">2.3.</span> <span class="nav-text">码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-初级SQL"><span class="nav-number">3.</span> <span class="nav-text">3 初级SQL</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数据定义"><span class="nav-number">3.1.</span> <span class="nav-text">数据定义</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#基本类型"><span class="nav-number">3.1.1.</span> <span class="nav-text">基本类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#基本模式定义"><span class="nav-number">3.1.2.</span> <span class="nav-text">基本模式定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#完整性约束"><span class="nav-number">3.1.3.</span> <span class="nav-text">完整性约束</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据库的修改"><span class="nav-number">3.2.</span> <span class="nav-text">数据库的修改</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SQL查询"><span class="nav-number">3.3.</span> <span class="nav-text">SQL查询</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#单关系查询"><span class="nav-number">3.3.1.</span> <span class="nav-text">单关系查询</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#多关系查询"><span class="nav-number">3.3.2.</span> <span class="nav-text">多关系查询</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#自然连接-natural-join"><span class="nav-number">3.3.3.</span> <span class="nav-text">自然连接 natural join</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#join…using"><span class="nav-number">3.3.4.</span> <span class="nav-text">join…using</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#附加的基本运算"><span class="nav-number">3.4.</span> <span class="nav-text">附加的基本运算</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#更名运算-as"><span class="nav-number">3.4.1.</span> <span class="nav-text">更名运算 as</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#字符串运算"><span class="nav-number">3.4.2.</span> <span class="nav-text">字符串运算</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#通配符"><span class="nav-number">3.4.2.1.</span> <span class="nav-text">通配符</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#排序元组的显示次序-order-by"><span class="nav-number">3.4.3.</span> <span class="nav-text">排序元组的显示次序 order by</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#where子句谓词"><span class="nav-number">3.4.4.</span> <span class="nav-text">where子句谓词</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#集合运算"><span class="nav-number">3.5.</span> <span class="nav-text">集合运算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#空值-Null-values"><span class="nav-number">3.6.</span> <span class="nav-text">空值 Null values</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#聚集函数"><span class="nav-number">3.7.</span> <span class="nav-text">聚集函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#基本聚集"><span class="nav-number">3.7.1.</span> <span class="nav-text">基本聚集</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#group-by分组聚集"><span class="nav-number">3.7.2.</span> <span class="nav-text">group by分组聚集</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Having子句"><span class="nav-number">3.7.3.</span> <span class="nav-text">Having子句</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#对空值和布尔值的聚集"><span class="nav-number">3.7.4.</span> <span class="nav-text">对空值和布尔值的聚集</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#嵌套子查询"><span class="nav-number">3.8.</span> <span class="nav-text">嵌套子查询</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#集合成员资格-in-not-in"><span class="nav-number">3.8.1.</span> <span class="nav-text">集合成员资格 in&#x2F;not in</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#集合的比较"><span class="nav-number">3.8.2.</span> <span class="nav-text">集合的比较</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#空关系测试-exist-not-exist"><span class="nav-number">3.8.3.</span> <span class="nav-text">空关系测试 exist&#x2F;not exist</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#重复元组存在性测试-unique"><span class="nav-number">3.8.4.</span> <span class="nav-text">重复元组存在性测试 unique</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#from子句中的子查询"><span class="nav-number">3.8.5.</span> <span class="nav-text">from子句中的子查询</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#with子句"><span class="nav-number">3.8.6.</span> <span class="nav-text">with子句</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#标量子查询"><span class="nav-number">3.8.7.</span> <span class="nav-text">标量子查询</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-中级SQL"><span class="nav-number">4.</span> <span class="nav-text">4 中级SQL</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#连接表达式"><span class="nav-number">4.1.</span> <span class="nav-text">连接表达式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#连接条件-on"><span class="nav-number">4.1.1.</span> <span class="nav-text">连接条件 on</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#外连接"><span class="nav-number">4.1.2.</span> <span class="nav-text">外连接</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#视图"><span class="nav-number">4.2.</span> <span class="nav-text">视图</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#视图定义"><span class="nav-number">4.2.1.</span> <span class="nav-text">视图定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#视图更新"><span class="nav-number">4.2.2.</span> <span class="nav-text">视图更新</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#事务"><span class="nav-number">4.3.</span> <span class="nav-text">事务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#完整性约束-1"><span class="nav-number">4.4.</span> <span class="nav-text">完整性约束</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#not-null约束"><span class="nav-number">4.4.1.</span> <span class="nav-text">not null约束</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#unique约束"><span class="nav-number">4.4.2.</span> <span class="nav-text">unique约束</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#check子句"><span class="nav-number">4.4.3.</span> <span class="nav-text">check子句</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#参照完整性"><span class="nav-number">4.4.4.</span> <span class="nav-text">参照完整性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#事务中对完整性约束的违反"><span class="nav-number">4.4.5.</span> <span class="nav-text">事务中对完整性约束的违反</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#复杂check条件和断言"><span class="nav-number">4.4.6.</span> <span class="nav-text">复杂check条件和断言</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SQL的数据类型与模式"><span class="nav-number">4.5.</span> <span class="nav-text">SQL的数据类型与模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#授权"><span class="nav-number">4.6.</span> <span class="nav-text">授权</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#权限"><span class="nav-number">4.6.1.</span> <span class="nav-text">权限</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#角色"><span class="nav-number">4.6.2.</span> <span class="nav-text">角色</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#视图的授权"><span class="nav-number">4.6.3.</span> <span class="nav-text">视图的授权</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#模式的授权"><span class="nav-number">4.6.4.</span> <span class="nav-text">模式的授权</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#权限的收回"><span class="nav-number">4.6.5.</span> <span class="nav-text">权限的收回</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-形式化关系查询语言"><span class="nav-number">5.</span> <span class="nav-text">6 形式化关系查询语言</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#关系代数"><span class="nav-number">5.1.</span> <span class="nav-text">关系代数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#基本运算"><span class="nav-number">5.1.1.</span> <span class="nav-text">基本运算</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#附加的运算"><span class="nav-number">5.1.2.</span> <span class="nav-text">附加的运算</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#扩展的运算"><span class="nav-number">5.1.3.</span> <span class="nav-text">扩展的运算</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#关系代数优先权"><span class="nav-number">5.1.4.</span> <span class="nav-text">关系代数优先权</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#元组关系演算"><span class="nav-number">5.2.</span> <span class="nav-text">元组关系演算</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#查询示例"><span class="nav-number">5.2.1.</span> <span class="nav-text">查询示例</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-数据库设计和E-R模型"><span class="nav-number">6.</span> <span class="nav-text">7 数据库设计和E-R模型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#设计过程概览"><span class="nav-number">6.1.</span> <span class="nav-text">设计过程概览</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实体-联系模型"><span class="nav-number">6.2.</span> <span class="nav-text">实体-联系模型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#实体集"><span class="nav-number">6.2.1.</span> <span class="nav-text">实体集</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#联系集"><span class="nav-number">6.2.2.</span> <span class="nav-text">联系集</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#属性"><span class="nav-number">6.2.3.</span> <span class="nav-text">属性</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#约束"><span class="nav-number">6.3.</span> <span class="nav-text">约束</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#映射基数"><span class="nav-number">6.3.1.</span> <span class="nav-text">映射基数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#参与约束"><span class="nav-number">6.3.2.</span> <span class="nav-text">参与约束</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#码-1"><span class="nav-number">6.3.3.</span> <span class="nav-text">码</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实体-联系图"><span class="nav-number">6.4.</span> <span class="nav-text">实体-联系图</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#基本结构"><span class="nav-number">6.4.1.</span> <span class="nav-text">基本结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#映射基数-1"><span class="nav-number">6.4.2.</span> <span class="nav-text">映射基数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#参与度"><span class="nav-number">6.4.3.</span> <span class="nav-text">参与度</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#复杂的属性"><span class="nav-number">6.4.4.</span> <span class="nav-text">复杂的属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#角色-1"><span class="nav-number">6.4.5.</span> <span class="nav-text">角色</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#非二元的联系"><span class="nav-number">6.4.6.</span> <span class="nav-text">非二元的联系</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#弱实体集"><span class="nav-number">6.5.</span> <span class="nav-text">弱实体集</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#转换为关系模式"><span class="nav-number">6.6.</span> <span class="nav-text">转换为关系模式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#具有简单属性的强实体集的表示"><span class="nav-number">6.6.1.</span> <span class="nav-text">具有简单属性的强实体集的表示</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#具有复杂属性的强实体集的表示"><span class="nav-number">6.6.2.</span> <span class="nav-text">具有复杂属性的强实体集的表示</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#弱实体集的表示"><span class="nav-number">6.6.3.</span> <span class="nav-text">弱实体集的表示</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#联系集的表示"><span class="nav-number">6.6.4.</span> <span class="nav-text">联系集的表示</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#模式的冗余"><span class="nav-number">6.6.4.1.</span> <span class="nav-text">模式的冗余</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#模式的合并"><span class="nav-number">6.6.4.2.</span> <span class="nav-text">模式的合并</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-关系数据库设计"><span class="nav-number">7.</span> <span class="nav-text">8 关系数据库设计</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#原子域和第一范式"><span class="nav-number">7.1.</span> <span class="nav-text">原子域和第一范式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用函数依赖进行分解"><span class="nav-number">7.2.</span> <span class="nav-text">使用函数依赖进行分解</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#码和函数依赖"><span class="nav-number">7.2.1.</span> <span class="nav-text">码和函数依赖</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Boyce-Codd范式-2-5范式"><span class="nav-number">7.2.2.</span> <span class="nav-text">Boyce-Codd范式(2.5范式)</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#分解成BCNF"><span class="nav-number">7.2.2.1.</span> <span class="nav-text">分解成BCNF</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#BCNF和依赖保持"><span class="nav-number">7.2.2.2.</span> <span class="nav-text">BCNF和依赖保持</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第三范式"><span class="nav-number">7.2.3.</span> <span class="nav-text">第三范式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#函数依赖理论"><span class="nav-number">7.3.</span> <span class="nav-text">函数依赖理论</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#函数依赖集的闭包"><span class="nav-number">7.3.1.</span> <span class="nav-text">函数依赖集的闭包</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#属性集的闭包"><span class="nav-number">7.3.2.</span> <span class="nav-text">属性集的闭包</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#正则覆盖"><span class="nav-number">7.3.3.</span> <span class="nav-text">正则覆盖</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#无损分解"><span class="nav-number">7.3.4.</span> <span class="nav-text">无损分解</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#保持依赖"><span class="nav-number">7.3.5.</span> <span class="nav-text">保持依赖</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分解算法"><span class="nav-number">7.4.</span> <span class="nav-text">分解算法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#BCNF分解"><span class="nav-number">7.4.1.</span> <span class="nav-text">BCNF分解</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#BCNF的判定方法"><span class="nav-number">7.4.1.1.</span> <span class="nav-text">BCNF的判定方法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#BCNF分解算法"><span class="nav-number">7.4.1.2.</span> <span class="nav-text">BCNF分解算法</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3NF分解"><span class="nav-number">7.4.2.</span> <span class="nav-text">3NF分解</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#BCNF和3NF的比较"><span class="nav-number">7.4.3.</span> <span class="nav-text">BCNF和3NF的比较</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多值依赖"><span class="nav-number">7.5.</span> <span class="nav-text">多值依赖</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#冗余度排序"><span class="nav-number">7.5.1.</span> <span class="nav-text">冗余度排序</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-索引和散列"><span class="nav-number">8.</span> <span class="nav-text">11 索引和散列</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基本概念"><span class="nav-number">8.1.</span> <span class="nav-text">基本概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#顺序索引"><span class="nav-number">8.2.</span> <span class="nav-text">顺序索引</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#B-树索引文件"><span class="nav-number">8.3.</span> <span class="nav-text">$B^+$树索引文件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#B-树的结构"><span class="nav-number">8.3.1.</span> <span class="nav-text">$B^+$树的结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#B-树的更新"><span class="nav-number">8.3.2.</span> <span class="nav-text">$B^+$树的更新</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#插入"><span class="nav-number">8.3.2.1.</span> <span class="nav-text">插入</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#删除"><span class="nav-number">8.3.2.2.</span> <span class="nav-text">删除</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#不唯一的搜索码"><span class="nav-number">8.3.3.</span> <span class="nav-text">不唯一的搜索码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#B-树更新的复杂性"><span class="nav-number">8.3.4.</span> <span class="nav-text">$B^+$树更新的复杂性</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#散列索引"><span class="nav-number">8.4.</span> <span class="nav-text">散列索引</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#静态散列"><span class="nav-number">8.4.1.</span> <span class="nav-text">静态散列</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#动态散列"><span class="nav-number">8.4.2.</span> <span class="nav-text">动态散列</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#有序索引和哈希的比较"><span class="nav-number">8.5.</span> <span class="nav-text">有序索引和哈希的比较</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#12-查询处理"><span class="nav-number">9.</span> <span class="nav-text">12 查询处理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#概述"><span class="nav-number">9.1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查询代价的度量"><span class="nav-number">9.2.</span> <span class="nav-text">查询代价的度量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#选择操作"><span class="nav-number">9.3.</span> <span class="nav-text">选择操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#使用文件扫描和索引的选择"><span class="nav-number">9.3.1.</span> <span class="nav-text">使用文件扫描和索引的选择</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#线性查找"><span class="nav-number">9.3.1.1.</span> <span class="nav-text">线性查找</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#索引扫描"><span class="nav-number">9.3.1.2.</span> <span class="nav-text">索引扫描</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#涉及选择的比较"><span class="nav-number">9.3.2.</span> <span class="nav-text">涉及选择的比较</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#复杂选择的实现"><span class="nav-number">9.3.3.</span> <span class="nav-text">复杂选择的实现</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#排序"><span class="nav-number">9.4.</span> <span class="nav-text">排序</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#外部排序归并算法"><span class="nav-number">9.4.1.</span> <span class="nav-text">外部排序归并算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#外部排序归并的代价分析"><span class="nav-number">9.4.2.</span> <span class="nav-text">外部排序归并的代价分析</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#连接运算"><span class="nav-number">9.5.</span> <span class="nav-text">连接运算</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#嵌套循环连接"><span class="nav-number">9.5.1.</span> <span class="nav-text">嵌套循环连接</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#块嵌套循环连接"><span class="nav-number">9.5.2.</span> <span class="nav-text">块嵌套循环连接</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#索引嵌套循环连接"><span class="nav-number">9.5.3.</span> <span class="nav-text">索引嵌套循环连接</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#归并连接"><span class="nav-number">9.5.4.</span> <span class="nav-text">归并连接</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#散列连接"><span class="nav-number">9.5.5.</span> <span class="nav-text">散列连接</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#13-查询优化"><span class="nav-number">10.</span> <span class="nav-text">13 查询优化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#等价规则"><span class="nav-number">10.1.</span> <span class="nav-text">等价规则</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#14-事务"><span class="nav-number">11.</span> <span class="nav-text">14 事务</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#事务的ACID特性"><span class="nav-number">11.1.</span> <span class="nav-text">事务的ACID特性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#存储结构"><span class="nav-number">11.2.</span> <span class="nav-text">存储结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#事务原子性和持久性"><span class="nav-number">11.3.</span> <span class="nav-text">事务原子性和持久性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#事务隔离性"><span class="nav-number">11.4.</span> <span class="nav-text">事务隔离性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#可串行化"><span class="nav-number">11.5.</span> <span class="nav-text">可串行化</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#指令冲突"><span class="nav-number">11.5.1.</span> <span class="nav-text">指令冲突</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#优先图"><span class="nav-number">11.5.2.</span> <span class="nav-text">优先图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#视图可串行化"><span class="nav-number">11.5.3.</span> <span class="nav-text">视图可串行化</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#事务隔离和原子性"><span class="nav-number">11.6.</span> <span class="nav-text">事务隔离和原子性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#可恢复调度"><span class="nav-number">11.6.1.</span> <span class="nav-text">可恢复调度</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#无级联调度"><span class="nav-number">11.6.2.</span> <span class="nav-text">无级联调度</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#事务隔离性级别"><span class="nav-number">11.7.</span> <span class="nav-text">事务隔离性级别</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#15-并发控制"><span class="nav-number">12.</span> <span class="nav-text">15 并发控制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#锁"><span class="nav-number">12.1.</span> <span class="nav-text">锁</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#死锁"><span class="nav-number">12.2.</span> <span class="nav-text">死锁</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#两阶段封锁协议"><span class="nav-number">12.3.</span> <span class="nav-text">两阶段封锁协议</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#死锁处理"><span class="nav-number">12.4.</span> <span class="nav-text">死锁处理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#死锁预防"><span class="nav-number">12.4.1.</span> <span class="nav-text">死锁预防</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#死锁检测与恢复"><span class="nav-number">12.4.2.</span> <span class="nav-text">死锁检测与恢复</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#16-恢复系统"><span class="nav-number">13.</span> <span class="nav-text">16 恢复系统</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#故障分类"><span class="nav-number">13.1.</span> <span class="nav-text">故障分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#日志记录"><span class="nav-number">13.2.</span> <span class="nav-text">日志记录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据库修改"><span class="nav-number">13.3.</span> <span class="nav-text">数据库修改</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#立即修改immediate-modification"><span class="nav-number">13.3.1.</span> <span class="nav-text">立即修改immediate-modification</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#延迟修改deferred-modification"><span class="nav-number">13.3.2.</span> <span class="nav-text">延迟修改deferred-modification</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用日志来重做和撤销事务"><span class="nav-number">13.4.</span> <span class="nav-text">使用日志来重做和撤销事务</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#并发控制和恢复"><span class="nav-number">13.4.1.</span> <span class="nav-text">并发控制和恢复</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#取消和重做操作undo-amp-redo"><span class="nav-number">13.4.2.</span> <span class="nav-text">取消和重做操作undo&amp;redo</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#事务的取消和重做"><span class="nav-number">13.4.2.1.</span> <span class="nav-text">事务的取消和重做</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#从失败中恢复"><span class="nav-number">13.4.2.2.</span> <span class="nav-text">从失败中恢复</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#检查点"><span class="nav-number">13.5.</span> <span class="nav-text">检查点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#恢复算法"><span class="nav-number">13.6.</span> <span class="nav-text">恢复算法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#日志记录Logging（在正常操作的时候）"><span class="nav-number">13.6.1.</span> <span class="nav-text">日志记录Logging（在正常操作的时候）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#事务回滚Transaction-rollback"><span class="nav-number">13.6.2.</span> <span class="nav-text">事务回滚Transaction rollback</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#故障恢复"><span class="nav-number">13.7.</span> <span class="nav-text">故障恢复</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Redo-phase"><span class="nav-number">13.8.</span> <span class="nav-text">Redo phase</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Undo-phase"><span class="nav-number">13.9.</span> <span class="nav-text">Undo phase</span></a></li></ol></li></ol></div>
             
 
           </div>
