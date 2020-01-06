@@ -116,7 +116,7 @@
 <meta property="og:image" content="https://essieyiu.github.io/2019/12/30/databaseReview/14-1.jpg">
 <meta property="og:image" content="https://essieyiu.github.io/2019/12/30/databaseReview/databaseReview/14-1.jp">
 <meta property="article:published_time" content="2019-12-30T15:34:12.000Z">
-<meta property="article:modified_time" content="2020-01-06T14:24:18.633Z">
+<meta property="article:modified_time" content="2020-01-06T15:59:11.796Z">
 <meta property="article:author" content="Essie">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://essieyiu.github.io/2019/12/30/databaseReview/ER_structure.jpg">
@@ -1238,7 +1238,12 @@ E_1 \bigcap E_2 = E_2 \bigcap E_1</script></li>
 </ol>
 <p>如果调度S可以经过一系列非冲突指令交换成S‘，称S和S’冲突等价。（注意是交换两个事务不冲突的指令，单个事务的内部读写顺序仍然相同）</p>
 <p>若一个调度S与一个串行调度冲突等价，则称调度S是<strong>冲突可串行化</strong>的。</p>
-<h4 id="优先图"><a href="#优先图" class="headerlink" title="优先图"></a>优先图</h4><p>有向边Ti-&gt;Tj表示在Ti和Tj至少有一个是写，且Ti在Tj之前执行。</p>
+<h4 id="优先图"><a href="#优先图" class="headerlink" title="优先图"></a>优先图</h4><p>有向边Ti-&gt;Tj表示在Ti和Tj对同一个数据项Q至少有一个是写，且Ti在Tj之前执行。</p>
+<ul>
+<li>在Tj执行read(Q)之前，Ti执行write(Q)</li>
+<li>在Tj执行write(Q)之前，Ti执行read(Q)</li>
+<li>在Tj执行write(Q)之前，Ti执行write(Q)</li>
+</ul>
 <p>如果优先图有环，则是非冲突可串行化的。</p>
 <p>串行化顺序可以通过拓扑排序得到。</p>
 <h4 id="视图可串行化"><a href="#视图可串行化" class="headerlink" title="视图可串行化"></a>视图可串行化</h4><p>如果一个调度S的视图等价于一个串行调度的视图，那么称它为视图可串行化的。</p>
