@@ -88,8 +88,13 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://essieyiu.github.io/2019/12/30/databaseReview/ER_structure.jpg">
 <meta property="og:image" content="https://essieyiu.github.io/2019/12/30/databaseReview/ER_mapping.jpg">
+<meta property="og:image" content="https://essieyiu.github.io/2019/12/30/databaseReview/databaseReview/ER_mapping.jpg">
+<meta property="og:image" content="https://essieyiu.github.io/2019/12/30/databaseReview/ER_example1.jpg">
+<meta property="og:image" content="https://essieyiu.github.io/2019/12/30/databaseReview/databaseReview/ER_example1.jpg">
 <meta property="og:image" content="https://essieyiu.github.io/2019/12/30/databaseReview/ER_participate.jpg">
 <meta property="og:image" content="https://essieyiu.github.io/2019/12/30/databaseReview/ER_complex.jpg">
+<meta property="og:image" content="https://essieyiu.github.io/2019/12/30/databaseReview/ER_role.jpg">
+<meta property="og:image" content="https://essieyiu.github.io/2019/12/30/databaseReview/databaseReview/ER_role.jpg">
 <meta property="og:image" content="https://essieyiu.github.io/2019/12/30/databaseReview/b_leaf.jpg">
 <meta property="og:image" content="https://essieyiu.github.io/2019/12/30/databaseReview/databaseReview/b_leaf.jp">
 <meta property="og:image" content="https://essieyiu.github.io/2019/12/30/databaseReview/databaseReview/b_splitFather.jp">
@@ -100,18 +105,18 @@
 <meta property="og:image" content="https://essieyiu.github.io/2019/12/30/databaseReview/query_process.jpg">
 <meta property="og:image" content="https://essieyiu.github.io/2019/12/30/databaseReview/databaseReview/merge.jp">
 <meta property="og:image" content="https://essieyiu.github.io/2019/12/30/databaseReview/merge.jpg">
-<meta property="og:image" content="https://essieyiu.github.io/2019/12/30/databaseReview/databaseReview/nested.jp">
+<meta property="og:image" content="https://essieyiu.github.io/2019/12/30/databaseReview/databaseReview/nested.jpg">
 <meta property="og:image" content="https://essieyiu.github.io/2019/12/30/databaseReview/nested.jpg">
-<meta property="og:image" content="https://essieyiu.github.io/2019/12/30/databaseReview/databaseReview/block_nested.jp">
+<meta property="og:image" content="https://essieyiu.github.io/2019/12/30/databaseReview/databaseReview/block_nested.jpg">
 <meta property="og:image" content="https://essieyiu.github.io/2019/12/30/databaseReview/block_nested.jpg">
-<meta property="og:image" content="https://essieyiu.github.io/2019/12/30/databaseReview/databaseReview/merge_join.jp">
+<meta property="og:image" content="https://essieyiu.github.io/2019/12/30/databaseReview/databaseReview/merge_join.jpg">
 <meta property="og:image" content="https://essieyiu.github.io/2019/12/30/databaseReview/merge_join.jpg">
-<meta property="og:image" content="https://essieyiu.github.io/2019/12/30/databaseReview/databaseReview/hash_join.jp">
+<meta property="og:image" content="https://essieyiu.github.io/2019/12/30/databaseReview/databaseReview/hash_join.jpg">
 <meta property="og:image" content="https://essieyiu.github.io/2019/12/30/databaseReview/hash_join.jpg">
 <meta property="og:image" content="https://essieyiu.github.io/2019/12/30/databaseReview/14-1.jpg">
 <meta property="og:image" content="https://essieyiu.github.io/2019/12/30/databaseReview/databaseReview/14-1.jp">
 <meta property="article:published_time" content="2019-12-30T15:34:12.000Z">
-<meta property="article:modified_time" content="2020-01-05T15:22:00.952Z">
+<meta property="article:modified_time" content="2020-01-06T14:24:18.633Z">
 <meta property="article:author" content="Essie">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://essieyiu.github.io/2019/12/30/databaseReview/ER_structure.jpg">
@@ -651,13 +656,14 @@ _{dept\_name}G_{average(salary)}(instructor)</script><figure class="highlight sq
 <li>$t \in r$表示元组t在关系r中</li>
 </ul>
 <h4 id="查询示例"><a href="#查询示例" class="headerlink" title="查询示例"></a>查询示例</h4><p>找出所有工资在80000美元以上的教师的元组</p>
-<p>${t|t \in instructor \land t[salary]&gt;80000}$</p>
-<p>假设只要ID属性，要引入$\exists$</p>
+<script type="math/tex; mode=display">
+\{t|t \in instructor \land t[salary]>80000\}</script><p>假设只要ID属性，要引入$\exists$</p>
 <script type="math/tex; mode=display">
 \{t|\exists s \in instructor(t[ID]=s[ID] \land s[salary] > 80000)\}</script><p>元组变量t只定义在ID属性上，因此结果得到ID上的关系</p>
 <p>在多个关系中进行查询，找出位置在Watson楼的系中的所有教师姓名</p>
 <script type="math/tex; mode=display">
-\{t|\exists s \in instructor(t[name]=s[name] \land \exists u \in department(u[dept_name]=s[dept_name] \land u[building]='Watson'))\}</script><h2 id="7-数据库设计和E-R模型"><a href="#7-数据库设计和E-R模型" class="headerlink" title="7 数据库设计和E-R模型"></a>7 数据库设计和E-R模型</h2><h3 id="设计过程概览"><a href="#设计过程概览" class="headerlink" title="设计过程概览"></a>设计过程概览</h3><p><strong>设计阶段</strong></p>
+\{t|\exists s \in instructor(t[name]=s[name] \land \\
+\exists u \in department(u[dept\_name]=s[dept\_name] \land u[building]='Watson'))\}</script><h2 id="7-数据库设计和E-R模型"><a href="#7-数据库设计和E-R模型" class="headerlink" title="7 数据库设计和E-R模型"></a>7 数据库设计和E-R模型</h2><h3 id="设计过程概览"><a href="#设计过程概览" class="headerlink" title="设计过程概览"></a>设计过程概览</h3><p><strong>设计阶段</strong></p>
 <ul>
 <li>描述用户需求</li>
 <li>概念设计（常用实体-联系模型表示）</li>
@@ -707,8 +713,10 @@ _{dept\_name}G_{average(salary)}(instructor)</script><figure class="highlight sq
 <img src="/2019/12/30/databaseReview/ER_structure.jpg" class="">
 <h4 id="映射基数-1"><a href="#映射基数-1" class="headerlink" title="映射基数"></a>映射基数</h4><p>一方用带箭头的，多方不带箭头</p>
 <img src="/2019/12/30/databaseReview/ER_mapping.jpg" class="">
+<p><img src="databaseReview/ER_mapping.jpg" alt=""></p>
 <p>用<code>L..H</code>表示，L表示最小的映射基数，H表示最大的映射基数，例如下图，<code>0..*</code>表示instructor可以有0个学生或多个学生，<code>1..1</code>表示学生最多有一个老师。因此是一个一对多的。</p>
-
+<img src="/2019/12/30/databaseReview/ER_example1.jpg" class="">
+<p><img src="databaseReview/ER_example1.jpg" alt=""></p>
 <h4 id="参与度"><a href="#参与度" class="headerlink" title="参与度"></a>参与度</h4><p>全参与用双线，部分参与用单线</p>
 <img src="/2019/12/30/databaseReview/ER_participate.jpg" class="">
 <p>每一个section至少对应一个course，有的course可以没有上课时间section，一个course可以对应多个section</p>
@@ -716,7 +724,8 @@ _{dept\_name}G_{average(salary)}(instructor)</script><figure class="highlight sq
 <p>name,address，street复合属性，{phone_number}多值属性，age()派生属性</p>
 <p>注意多值属性会破坏原子性</p>
 <h4 id="角色-1"><a href="#角色-1" class="headerlink" title="角色"></a>角色</h4><p>在菱形和矩形之间的连线上进行标注来表示角色</p>
-
+<img src="/2019/12/30/databaseReview/ER_role.jpg" class="">
+<p><img src="databaseReview/ER_role.jpg" alt=""></p>
 <h4 id="非二元的联系"><a href="#非二元的联系" class="headerlink" title="非二元的联系"></a>非二元的联系</h4><p>在这种联系中，最多使用一个箭头（一方），否则会造成歧义</p>
 <h3 id="弱实体集"><a href="#弱实体集" class="headerlink" title="弱实体集"></a>弱实体集</h3><ul>
 <li><strong><u>没有足够的属性以形成主码的实体集</u></strong>，它的存在依赖于另一个实体集（标识/属主实体集）。【有主码的实体集称强实体集】</li>
@@ -738,7 +747,7 @@ _{dept\_name}G_{average(salary)}(instructor)</script><figure class="highlight sq
 <p>比如instructor_phone(ID,phone_number)</p>
 <h4 id="弱实体集的表示"><a href="#弱实体集的表示" class="headerlink" title="弱实体集的表示"></a>弱实体集的表示</h4><p>假设A是弱实体集，有n个属性，B是A依赖的标识实体集，<u>主码包括m个属性</u>。那么生成的关系模式为这<strong>m+n个属性</strong>。关系模式的主码是<strong>A的分辨符+B的主码</strong>。</p>
 <p>要为生成的关系模式上建立外码约束，指明m个属性参照关系B的主码。</p>
-<h4 id="联系集的表示"><a href="#联系集的表示" class="headerlink" title="联系集的表示"></a>联系集的表示</h4><p>假设R是联系集，a1,…an表示所有的<u>参与R的实体集主码的并集</u>构成的属性集合，设R的<u>描述属性</u>为b1,..b,那么生成的关系模式属性为这<strong>m+n个属性</strong>。</p>
+<h4 id="联系集的表示"><a href="#联系集的表示" class="headerlink" title="联系集的表示"></a>联系集的表示</h4><p>假设R是联系集，a1,…an表示所有的<u>参与R的实体集主码的并集</u>构成的属性集合，设R的<u>描述属性</u>为b1,..bm,那么生成的关系模式属性为这<strong>m+n个属性</strong>。</p>
 <p>选择联系集的主码：</p>
 <ul>
 <li>对于多对多的关系，参与实体集的<strong>主码属性的并集</strong>称为主码</li>
@@ -795,26 +804,30 @@ _{dept\_name}G_{average(salary)}(instructor)</script><figure class="highlight sq
 <li>伪传递律：$若\alpha \rightarrow \beta和\gamma\beta \rightarrow \delta成立，则\alpha\gamma \rightarrow \delta成立$</li>
 </ul>
 <p><strong>计算$F^+$</strong></p>
-<p>$F^+=F$</p>
-<p>​    repeat</p>
-<p>​        for each $F^+$中的函数依赖f</p>
-<p>​            在f上应用自反律和增补律</p>
-<p>​            将结果加入到$F^+$中</p>
-<p>​        for each $F^+$中的一对函数依赖$f_1$和$f_2$</p>
-<p>​            if $f_1$和$f_2$可以使用传递律结合起来</p>
-<p>​                将结果加入到$F^+$中</p>
-<p>​    until $F^+$不再发生变化</p>
-<h4 id="属性集的闭包"><a href="#属性集的闭包" class="headerlink" title="属性集的闭包"></a>属性集的闭包</h4><p>如果$\alpha \rightarrow \beta$，我们称属性B被$\alpha$函数确定。<strong>要判断集合$\alpha$是否为超码，须计算$\alpha$函数确定的属性集</strong>。一种方法是计算$F^+$，找出左半部为$\alpha$的函数依赖，并合并这些函数依赖的右半部，但是开销很大。</p>
+<script type="math/tex; mode=display">
+\begin{align}
+&F^+=F\\
+&repeat\\
+&\quad for \space each \space F^+中的函数依赖f \\
+&\quad \quad 在f上应用自反律和增补律\\
+&\quad \quad 将结果加入到F^+中\\
+&\quad for \space each \space F^+中的一对函数依赖f_1和f_2\\
+&\quad \quad if \space f_1和f_2可以使用传递律结合起来\\
+&\quad \qquad 将结果加入到F^+中 \\
+&until \space F^+不再发生变化
+\end{align}</script><h4 id="属性集的闭包"><a href="#属性集的闭包" class="headerlink" title="属性集的闭包"></a>属性集的闭包</h4><p>如果$\alpha \rightarrow \beta$，我们称属性B被$\alpha$函数确定。<strong>要判断集合$\alpha$是否为超码，须计算$\alpha$函数确定的属性集</strong>。一种方法是计算$F^+$，找出左半部为$\alpha$的函数依赖，并合并这些函数依赖的右半部，但是开销很大。</p>
 <p>令$\alpha$为一个属性集。我们将函数依赖集F下被$\alpha$函数确定的所有属性的集合称为F下$\alpha$的闭包，记为$\alpha^+$</p>
 <p><strong>计算$\alpha^+$</strong></p>
-<p>result := $\alpha$</p>
-<p>​    repeat</p>
-<p>​        for each 函数依赖$\beta \rightarrow \gamma$ in F do</p>
-<p>​            begin</p>
-<p>​                if $\beta \subseteq result$ then $result := result \bigcup \gamma$;</p>
-<p>​            end</p>
-<p>​    until （result不变）</p>
-<h4 id="正则覆盖"><a href="#正则覆盖" class="headerlink" title="正则覆盖"></a>正则覆盖</h4><p>无关属性：如果去除函数依赖中的一个属性不改变该函数依赖集的闭包，则称该属性是无关的。形式化定义如下：考虑函数依赖集F及F中的函数依赖$\alpha \rightarrow \beta$</p>
+<script type="math/tex; mode=display">
+\begin{align}
+&result := \alpha\\
+&repeat\\
+&\quad for \space each 函数依赖\beta \rightarrow \gamma \space in F \space do \\
+&\quad\quad begin\\
+&\quad\quad\quad if \space \beta \subseteq result \space then\space result:=result\bigcup\gamma;\\
+&\quad\quad end\\
+&until(result不变);
+\end{align}</script><h4 id="正则覆盖"><a href="#正则覆盖" class="headerlink" title="正则覆盖"></a>正则覆盖</h4><p>无关属性：如果去除函数依赖中的一个属性不改变该函数依赖集的闭包，则称该属性是无关的。形式化定义如下：考虑函数依赖集F及F中                                                                 的函数依赖$\alpha \rightarrow \beta$</p>
 <ul>
 <li>如果 $A \in \alpha$并且F逻辑蕴含$(F-{\alpha \rightarrow \beta}\bigcup {(\alpha-A) \rightarrow \beta})$，则属性A在$\alpha$中是无关的【考虑函数依赖的左边：$\alpha$不需要A也能推出$\beta$】</li>
 <li>如果$A \in \beta$并且函数依赖集$(F-{\alpha \rightarrow \beta})\bigcup {\alpha \rightarrow(\beta - A )})$逻辑蕴含F，则属性A在$\beta$中是无关的【考虑函数依赖的右边：$\beta$中的A属性可以被其他的函数依赖推出来】</li>
@@ -826,18 +839,20 @@ _{dept\_name}G_{average(salary)}(instructor)</script><figure class="highlight sq
 <li>$F_c$中函数依赖的<strong>左半部都是唯一的</strong>，即$F_c$中不存在两个依赖$\alpha_1 \rightarrow \beta_1$和$\alpha_2 \rightarrow \beta_2$满足$\alpha_1 = \alpha_2$</li>
 </ul>
 <p><strong>计算正则覆盖</strong></p>
-<p>$F_c=F$</p>
-<p>​    repeat</p>
-<p>​        使用<strong>合并律</strong>将$F_c$中所有形如$\alpha_1 \rightarrow \beta_1$和$\alpha_1 \rightarrow \beta_2$的依赖替换为$\alpha_1 \rightarrow \beta_1\beta_2$</p>
-<p>​        在$F_c$中寻找一个函数依赖$\alpha \rightarrow \beta$，它在$\alpha$或在$\beta$中具有一个<strong>无关属性</strong></p>
-<p>​        /*注意使用的是$F_c$而不是F检验无关属性*/</p>
-<p>​        如果找到一个无关属性，则将它从$F_c$中的$\alpha \rightarrow \beta$中删除</p>
-<p>​    until ($F_c$不变)</p>
-<h4 id="无损分解"><a href="#无损分解" class="headerlink" title="无损分解"></a>无损分解</h4><p><strong>无损分解</strong>：令r(R)为一个关系模式，F为r(R)上的函数依赖集。令$R_1$和$R_2$为R的分解。如果用两个关系模式r($R_1$)，r($R_2$)替代r(R)时没有信息损失，则我们称该分解是无损分解。用关系代数可以表示为:</p>
+<script type="math/tex; mode=display">
+\begin{align}
+&F_c=F\\
+&repeat\\
+&\quad 使用合并律将F_c中所有形如\alpha_1 \rightarrow \beta_1 和\alpha_1 \rightarrow \beta_2的依赖替换为\alpha_1 \rightarrow \beta_1 \beta_2\\
+&\quad 在F_c中寻找一个函数依赖\alpha \rightarrow \beta,它在 \alpha或在\beta中具有一个无关属性\\
+&\quad/*注意使用的是F_c而不是F检验无关属性*/\\
+&\quad如果找到一个无关属性，则将它从F_c中的\alpha \rightarrow \beta中删除\\
+&until(F_c不变)
+\end{align}</script><h4 id="无损分解"><a href="#无损分解" class="headerlink" title="无损分解"></a>无损分解</h4><p><strong>无损分解</strong>：令r(R)为一个关系模式，F为r(R)上的函数依赖集。令$R_1$和$R_2$为R的分解。如果用两个关系模式r($R_1$)，r($R_2$)替代r(R)时没有信息损失，则我们称该分解是无损分解。用关系代数可以表示为:</p>
 <script type="math/tex; mode=display">
 \Pi_{R_1}(r) \bowtie \Pi_{R_2}(r) = r</script><p>分解后的两个模式自然连接的结果和原来被分解的模式一样。</p>
 <p>不是无损分解的分解称为<strong>有损分解</strong>。</p>
-<p>用函数依赖来说明无损分解</p>
+<p><strong>用函数依赖来说明无损分解</strong></p>
 <p>$R_1,R_2$是R的无损分解如果以下函数依赖中至少有一个属于$F^+$：</p>
 <ul>
 <li>$R_1 \bigcap R_2 \rightarrow R_1$</li>
@@ -881,17 +896,6 @@ t_3[\beta] = t1[\beta]\\
 t_3[R-\beta]=t_2[R-\beta]\\
 t_4[\beta] = t_2[\beta]\\
 t_4[R-\beta]=t_1[R-\beta]</script><h4 id="冗余度排序"><a href="#冗余度排序" class="headerlink" title="冗余度排序"></a>冗余度排序</h4><p>4NF &lt; BCNF &lt; 3NF &lt; 1NF</p>
-<p>主要就是分解，为什么要进行分解</p>
-<p>进行分解的时候哪些依据可以使用？</p>
-<p>函数依赖（概念</p>
-<p>使用函数依赖进行基本推导Armstrong公理</p>
-<p>平凡依赖</p>
-<p>BC范式的概念（基本要求</p>
-<p>属性的闭包，怎么求，概念是</p>
-<p>怎么证明超码，候选码</p>
-<p>正则覆盖</p>
-<p>多值依赖：了解概念就可</p>
-<p>四种范式，注意冗余度，高低</p>
 <h2 id="11-索引和散列"><a href="#11-索引和散列" class="headerlink" title="11 索引和散列"></a>11 索引和散列</h2><h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><p>基本索引类型：</p>
 <ul>
 <li>顺序索引</li>
@@ -928,25 +932,23 @@ t_4[R-\beta]=t_1[R-\beta]</script><h4 id="冗余度排序"><a href="#冗余度�
 <li><p>先找到搜索码在叶子节点上的位置</p>
 </li>
 <li><p>如果搜索码值已经出现在叶子节点上</p>
-</li>
-<li><ol>
+<ol>
 <li>把新记录插到原表里面</li>
 <li>如果必要的话，添加一个指针到桶/链表里面，物理地址插入到叶子节点里来</li>
 </ol>
 </li>
 <li><p>若搜索码值没有出现</p>
-</li>
-<li><ol>
+<ol>
 <li>把记录添加到主文件中，如果必要的话创建一个桶</li>
 <li>对索引树作修改。如果当前叶子节点还有空间，把key-value和pointer加进去，要排序</li>
 <li>否则，分割节点（当前叶子节点没有空间了）</li>
 </ol>
 </li>
 </ol>
-<p>分割叶子节点：</p>
+<p><strong>分割叶子节点：</strong></p>
 <p>取n对search-key-value和poniter，排好序，分成两部分，前一部分留在旧节点，剩下的放到新节点里面</p>
 <p>记新节点为p，令k为p中最小的key-value，<strong>在被分割节点（旧节点）的父节点中插入(k,p)</strong>【注意，(k,p)这个值既出现在新叶子节点中，也出现在父节点中，这个父节点也成为新节点的父节点】</p>
-<p>分割父节点：</p>
+<p><strong>分割父节点：</strong></p>
 <p>若父节点是满的，对父节点进行分割，之后再分割子节点</p>
 <p><strong>分割节点自下往上，直到找到一个不是满的节点</strong></p>
 <p>最坏情况导致树的高度增加1，根节点也进行了分割</p>
@@ -1002,6 +1004,63 @@ t_4[R-\beta]=t_1[R-\beta]</script><h4 id="冗余度排序"><a href="#冗余度�
 <h4 id="涉及选择的比较"><a href="#涉及选择的比较" class="headerlink" title="涉及选择的比较"></a>涉及选择的比较</h4><p>考虑形如$\sigma_{A \leq v}(r)$</p>
 <p><strong>A5 主索引，比较</strong>：在选择条件是比较时，可以使用顺序主索引（如$B^+$树主索引）</p>
 <p><strong>A6 辅助索引，比较</strong></p>
+<p><strong>选择算法代价估计</strong></p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th></th>
+<th>算法</th>
+<th>开销</th>
+<th>原因</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A1</td>
+<td>线性搜索</td>
+<td>$t_s+b_r*t_T$</td>
+<td>一次初始搜索加上$b_r$个块传输。$b_r$表示在文件中的块数量</td>
+</tr>
+<tr>
+<td>A1</td>
+<td>线性搜索，码属性等值比较</td>
+<td>平均$t_s+(b_r/2)*t_T$</td>
+<td>因为最多一条记录满足条件，所以只需要找到所需的记录，扫描就可终止。最坏情况仍然需要$b_r$个块传输</td>
+</tr>
+<tr>
+<td>A2</td>
+<td>$B^+$树主索引，码属性等值比较</td>
+<td>$(h_i+1)*(t_T+t_s)$</td>
+<td>其中$h_i$表示索引的高度。索引查找穿越树的高度，再加上一次IO来取记录，一次IO需要一次搜索和一次块传输</td>
+</tr>
+<tr>
+<td>A3</td>
+<td>$B^+$树主索引，非码属性等值比较</td>
+<td>$h_i<em>(t_T+t_s)+b</em>t_T$</td>
+<td>树的每层一次搜索，第一个块一次搜索。b是包含具有指定搜索码记录的块数。</td>
+</tr>
+<tr>
+<td>A4</td>
+<td>$B^+$树辅助索引，非码属性等值比较</td>
+<td>$(h_i+n)*(t_T+t_s)$</td>
+<td>n是所取记录数。索引查找的代价和A3相似，但是每条记录可能在不同的块上，这需要每条记录一次搜索。如果n值比较大，代价可能会非常高。</td>
+</tr>
+<tr>
+<td>A5</td>
+<td>$B^+$树主索引，比较</td>
+<td>$h_i<em>(t_T+t_s)+b</em>t_T$</td>
+<td>同A3</td>
+</tr>
+<tr>
+<td>A6</td>
+<td>$B^+$树辅助索引，比较</td>
+<td>$(h_i+n)*(t_T+t_s)$</td>
+<td>同A4</td>
+</tr>
+</tbody>
+</table>
+</div>
 <h4 id="复杂选择的实现"><a href="#复杂选择的实现" class="headerlink" title="复杂选择的实现"></a>复杂选择的实现</h4><ul>
 <li>合取</li>
 <li>析取</li>
@@ -1020,40 +1079,39 @@ t_4[R-\beta]=t_1[R-\beta]</script><h4 id="冗余度排序"><a href="#冗余度�
 <p>通常M=3，两个块放输入，一个块放输出</p>
 <p><img src="databaseReview/merge.jp" alt=""></p>
 <img src="/2019/12/30/databaseReview/merge.jpg" class="">
-<h4 id="外部排序归并的代价分析"><a href="#外部排序归并的代价分析" class="headerlink" title="外部排序归并的代价分析"></a>外部排序归并的代价分析</h4><p>记$b<em>r$代表包含关系r中记录的磁盘块数。第一阶段读入关系的每一数据块并写出，共需$2b_r$次磁盘块传输。初始归并段数为$\lceil b_r/M \rceil$。每一趟归并会使归并段疏密减少为原来的$1/(M-1)$。<u>总共所需归并趟数为$\lceil log</em>{M-1}(b_r/M)\rceil$&lt;/u&gt;</p>
+<h4 id="外部排序归并的代价分析"><a href="#外部排序归并的代价分析" class="headerlink" title="外部排序归并的代价分析"></a>外部排序归并的代价分析</h4><p>记$b<em>r$代表包含关系r中记录的磁盘块数。第一阶段读入关系的每一数据块并写出，共需$2b_r$次磁盘块传输。初始归并段数为$\lceil b_r/M \rceil$。每一趟归并会使归并段疏密减少为原来的$1/(M-1)$。<u>总共所需归并趟数为</u>$\lceil log</em>{M-1}(b_r/M)\rceil$</p>
 <p>关系外排序的磁盘块传输总数：$b<em>r(2\lceil log</em>{M-1}(b_r/M)\rceil +1)$</p>
-<p>bbbb..[]</p>
 <h3 id="连接运算"><a href="#连接运算" class="headerlink" title="连接运算"></a>连接运算</h3><p>用等值连接表示形如$r \bowtie_{r.A=s.B} s$的连接</p>
+<p>下面用$b_r,b_s$分别表示关系r和关系s中的磁盘块数，$n_r,n_s$表示关系r和s中的记录数。</p>
 <h4 id="嵌套循环连接"><a href="#嵌套循环连接" class="headerlink" title="嵌套循环连接"></a>嵌套循环连接</h4><ul>
-<li><p>嵌套循环连接算法的代价很大，因为该算法逐个检查两个关系中的每一对元组</p>
-</li>
-<li><p>在最坏情况下，缓冲区只能容纳每个关系中的一个元组，这时共需$n_r \times b_s +b_r$次块传输</p>
-</li>
-<li><p>如果一个关系能完全放在内存中，那么把这个关系作为内层关系来处理是有好处的。因为这样内层循环关系只需要读一次</p>
-</li>
+<li>嵌套循环连接算法的代价很大，因为该算法逐个检查两个关系中的每一对元组</li>
+<li>在最坏情况下，缓冲区只能容纳每个关系中的一个数据块，这时共需$n_r \times b_s +b_r$次块传输</li>
+<li>如果一个关系能完全放在内存中，那么把这个关系作为内层关系来处理是有好处的。因为这样内层循环关系只需要读一次</li>
+<li>在最好的情况下，内存能<strong>同时容纳两个关系</strong>，此时每一数据块只需读一次，只需要$b_r+b_s$次块传输加上两次磁盘搜索</li>
 </ul>
-<p><img src="databaseReview/nested.jp" alt=""></p>
+<p><img src="databaseReview/nested.jpg" alt=""></p>
 <img src="/2019/12/30/databaseReview/nested.jpg" class="">
 <h4 id="块嵌套循环连接"><a href="#块嵌套循环连接" class="headerlink" title="块嵌套循环连接"></a>块嵌套循环连接</h4><ul>
-<li><p>在最坏的情况下，对于外层关系中的每一个块，内层关系s的每一块只须读一次，而不是对外层关系的每一个元组读一次。因此，在最坏情况下，共需$b_r *b_s +b_r$次块传输</p>
-</li>
-<li><p>显然，如果内存不能容纳任何一个关系，则使用较小的关系作为外层关系更有效</p>
-</li>
+<li>在最坏的情况下，对于外层关系中的每一个块，内层关系s的每一块只须读一次，而不是对外层关系的每一个元组读一次。因此，在最坏情况下，共需$b_r *b_s +b_r$次块传输</li>
+<li>显然，如果内存不能容纳任何一个关系，则使用较小的关系作为外层关系更有效</li>
 <li>在最好的情况下，内存能容纳内层关系，需要$b_r+b_s$次块传输加上两次磁盘搜索（把较小的关系作为内层关系）</li>
+<li>假设内存有M块，代价是：$块传输:\lceil b_r/(M-2)*b_s+b_r \rceil ;磁盘搜索:2\lceil b_r/(M-2)\rceil$</li>
 </ul>
-<p><img src="databaseReview/block_nested.jp" alt=""></p>
+<p><img src="databaseReview/block_nested.jpg" alt=""></p>
 <img src="/2019/12/30/databaseReview/block_nested.jpg" class="">
 <h4 id="索引嵌套循环连接"><a href="#索引嵌套循环连接" class="headerlink" title="索引嵌套循环连接"></a>索引嵌套循环连接</h4><p>在嵌套循环连接中， 如果内层关系中的连接属性上有索引，则可以使用索引查找替代文件扫描</p>
 <p>对于外层关系的r的每一个元组，需要在关系s的索引上进行查找，检索相关元组。</p>
 <p>在最坏情况下，缓冲区只能容纳关系r的一块和索引的一块。</p>
 <p>此时，读取关系r需要$b_r$次IO操作，这里$b_r$指包含关系r中记录的磁盘块数</p>
+<p>连接的时间代价可以用$b_r(t_T+t_s)+n_r*c$来计算。</p>
 <h4 id="归并连接"><a href="#归并连接" class="headerlink" title="归并连接"></a>归并连接</h4><p>可用于计算自然连接和等值连接</p>
-<p>代价：$b_r+b_s$次块传输+$\lceil b_r+b_b \rceil + \lceil b_s/b_b \rceil$次搜索</p>
-<p><img src="databaseReview/merge_join.jp" alt=""></p>
+<p>假设为每个关系分配$b_b$个缓冲块：</p>
+<p>代价：$b_r+b_s$次块传输+$\lceil b_r/b_b \rceil + \lceil b_s/b_b \rceil$次搜索</p>
+<p><img src="databaseReview/merge_join.jpg" alt=""></p>
 <img src="/2019/12/30/databaseReview/merge_join.jpg" class="">
 <h4 id="散列连接"><a href="#散列连接" class="headerlink" title="散列连接"></a>散列连接</h4><p>可以实现自然连接和等值连接</p>
 <p>在哈希连接算法中，用散列函数h来划分两个关系的元组，此算法的基本思想是把这两个关系的元组划分成在连接属性值上具有相同散列值的元组集合。</p>
-<p><img src="databaseReview/hash_join.jp" alt=""></p>
+<p><img src="databaseReview/hash_join.jpg" alt=""></p>
 <img src="/2019/12/30/databaseReview/hash_join.jpg" class="">
 <h2 id="13-查询优化"><a href="#13-查询优化" class="headerlink" title="13 查询优化"></a>13 查询优化</h2><p>掌握等价转化的基本规则</p>
 <p>掌握选择操作有关的</p>
@@ -1185,7 +1243,7 @@ E_1 \bigcap E_2 = E_2 \bigcap E_1</script></li>
 <p>串行化顺序可以通过拓扑排序得到。</p>
 <h4 id="视图可串行化"><a href="#视图可串行化" class="headerlink" title="视图可串行化"></a>视图可串行化</h4><p>如果一个调度S的视图等价于一个串行调度的视图，那么称它为视图可串行化的。</p>
 <h3 id="事务隔离和原子性"><a href="#事务隔离和原子性" class="headerlink" title="事务隔离和原子性"></a>事务隔离和原子性</h3><h4 id="可恢复调度"><a href="#可恢复调度" class="headerlink" title="可恢复调度"></a>可恢复调度</h4><p>可恢复调度应满足：对每对事务Ti和Tj，若Tj读取了之前由Ti所写的数据项，则Ti先于Tj提交</p>
-<h4 id="无级联调度"><a href="#无级联调度" class="headerlink" title="无级联调度"></a>无级联调度</h4><p>无级联调度应满足：对于每对事务Ti和Tj，如果Tj读取了先前由Ti所写的数据项，则Ti必须在Tj这一读操作前提交。</p>
+<h4 id="无级联调度"><a href="#无级联调度" class="headerlink" title="无级联调度"></a>无级联调度</h4><p>无级联调度应满足：对于每对事务Ti和Tj，如果Tj读取了先前由Ti所写的数据项，则Ti必须在Tj<strong>这一读操作前</strong>提交。</p>
 <p>每一个无级联调度都是可恢复调度。</p>
 <p>缺点：并发性差。</p>
 <h3 id="事务隔离性级别"><a href="#事务隔离性级别" class="headerlink" title="事务隔离性级别"></a>事务隔离性级别</h3><ul>
