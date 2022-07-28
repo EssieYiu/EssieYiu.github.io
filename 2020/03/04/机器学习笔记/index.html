@@ -1,0 +1,1177 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/icon.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/icon.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/icon.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="note," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="吴恩达老师《Machine Learning》课程的学习笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="机器学习笔记">
+<meta property="og:url" content="https://essieyiu.github.io/2020/03/04/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="Essie&#39;s Blog">
+<meta property="og:description" content="吴恩达老师《Machine Learning》课程的学习笔记">
+<meta property="og:image" content="https://essieyiu.github.io/2020/03/04/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/linearOneModel.png">
+<meta property="og:image" content="https://essieyiu.github.io/2020/03/04/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/graph1-1.png">
+<meta property="og:image" content="https://essieyiu.github.io/2020/03/04/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/graph1-2.png">
+<meta property="og:image" content="https://essieyiu.github.io/2020/03/04/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/gradient-1.png">
+<meta property="og:image" content="https://essieyiu.github.io/2020/03/04/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/graph2-1.png">
+<meta property="og:image" content="https://essieyiu.github.io/2020/03/04/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/table2-1.png">
+<meta property="og:image" content="https://essieyiu.github.io/2020/03/04/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/graph3-1.png">
+<meta property="og:image" content="https://essieyiu.github.io/2020/03/04/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/decision_boundary.png">
+<meta property="og:image" content="https://essieyiu.github.io/2020/03/04/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/decision_boundary_nonlinear.png">
+<meta property="og:image" content="https://essieyiu.github.io/2020/03/04/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/LRCost1.png">
+<meta property="og:image" content="https://essieyiu.github.io/2020/03/04/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/graph3-2.png">
+<meta property="og:image" content="https://essieyiu.github.io/2020/03/04/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/graph4-1.png">
+<meta property="og:image" content="https://essieyiu.github.io/2020/03/04/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/ex6-vector.png">
+<meta property="og:image" content="https://essieyiu.github.io/2020/03/04/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/ex6-vector.png">
+<meta property="og:image" content="https://essieyiu.github.io/2020/03/04/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/ex6-index.png">
+<meta property="og:image" content="https://essieyiu.github.io/2020/03/04/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/ex6-index.png">
+<meta property="article:published_time" content="2020-03-04T07:39:37.000Z">
+<meta property="article:modified_time" content="2020-05-31T04:04:41.736Z">
+<meta property="article:author" content="Essie">
+<meta property="article:tag" content="note">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://essieyiu.github.io/2020/03/04/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/linearOneModel.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://essieyiu.github.io/2020/03/04/机器学习笔记/"/>
+
+
+
+
+
+  <title>机器学习笔记 | Essie's Blog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Essie's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">得失工拙，不计也</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://essieyiu.github.io/2020/03/04/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Essie">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Essie's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">机器学习笔记</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-04T15:39:37+08:00">
+                2020-03-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>吴恩达老师《Machine Learning》课程的学习笔记</p>
+<a id="more"></a>
+<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><h2 id="机器学习算法"><a href="#机器学习算法" class="headerlink" title="机器学习算法"></a>机器学习算法</h2><p>Tom Mitchell provides a more modern <u>definition</u>: “A computer program is said to learn from <strong>experience E</strong> with respect to some class of <strong>tasks T</strong> and <strong>performance measure P</strong>, if its performance at tasks in T, as measured by P, improves with experience E.”</p>
+<h3 id="有监督学习"><a href="#有监督学习" class="headerlink" title="有监督学习"></a>有监督学习</h3><p>在有监督学习中，我们有数据集并且有相对应的正确输出，知道输入和输出之间存在着某种关系。</p>
+<ul>
+<li><strong>回归(regression)</strong>：例如给出一张照片，预测照片中人物的年龄</li>
+<li><strong>分类(classification)</strong>：例如判断一个病人的肿瘤是良性还是恶性</li>
+</ul>
+<h3 id="无监督学习"><a href="#无监督学习" class="headerlink" title="无监督学习"></a>无监督学习</h3><p>无监督学习中，我们可以解决那些并不知道结果是怎样的问题。我们可以获得数据的结构，即便我们并不知道各变量的影响。</p>
+<p>基于数据中变量间的关系对数据进行聚类(clustering)，我们可以获得数据的结构。</p>
+<p>无监督学习中，预测的结果是没有反馈的。</p>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p>reinforcement learning, recommender system。</p>
+<h1 id="单变量线性回归-Linear-Regression-with-One-Variable"><a href="#单变量线性回归-Linear-Regression-with-One-Variable" class="headerlink" title="单变量线性回归(Linear Regression with One Variable)"></a>单变量线性回归(Linear Regression with One Variable)</h1><h2 id="模型和费用函数"><a href="#模型和费用函数" class="headerlink" title="模型和费用函数"></a>模型和费用函数</h2><h3 id="模型表示"><a href="#模型表示" class="headerlink" title="模型表示"></a>模型表示</h3><img src="/2020/03/04/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/linearOneModel.png" class="">
+<p>比如h函数可以是$h_\theta(x)=\theta_0+\theta_1 x$</p>
+<p>这样的就是单变量线性回归(linear regression with one variable/univariate linear regression)</p>
+<p><strong>符号：</strong></p>
+<p>x表示房子大小</p>
+<p>y表示房价</p>
+<p>m表示训练集样本数</p>
+<p>h函数，是一个从x到y的映射</p>
+<p>$x^{(i)}$表示的是训练集中第i个x的值，i用于表示索引，$y^{(i)}$同理</p>
+<h3 id="费用函数"><a href="#费用函数" class="headerlink" title="费用函数"></a>费用函数</h3><p>Hypothesis: $h_\theta(x) = \theta_0+\theta_1x$</p>
+<p>有了这样的假设之后，一个重要的问题是：如何选择参数$\theta$的值？</p>
+<p>既然我们要用这个假设进行预测，那么就要恰当选择参数的值使得模型尽可能准确。思想是这样的：选择$\theta<em>0,\theta_1$的值，使得$h</em>\theta(x)$靠近训练集的y值。</p>
+<img src="/2020/03/04/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/graph1-1.png" class="">
+<p>（上图，黑色叉表示训练集样本，我们要找到这样一条直线，即选择参数，使得这条直线尽可能拟合这些点）</p>
+<p>引入费用函数</p>
+<p><strong>Squared Error Function</strong></p>
+<script type="math/tex; mode=display">
+J(\theta_0,\theta_1) = \frac{1}{2m} \displaystyle \sum_{i=1}^m (h_\theta(x^{(i)})-y^{(i)})</script><p>我们所要做的，就是选择参数$\theta$使得J函数尽可能小</p>
+<script type="math/tex; mode=display">
+\min_{\theta_0,\theta_1} \quad J(\theta_0,\theta_1)</script><h3 id="关于费用函数的直觉"><a href="#关于费用函数的直觉" class="headerlink" title="关于费用函数的直觉"></a>关于费用函数的直觉</h3><p>Hypothesis: $\quad h_\theta(x)=\theta_0+\theta_1x$</p>
+<p>Parameters: $\quad \theta_0, \theta_1$</p>
+<p>Cost Function: $J(\theta<em>0,\theta_1) \frac{1}{2m} \displaystyle \sum</em>{i=1}^m (h_\theta(x^{(i)})-y^{(i)})$</p>
+<p>Goal: $\qquad \qquad \min_{\theta_0,\theta_1} \space J(\theta_0,\theta_1)$</p>
+<p>画出J函数关于参数$\theta$的图像如下</p>
+<img src="/2020/03/04/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/graph1-2.png" class="">
+<h2 id="参数学习"><a href="#参数学习" class="headerlink" title="参数学习"></a>参数学习</h2><h3 id="梯度下降"><a href="#梯度下降" class="headerlink" title="梯度下降"></a>梯度下降</h3><p>框架：</p>
+<ul>
+<li>从某些参数$\theta$开始</li>
+<li>不断改变参数的值来缩小目标函数的值，直到最后到达一个最小值</li>
+</ul>
+<p>具体：</p>
+<p>不断重复如下步骤直到收敛：</p>
+<script type="math/tex; mode=display">
+\theta_j = \theta_j - \alpha \frac{\partial}{\partial \theta_j}J(\theta_0,\theta_1)</script><p>$\alpha$在这里称为learning rate，$\alpha$越大下降越快。</p>
+<p><strong>注意</strong>：参数$\theta$是同时更新的(simultaneous update)</p>
+<img src="/2020/03/04/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/gradient-1.png" class="">
+<p><u>learning rate太小：梯度下降会比较慢</u></p>
+<p><u>learning rate太大，可能会无法收敛</u></p>
+<p>learning rate不用经常改变，对于固定的learning rate，梯度下降方法是可以收敛到局部最优的</p>
+<p>若已经处在局部最优点，梯度下降会停在这里，因为这一点梯度值为0</p>
+<h3 id="线性回归问题的梯度下降方法"><a href="#线性回归问题的梯度下降方法" class="headerlink" title="线性回归问题的梯度下降方法"></a>线性回归问题的梯度下降方法</h3><script type="math/tex; mode=display">
+\begin{align}
+rep&eat \space until \space convergence\{\\
+&\theta_0 := \theta_0 - \alpha \frac{1}{m} \displaystyle \sum_{i=1}^m (h_\theta(x^{(i)})-y^{(i)})\\
+&\theta_1 := \theta_1 - \alpha \frac{1}{m} \displaystyle \sum_{i=1}^m (h_\theta(x^{(i)})-y^{(i)})x^{(i)}\\
+\}
+\end{align}</script><p>线性回归问题的费用函数是凸函数，局部最优解即是全局最优解</p>
+<p>“Batch Gradient Descent”</p>
+<p>Batch：每一步梯度下降都使用所有的训练样本</p>
+<h1 id="多变量线性回归-Linear-Regression-with-Multiple-Variable"><a href="#多变量线性回归-Linear-Regression-with-Multiple-Variable" class="headerlink" title="多变量线性回归(Linear Regression with Multiple Variable)"></a>多变量线性回归(Linear Regression with Multiple Variable)</h1><h2 id="多变量线性回归"><a href="#多变量线性回归" class="headerlink" title="多变量线性回归"></a>多变量线性回归</h2><h3 id="多特征"><a href="#多特征" class="headerlink" title="多特征"></a>多特征</h3><p>符号：</p>
+<p>$x_j^{(i)}$：第i个训练样本的第j个特征</p>
+<p>$x^{(i)}$：第i个训练样本输入（包含所有特征）</p>
+<p>m：训练样本总数</p>
+<p>n：特征总数</p>
+<p><strong>Hypothesis：</strong></p>
+<script type="math/tex; mode=display">
+h_\theta(x) = \theta_0+\theta_1x_1 +...+\theta_nx_n</script><p>令$x_0=1$，可以写成如下形式</p>
+<script type="math/tex; mode=display">
+h_\theta(x) = [\theta_0 \quad \theta_1 \quad...\quad \theta_n] 
+\begin{bmatrix}
+x_0\\
+x_1\\
+\vdots \\
+x_n
+\end{bmatrix}
+= \theta^Tx</script><h3 id="多变量的梯度下降"><a href="#多变量的梯度下降" class="headerlink" title="多变量的梯度下降"></a>多变量的梯度下降</h3><script type="math/tex; mode=display">
+\begin{align}
+rep&eat \space until \space convergence\{\\
+&\theta_j := \theta_j - \alpha \frac{1}{m} \displaystyle \sum_{i=1}^m (h_\theta(x^{(i)})-y^{(i)})x^{(i)}_j\\
+\}
+\end{align}</script><h3 id="实践中的梯度下降——特征缩放"><a href="#实践中的梯度下降——特征缩放" class="headerlink" title="实践中的梯度下降——特征缩放"></a>实践中的梯度下降——特征缩放</h3><p>思想：令特征都在一个相似的数值范围中</p>
+<p>使得每一个特征都差不多位于范围$-1 \leq x_i \leq 1$</p>
+<p><strong>均值归一化</strong></p>
+<p>将$x_i$替换乘$x_i-\mu_i$使得特征都大致接近均值（不对$x_0$应用）</p>
+<script type="math/tex; mode=display">
+x_i := \frac{x_i -\mu_i}{s_i}</script><p>其中$\mu_i$是特征i的平均值，$s_i$是取值的范围（max-min），或者是标准差(standard deviation)</p>
+<h3 id="实践中的梯度下降——学习速率"><a href="#实践中的梯度下降——学习速率" class="headerlink" title="实践中的梯度下降——学习速率"></a>实践中的梯度下降——学习速率</h3><p>怎么样选择一个好的学习速率$\alpha$呢？——&gt;画图看</p>
+<p>看minJ函数的值，如果运行正确，函数图像值应随<strong>迭代次数</strong>的增加而下降</p>
+<p>如果图像出现了以下异常，那么应该选择一个更小的$\alpha$值</p>
+<img src="/2020/03/04/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/graph2-1.png" class="">
+<p>选择$\alpha$的值：尝试…,0.001,0.003,0.01,0.03,0.1,0.3,1,…之类的，看看图像的走向和下降速度，确定一个较好的范围</p>
+<h3 id="特征和多项式回归"><a href="#特征和多项式回归" class="headerlink" title="特征和多项式回归"></a>特征和多项式回归</h3><p>hypothesis function并不一定要是线性的（直线），我们可以有二次的，三次的，或者是平方根的项。比如$h_\theta(x) = \theta_0 + \theta_1x^2+\theta_2x^3$</p>
+<p>多项式的假设可以通过<strong>添加特征</strong>的方式，来转换成线性回归的形式</p>
+<p>比如说$x^2$记为特征$x_1$，$x^3$记为特征$x_2$</p>
+<h2 id="用解析的方法计算参数"><a href="#用解析的方法计算参数" class="headerlink" title="用解析的方法计算参数"></a>用解析的方法计算参数</h2><h3 id="Normal-Equation"><a href="#Normal-Equation" class="headerlink" title="Normal Equation"></a>Normal Equation</h3><p>（注意仅适用于线性回归问题）</p>
+<p>直觉：在1D的情况下，目标函数$J(\theta) = a\theta^2 + b\theta +c$，这是一个二次函数。我们都知道怎么通过解析的方式，直接求得它的最小值。</p>
+<p>类似地，对于其他维数，线性回归问题的J函数最小值是有解析解的。</p>
+<p>求得这个解析解的方法是对每一个参数$\theta$求偏导，然后使得这些偏导为0，求出$\theta$值。在这里不进行推导。结果如下：</p>
+<script type="math/tex; mode=display">
+\theta = (X^TX)^{-1}X^Ty</script><p>其中X矩阵(design matrix)和y向量如下：</p>
+<script type="math/tex; mode=display">
+x^{(i)}=
+\begin{bmatrix}
+x_0^{(i)}\\
+x_1^{(i)}\\
+\vdots \\
+x_n^{(i)}\\
+\end{bmatrix}
+\in \mathbb R^{n+1}
+\qquad 
+X=
+\begin{bmatrix}
+--(x^{(1)})^T--\\
+--(x^{(2)})^T--\\
+\vdots \\
+--(x^{(m)})^T--\\
+\end{bmatrix}
+\in \mathbb{R}^{m\times(n+1)}
+\qquad 
+y=
+\begin{bmatrix}
+y^{(1)} \\
+y^{(2)} \\
+\vdots \\
+y^{(m)} \\
+\end{bmatrix}
+\in \mathbb R^{m}</script><img src="/2020/03/04/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/table2-1.png" class="">
+<p><strong>梯度下降和Normal Equation对比</strong></p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>梯度下降</th>
+<th>Normal Equation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>要选择$\alpha$</td>
+<td>不必选择$\alpha$</td>
+</tr>
+<tr>
+<td>要迭代很多次</td>
+<td>不必迭代很多次</td>
+</tr>
+<tr>
+<td>当特征很多（n很大）时，表现良好，$O(kn^2)$</td>
+<td>要计算$(X^TX)^{-1},O(n^3)$</td>
+</tr>
+<tr>
+<td>一般$n \geq 10^6$选择这个</td>
+<td>当n很大时很慢</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>使用Normal Equation时，当$X^TX$不可逆怎么办？</p>
+<p>Octave: pinv()函数</p>
+<ul>
+<li>冗余特征（线性依赖）<ul>
+<li>如$x_1$是以平方米为单位的面积，$x_2$是以平方英尺为单位的面积</li>
+</ul>
+</li>
+<li>太多特征（如$m \leq n)$<ul>
+<li>删掉一些特征，或者使用正则化</li>
+</ul>
+</li>
+</ul>
+<h1 id="编程作业1-Linear-Regression"><a href="#编程作业1-Linear-Regression" class="headerlink" title="编程作业1 Linear Regression"></a>编程作业1 Linear Regression</h1><p>(待补充)</p>
+<h1 id="Logistic-Regression"><a href="#Logistic-Regression" class="headerlink" title="Logistic Regression"></a>Logistic Regression</h1><h2 id="分类和表示"><a href="#分类和表示" class="headerlink" title="分类和表示"></a>分类和表示</h2><h3 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h3><p>Main idea：用线性回归解决分类问题不是一个好的方案</p>
+<p>在分类问题中，y值为0或1（二元分类），但是线性回归的函数值可以大于1或小于0</p>
+<p>Logistic Regression $0 \leq h_\theta(x) \leq 1$</p>
+<p>这个是用来解决分类问题的</p>
+<h3 id="假设表示"><a href="#假设表示" class="headerlink" title="假设表示"></a>假设表示</h3><script type="math/tex; mode=display">
+\begin{align}
+&h_\theta(x) = g(\theta^Tx) \\
+&g(z) = \frac{1}{1+e^{-z}} \\
+\implies
+&h_\theta(x) = \frac{1}{1+e^{-\theta^Tx}}
+\end{align}</script><p>g函数称为sigmoid fucntion/logistic function</p>
+<img src="/2020/03/04/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/graph3-1.png" class="">
+<p>$h_\theta(x)$评估在输入为x的情况下，y=1的可能性</p>
+<h3 id="决策边界"><a href="#决策边界" class="headerlink" title="决策边界"></a>决策边界</h3><h4 id="线性的决策边界"><a href="#线性的决策边界" class="headerlink" title="线性的决策边界"></a>线性的决策边界</h4><p>若我们有$h_\theta(x) = g(\theta^Tx)$，其中$g(z) = \frac{1}{1+e^{-z}}$</p>
+<p>假设若$h<em>\theta(x) \geq 0.5$，我们预测$y = 1$，若$h</em>\theta(x) &lt; 0.5$，我们预测$y = 0$</p>
+<p>而根据$g$函数的图像，我们可以知道当$z \geq 0$时，$g(z) \geq 0.5$，即对于，当$\theta^Tx \geq 0$时，$h_\theta(x) \geq0.5$</p>
+<p>因此决策边界为直线$\theta^Tx = 0$</p>
+<p>若$h_\theta(x) = g(\theta_0 + \theta_1x_1 \theta_2 x_2)$，其中$\theta = [-3;1;1]$</p>
+<p>则有当$\theta_0 + \theta_1x_1 \theta_2 x_2 \geq 0$时有$y = 1$，因此我们可以画出决策边界$-3 + x_1 + x_2 \geq 0$</p>
+<img src="/2020/03/04/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/decision_boundary.png" class="">
+<h4 id="非线性的决策边界-non-linear-decision-boundaries"><a href="#非线性的决策边界-non-linear-decision-boundaries" class="headerlink" title="非线性的决策边界(non-linear decision boundaries)"></a>非线性的决策边界(non-linear decision boundaries)</h4><p>假设$h_\theta(x)=g(\theta_0 + \theta_1 x_1 + \theta_2 x_2 + \theta_3 x_1^2 + \theta_4 x_2^2),\quad \theta = [-1;0;0;1;1]$</p>
+<p>将$\theta$的值代入，则有当$-1 + x_1^2 + x_2^2 \geq 0$时，我们预测$y = 1$，得到的决策边界如下</p>
+<img src="/2020/03/04/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/decision_boundary_nonlinear.png" class="">
+<h2 id="Logistic-Regression-Model"><a href="#Logistic-Regression-Model" class="headerlink" title="Logistic Regression Model"></a>Logistic Regression Model</h2><h3 id="Cost-Function"><a href="#Cost-Function" class="headerlink" title="Cost Function"></a>Cost Function</h3><p>训练集：${(x^{(1)},y^{(1)}),(x^{(2)},y^{(2)}),…,(x^{(m)},y^{(m)})}$一共m个样本</p>
+<p>其中$x = [x_0;x_1;…;x_n]\in R^{n+1},\space x_0 = 1,\space y \in {0,1}$</p>
+<p>$h_\theta(x) = \displaystyle \frac{1}{1+e^{-\theta^Tx}}$</p>
+<p>若直接把$h_\theta(x)$代入线性回归的费用函数中，得到的费用函数是非凸的。因此，logistic regression的cost定义如下：</p>
+<script type="math/tex; mode=display">
+cost(h_\theta(x),y) = 
+\begin{cases}
+-log(h_\theta(x)), &if \space y =1\\
+-log(1-h_\theta(x)),&if \space y = 0
+\end{cases}</script><p>图像如下：</p>
+
+<img src="/2020/03/04/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/LRCost1.png" class="">
+<p>我们可以看到，当y=1，且$h<em>\theta(x) = 1$时，$cost = 0$；但是当$h</em>\theta(x) \rightarrow 0$时$cost \rightarrow \infin$</p>
+<p>一种直觉的解释：若病人有坏肿瘤（y=1），而预测结果为良性（$h_\theta(x) \rightarrow 0$)，那么代价就趋向$\infin$</p>
+<h3 id="Simplified-Cost-Function-and-Gradient-Descent"><a href="#Simplified-Cost-Function-and-Gradient-Descent" class="headerlink" title="Simplified Cost Function and Gradient Descent"></a>Simplified Cost Function and Gradient Descent</h3><p>我们把所有样本的cost加起来并平均，就得到了J函数</p>
+<script type="math/tex; mode=display">
+J(\theta) = \displaystyle \frac{1}{m} \sum_{i=1}^m cost(h_\theta(x^{(i)}),y^{(i)})\\
+cost(h_\theta(x),y) = 
+\begin{cases}
+-log(h_\theta(x)), &if \space y =1\\
+-log(1-h_\theta(x)),&if \space y = 0
+\end{cases}\\
+或者
+cost(h_\theta(x),y) = -ylog(h_\theta(x))-(1-y)log(1-h_\theta(x))</script><p>对于一个logistic regression的问题，我们的目标就是要寻找使得$J$函数值最小的参数$\theta: min_\theta J(\theta)$</p>
+<h4 id="梯度下降-1"><a href="#梯度下降-1" class="headerlink" title="梯度下降"></a>梯度下降</h4><p>$J(\theta) = \displaystyle -\frac{1}{m}[\sum<em>{i=1}^my^{(i)}logh</em>\theta(x^{(i)})+(1-y^{(i)})log(1-h_\theta(x^{(i)})) ]$</p>
+<script type="math/tex; mode=display">
+\begin{align}
+Repeat&\{\\
+&\theta_j := \theta_j - \displaystyle \frac{\alpha}{m} \sum_{i=1}^m (h_\theta(x^{(i)}) - y^{(i)})x_j^{(i)}\\
+&(simultaneously \space update \space all \space \theta_j)\\
+\}
+\end{align}</script><p>要确保梯度下降是正确运行的，我们可以绘制$J(\theta)$和迭代次数$(#iterations)$之间的关系的图像</p>
+<p>logistic regression可应用Feature Scaling</p>
+<h2 id="Advanced-Optimization"><a href="#Advanced-Optimization" class="headerlink" title="Advanced Optimization"></a>Advanced Optimization</h2><p>给定$\theta$，我们需要写出计算如下两项的代码：</p>
+<ul>
+<li>$J(\theta)$</li>
+<li>$\displaystyle \frac{\partial}{\partial \theta_j} J(\theta) \space (for\space j = 0,1,…n)$ </li>
+</ul>
+<p>优化算法：</p>
+<ul>
+<li>梯度下降</li>
+<li>conjufate gradient</li>
+<li>BFGS</li>
+<li>L-BFGS</li>
+</ul>
+<p>优点：</p>
+<ul>
+<li>不需要人为选择$\alpha$</li>
+<li>通常比梯度下降要快</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>更为复杂</li>
+</ul>
+<h2 id="Multiclass-classification"><a href="#Multiclass-classification" class="headerlink" title="Multiclass classification"></a>Multiclass classification</h2><p>多分类问题。解决方案：<strong>one-vs-all</strong></p>
+<p>举个例子。比如说我们要进行天气的预测，预测结果可能有sunny, cold, raniny，使用one-vs-all的方法，对每一类都使用一个logistic regression hypothesis，把多分类的问题转换为多次二分类的问题。如下：</p>
+<img src="/2020/03/04/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/graph3-2.png" class="">
+<p>对每一类都训练一个回归分类器，用来预测这一类。</p>
+<p>对于一个新的样本，把它归到预测值最高的那一类</p>
+<script type="math/tex; mode=display">
+\displaystyle \max_i \quad h_\theta^{(i)}(x)</script><h1 id="正则化-Regularization"><a href="#正则化-Regularization" class="headerlink" title="正则化(Regularization)"></a>正则化(Regularization)</h1><h2 id="解决过度拟合的问题-solving-the-problem-of-overfitting"><a href="#解决过度拟合的问题-solving-the-problem-of-overfitting" class="headerlink" title="解决过度拟合的问题(solving the problem of overfitting)"></a>解决过度拟合的问题(solving the problem of overfitting)</h2><h3 id="过度拟合的问题"><a href="#过度拟合的问题" class="headerlink" title="过度拟合的问题"></a>过度拟合的问题</h3><p>举个例子，房价预测的线性回归模型</p>
+<img src="/2020/03/04/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/graph4-1.png" class="">
+<p><strong>过度拟合</strong>： 如果我们有太多的特征，经过学习之后模型能够很好地拟合训练集的数据($J(\theta) \approx 0$)，但是这个模型在预测新样本上表现并不好。</p>
+<h3 id="校正过度拟合"><a href="#校正过度拟合" class="headerlink" title="校正过度拟合"></a>校正过度拟合</h3><p>可选项如下：</p>
+<ol>
+<li>减少特征的数量<ul>
+<li>人工选择哪些特征是需要保留的</li>
+<li>模型选择算法（稍后讨论）</li>
+</ul>
+</li>
+<li>正则化<ul>
+<li>保留所有的特征，但是减少$\theta_j$的值/高度</li>
+<li>当我们拥有很多特征时表现较好，每一个特征在预测y上都有一点贡献</li>
+</ul>
+</li>
+</ol>
+<h3 id="费用函数-1"><a href="#费用函数-1" class="headerlink" title="费用函数"></a>费用函数</h3><p>正则化：较小的参数值$\theta_0,\theta_1,…\theta_n$</p>
+<ul>
+<li>更“简单”的假设</li>
+<li>更少可能产生过度拟合</li>
+</ul>
+<script type="math/tex; mode=display">
+J(\theta) = \frac{1}{2m}[\sum_{i=1}^m (h_{\theta}(x^{(i)})-y^{(i)})^2 + \lambda\sum_{j=1}^n \theta_j^2]\\
+\min_\theta J(\theta)</script><p>当$\lambda$太大的时候的问题：$\theta<em>j \approx 0(j \geq 1), h</em>\theta(x) = \theta_0$，就会underfit</p>
+<h3 id="正则化的线性回归"><a href="#正则化的线性回归" class="headerlink" title="正则化的线性回归"></a>正则化的线性回归</h3><h4 id="费用函数-2"><a href="#费用函数-2" class="headerlink" title="费用函数"></a>费用函数</h4><script type="math/tex; mode=display">
+J(\theta) = \frac{1}{2m}[\sum_{i=1}^m (h_{\theta}(x^{(i)})-y^{(i)})^2 + \lambda\sum_{j=1}^n \theta_j^2]\\
+\min_\theta J(\theta)</script><h4 id="梯度下降-2"><a href="#梯度下降-2" class="headerlink" title="梯度下降"></a>梯度下降</h4><script type="math/tex; mode=display">
+\begin{align}
+Repeat\{\\
+&\theta_0 := \theta_0 - \alpha \frac{1}{m} \sum_{i=1}^m (h_\theta(x^{(i)})-y^{(i)})x_0^{(i)}\\
+&\theta_j := \theta_j - \alpha [\frac{1}{m} \sum_{i=1}^m (h_\theta(x^{(i)})-y^{(i)})x_j^{(i)} +\frac{\lambda}{m}\theta_j]\\
+&(j = 1,2,...,n)\\
+\}
+\end{align}</script><p>在上述式子中，$\theta_j$也可以写成</p>
+<script type="math/tex; mode=display">
+\theta_j := \theta_j(1-\alpha \frac{\lambda}{m}) - \alpha \frac{1}{m} \sum_{i=1}^m(h_\theta(x^{(i)})-y^{(i)})x_j^{(i)}</script><h1 id="编程作业2-Logistic-Regression"><a href="#编程作业2-Logistic-Regression" class="headerlink" title="编程作业2: Logistic Regression"></a>编程作业2: Logistic Regression</h1><h2 id="1-Logistic-Regression"><a href="#1-Logistic-Regression" class="headerlink" title="1 Logistic Regression"></a>1 Logistic Regression</h2><p>建立模型，预测一个学生是否会被录取</p>
+<p>首先是画图：X是m*2特征矩阵，y是录取结果</p>
+<p>plotData.m</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function plotData(X, y)</span><br><span class="line">    figure; hold on;</span><br><span class="line">    pos &#x3D; find(y &#x3D;&#x3D; 1);</span><br><span class="line">    neg &#x3D; find(y &#x3D;&#x3D; 0);</span><br><span class="line">    plot(X(pos,1),X(pos,2),&#39;k+&#39;,&#39;LineWidth&#39;,2,&#39;MarkerSize&#39;,7);</span><br><span class="line">    plot(X(neg,1),X(neg,2),&#39;ko&#39;,&#39;MarkerFaceColor&#39;,&#39;y&#39;,&#39;MarkerSize&#39;,7);</span><br><span class="line">    hold off;</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+<p>接下来是实现sigmoid函数，主要注意z可能是向量或矩阵，因此要用element wise操作符</p>
+<p>sigmoid.m</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function g &#x3D; sigmoid(z)</span><br><span class="line">    g &#x3D; zeros(size(z));</span><br><span class="line">    g &#x3D; 1 .&#x2F; (1 + e .^ (-z));</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+<p>计算费用函数J和梯度，这里用的是矩阵乘法，把X当成整个矩阵计算：</p>
+<p>costFunction.m</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">function [J, grad] &#x3D; costFunction(theta, X, y)</span><br><span class="line">	m &#x3D; length(y); </span><br><span class="line">	J &#x3D; 0;</span><br><span class="line">    grad &#x3D; zeros(size(theta));</span><br><span class="line">	%计算J</span><br><span class="line">    summation &#x3D; -y&#39; * log(sigmoid(X*theta))-(1-y)&#39;*log(1-sigmoid(X*theta));</span><br><span class="line">    J &#x3D; summation &#x2F; m;</span><br><span class="line">	%计算梯度</span><br><span class="line">    prediction &#x3D; sigmoid(X*theta);</span><br><span class="line">    error &#x3D; prediction - y;</span><br><span class="line">    grad &#x3D; 1&#x2F;m * (X&#39;*error);</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+<p><strong>note</strong>: 梯度维数是(n+1)*1的，因此最后直接是X的转置乘上error就ok了，（自己纠结过一下，搞错了梯度是一维的，加起来就错了）</p>
+<p>使用fminunc函数计算参数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">options &#x3D; optimset(&#39;GradObj&#39;, &#39;on&#39;, &#39;MaxIter&#39;, 400);</span><br><span class="line">[theta, cost] &#x3D; ...</span><br><span class="line">	fminunc(@(t)(costFunction(t, X, y)), initial_theta, options);</span><br></pre></td></tr></table></figure>
+<p>根据算得的theta和给定的X进行预测：大于0.5的返回1</p>
+<p>predict.m</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">function p &#x3D; predict(theta, X)</span><br><span class="line">	m &#x3D; size(X, 1)；</span><br><span class="line">	p &#x3D; zeros(m, 1);</span><br><span class="line">    hypothesis &#x3D; sigmoid(X*theta);</span><br><span class="line">    pos &#x3D; find(hypothesis &gt;&#x3D; 0.5);</span><br><span class="line">    p(pos) &#x3D; 1;</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+<h2 id="2-Regularized-logistic-regression"><a href="#2-Regularized-logistic-regression" class="headerlink" title="2 Regularized logistic regression"></a>2 Regularized logistic regression</h2><p>实现一个正则化的logistic regression模型，预测工厂产的芯片是否能通过QA</p>
+<p>可视化部分和前面类似。</p>
+<p>mapFeature.m 做的工作是将x1，x2的多项式乘积映射成新的特征</p>
+<p>然后是费用函数和梯度的计算。费用函数多了正则化的一项。梯度计算的时候，要注意对theta0求偏导的项和其他项不太一样，少了正则化的部分。</p>
+<p>costFunctionReg.m</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">function [J, grad] &#x3D; costFunctionReg(theta, X, y, lambda)</span><br><span class="line">    m &#x3D; length(y); % number of training examples</span><br><span class="line">    J &#x3D; 0;</span><br><span class="line">    grad &#x3D; zeros(size(theta));</span><br><span class="line">	%计算费用函数J</span><br><span class="line">    summation &#x3D; sum(-y.*log(sigmoid(X*theta))-(1-y).*log(1-sigmoid(X*theta)));</span><br><span class="line">    term1 &#x3D; summation &#x2F; m;</span><br><span class="line">    theta_square &#x3D; theta .^2;</span><br><span class="line">    theta_square(1,:) &#x3D; []; %delete the first row of theta</span><br><span class="line">    term2 &#x3D; lambda&#x2F;(2*m) * sum(theta_square);</span><br><span class="line">    J &#x3D; term1 + term2;</span><br><span class="line">	%计算梯度</span><br><span class="line">    hypothesis &#x3D; sigmoid(X*theta);</span><br><span class="line">    error &#x3D; hypothesis - y;</span><br><span class="line">    term1 &#x3D; 1&#x2F;m * (X&#39;*error);</span><br><span class="line">    term2 &#x3D; lambda&#x2F;m * theta;</span><br><span class="line">    term2(1) &#x3D; 0;</span><br><span class="line">    grad &#x3D; term1 + term2;</span><br><span class="line"></span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+<h1 id="神经网络：表示-Neural-Networks-Representation"><a href="#神经网络：表示-Neural-Networks-Representation" class="headerlink" title="神经网络：表示(Neural Networks: Representation)"></a>神经网络：表示(Neural Networks: Representation)</h1><h1 id="编程作业3-Multi-class-Classification-and-Neural-Networks"><a href="#编程作业3-Multi-class-Classification-and-Neural-Networks" class="headerlink" title="编程作业3 Multi-class Classification and Neural Networks"></a>编程作业3 Multi-class Classification and Neural Networks</h1><p>实现 one-vs-all logistic regression和神经网络识别手写数字。</p>
+<h2 id="Multi-class-Classification"><a href="#Multi-class-Classification" class="headerlink" title="Multi-class Classification"></a>Multi-class Classification</h2><p>一个图片是20<em>20像素的，一个图片展开成一个400维的向量，总共有5000个样本。数据集是5000\</em>400大小的矩阵X。另有一个5000维的矩阵y，标记了每一个样本表示的数字。数字0的标记为10，1-9数字的标记对应为1-9</p>
+<p><strong>可视化数据</strong></p>
+<p>随机抽取X矩阵的其中100行，作为参数传递到displayData函数中。此函数将矩阵的一行变为20*20的灰度图像，并将所有的图像一起展示出来。（关注如何实现，imagesc函数和display_array）</p>
+<p><strong>向量化实现</strong></p>
+<p>编程作业2中已经是向量化的实现了。可直接用。</p>
+<p><strong>one-vs-all分类</strong></p>
+<p>对每一个类别都进行计算，得到theta，用的是fmincg函数，注意调用函数的方法。把每一个类别的theta都整合到一起，形成一个矩阵num_labels*(n+1)大小的矩阵。</p>
+<p>oneVsAll.m</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">function [all_theta] &#x3D; oneVsAll(X, y, num_labels, lambda)</span><br><span class="line">    m &#x3D; size(X, 1);</span><br><span class="line">    n &#x3D; size(X, 2);</span><br><span class="line">    all_theta &#x3D; zeros(num_labels, n + 1);</span><br><span class="line">    X &#x3D; [ones(m, 1) X];</span><br><span class="line">    initial_theta &#x3D; zeros(n + 1, 1);</span><br><span class="line">    options &#x3D; optimset(&#39;GradObj&#39;,&#39;on&#39;,&#39;MaxIter&#39;,50);</span><br><span class="line">    %使用循环，对每一个类别都进行训练</span><br><span class="line">    for c &#x3D; 1 : num_labels,</span><br><span class="line">        [theta] &#x3D; fmincg(@(t)(lrCostFunction(t, X, (y&#x3D;&#x3D;c), lambda)),initial_theta,options);</span><br><span class="line">        theta &#x3D; theta(:)&#39;; %确保theta变成了行向量</span><br><span class="line">        all_theta(c,:) &#x3D; theta;</span><br><span class="line">    end</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+<p>接下来根据算得的all_theta，可以进行预测。</p>
+<p>predicOneVsAll.m</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">function p &#x3D; predictOneVsAll(all_theta, X)</span><br><span class="line">    m &#x3D; size(X, 1);</span><br><span class="line">    num_labels &#x3D; size(all_theta, 1);</span><br><span class="line">    p &#x3D; zeros(size(X, 1), 1);</span><br><span class="line">    X &#x3D; [ones(m, 1) X];</span><br><span class="line">    predict &#x3D; X * all_theta&#39;;</span><br><span class="line">    %find the maximun index of each row</span><br><span class="line">    [w, p] &#x3D; max(predict, [], 2); %注意max函数的用法，找到每一行的最大值及对应索引</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+<h2 id="Nueral-Networks"><a href="#Nueral-Networks" class="headerlink" title="Nueral Networks"></a>Nueral Networks</h2><p>给定了算好的theta值，三层的神经网络，进行预测。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">function p &#x3D; predict(Theta1, Theta2, X)</span><br><span class="line">    m &#x3D; size(X, 1);</span><br><span class="line">    num_labels &#x3D; size(Theta2, 1);</span><br><span class="line">    p &#x3D; zeros(size(X, 1), 1);</span><br><span class="line">    X &#x3D; [ones(m,1) X];</span><br><span class="line">    z2 &#x3D; X * Theta1&#39;;</span><br><span class="line">    a2 &#x3D; sigmoid(z2);</span><br><span class="line">    a2 &#x3D; [ones(m,1) a2]; %add bias unit	</span><br><span class="line">    z3 &#x3D; a2 * Theta2&#39;;</span><br><span class="line">    hypothesis &#x3D; sigmoid(z3);</span><br><span class="line">    [w idx] &#x3D; max(hypothesis,[],2);</span><br><span class="line">    p &#x3D; idx;</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+<h1 id="神经网络：学习-Neural-Networks-Learning"><a href="#神经网络：学习-Neural-Networks-Learning" class="headerlink" title="神经网络：学习(Neural Networks: Learning)"></a>神经网络：学习(Neural Networks: Learning)</h1><h1 id="编程作业4-Neural-Networks-Learning"><a href="#编程作业4-Neural-Networks-Learning" class="headerlink" title="编程作业4 Neural Networks Learning"></a>编程作业4 Neural Networks Learning</h1><p>实现神经网络backpropagation算法，并应用到手写数字识别中。</p>
+<p>这次编程作业感觉要难不少，特别是backprop部分（主要一个是因为之前课程录像中ppt有关于正则化的梯度公式有错误，整了半天backprop是ok的但带正则化总是过不了。另一个则是在sigmoidGradient函数调用处，正确用法是sigmoidGradient(z2)或者<code>a2.*(1-a2)</code>，在de正则化梯度的bug时候脑子一热把a2作为参数传进函数了…后面发现之后才改过来【汗】），在bug de不出来的时候看看课程论坛总是好的，很快就发现自己的问题所在了。</p>
+<h2 id="Neural-Networks"><a href="#Neural-Networks" class="headerlink" title="Neural Networks"></a>Neural Networks</h2><p>数据和前一次编程练习中一样，可视化过程也一样。</p>
+<p>实现神经网络的费用函数和梯度计算</p>
+<h3 id="费用函数-3"><a href="#费用函数-3" class="headerlink" title="费用函数"></a>费用函数</h3><p>首先实现不带正则化的费用函数，到计算hypothesis之前的步骤都是上次实验实现过的，拿过来用就可。例如，hypothesis的第二行第一列表示的是第二个样本属于第一类的可能性，第二行第三列表示第二个样本属于第三类的可能性。hypothesis矩阵大小为m*k。</p>
+<p>根据费用函数的公式，我们知道，要对每一个样例的每一个类别都进行误差的计算。注意到，我们读入的y是一个列向量m<em>1。也就是说y直接标示了每一个样本是哪一个类别的。为了方便计算，我们将y改写一下，变成m\</em>k大小，把它变成一个0/1矩阵来标示类别。比如原来y的第一行是10，新的Y矩阵中第一行中只有第10列为1，其他的全为0。这样来表示第一个样本属于类别10。</p>
+<p>这样一来，新的矩阵Y的每一行每一列对应的就是每一个样本的每一类。hypothesis的也是这样。再回看费用函数，要对每一个样本的每一类，计算hypothesis和y之间的误差。利用新矩阵Y和hypothesis矩阵，可以通过点乘的方式将对应样本的对应类别分别进行计算。最后，再将矩阵中所有元素都加起来，就是费用函数中连续两个求和部分的结果了。</p>
+<p>实现完这部分之后，运行ex4验证一下计算结果，与预期的一致。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">m &#x3D; size(X, 1);</span><br><span class="line">J &#x3D; 0;</span><br><span class="line">Theta1_grad &#x3D; zeros(size(Theta1));</span><br><span class="line">Theta2_grad &#x3D; zeros(size(Theta2));</span><br><span class="line"></span><br><span class="line">X &#x3D; [ones(m,1) X];</span><br><span class="line">z2 &#x3D; X * Theta1&#39;;</span><br><span class="line">a2 &#x3D; sigmoid(z2);</span><br><span class="line">a2 &#x3D; [ones(m,1) a2]; %add bias unit	</span><br><span class="line">z3 &#x3D; a2 * Theta2&#39;;</span><br><span class="line">hypothesis &#x3D; sigmoid(z3);</span><br><span class="line">% use the Feedforward method to compute hypothesis</span><br><span class="line">% hypothesis 是一个m*k的矩阵。一行对应一个样例，一列对应一个类别。</span><br><span class="line"></span><br><span class="line">% extend y into a matrix whick size is m*K</span><br><span class="line">Y &#x3D; zeros(m,num_labels);</span><br><span class="line">for i &#x3D; 1 : m,</span><br><span class="line">    Y(i,y(i)) &#x3D; 1;</span><br><span class="line">end</span><br><span class="line">term1 &#x3D;-1&#x2F;m * sum(sum(Y.*log(hypothesis)+(1-Y).*log(1-hypothesis)));</span><br><span class="line">J &#x3D; term1;</span><br></pre></td></tr></table></figure>
+<p>（转换y到Y矩阵的时候我用的是for循环，感觉还是太拖沓了，或许还有更简洁的实现方法？）</p>
+<p>那么下一步就可以顺带实现费用函数的正则化部分了。正则化部分的内容相对简单一些，就是将神经网络中的Theta矩阵中除去与bias unit相关的部分，其他元素进行平方，然后全部加起来即可。要注意的一点是Theta矩阵中和bias unit相关的位置。我在实现feedForward的时候，加bias unit时是放在了最前面的。因此，Theta矩阵中对应bias unit部分的就是第一列，把第一列置0就好，也方便后面正则化梯度用。</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">% bias unit relates to column 1</span></span><br><span class="line">noBiasTheta1 = Theta1;</span><br><span class="line">noBiasTheta1(:,<span class="number">1</span>) = <span class="built_in">zeros</span>(<span class="built_in">size</span>(Theta1,<span class="number">1</span>),<span class="number">1</span>);</span><br><span class="line">noBiasTheta2 = Theta2;</span><br><span class="line">noBiasTheta2(:,<span class="number">1</span>) = <span class="built_in">zeros</span>(<span class="built_in">size</span>(Theta2,<span class="number">1</span>),<span class="number">1</span>);</span><br><span class="line">term2 = lambda/(<span class="number">2</span>*m) * (sum(sum(noBiasTheta1.^ <span class="number">2</span>)) + sum(sum(noBiasTheta2 .^ <span class="number">2</span>)));</span><br><span class="line">J = term1 + term2;</span><br></pre></td></tr></table></figure>
+<p>同样可以再次运行ex4，验证结果的正确性。</p>
+<h3 id="sigmoidGradient"><a href="#sigmoidGradient" class="headerlink" title="sigmoidGradient"></a>sigmoidGradient</h3><p>计算sigmoid函数的梯度，输入可以是向量、矩阵，注意是点乘</p>
+<p>sigmoidGradient.m</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">g</span> = <span class="title">sigmoidGradient</span><span class="params">(z)</span></span></span><br><span class="line">	g = sigmoid(z).*(<span class="number">1</span>-sigmoid(z));</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<h3 id="梯度计算"><a href="#梯度计算" class="headerlink" title="梯度计算"></a>梯度计算</h3><p>首先实现一个不带正则化的backprop算法。花费我比较多时间的地方大概就是向量化实现了吧。虽然课程中老师说用for循环，而我一开始也打算用for循环实现。但是，首先就发现了delta3可以不用循环就算出来，然后紧接着发现后面的也并不需要循环。需要注意的地方就是矩阵的维数。算得的delta2其实第一列是bias unit的，维数是m*26，然而BigDelta1的维数是25*401，因此要把delta2的有关bias unit那一列去掉。</p>
+<p>课程论坛中也提到：如果是用了sigmoidGradient(z2)的化，计算$\delta^{(2)}$时就必须把$\Theta^{(2)}$的第一列去掉；如果是用了$a2.*(1-a2)$的话，计算$\Delta^{(1)}$的时候就要把$\delta^{(2)}$的第一列去掉</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">delta3 = <span class="built_in">zeros</span>(m,num_labels);</span><br><span class="line">delta2 = <span class="built_in">zeros</span>(m,hidden_layer_size);</span><br><span class="line"></span><br><span class="line"><span class="comment">% we have computed a2 and a3(hypothesis) above, they are matrix, one row correspond to one example</span></span><br><span class="line"><span class="comment">% we need to use the extended matrix Y</span></span><br><span class="line"></span><br><span class="line">delta3 = hypothesis - Y;</span><br><span class="line">delta2 = delta3 * Theta2 .* (a2 .* (<span class="number">1</span>-a2));</span><br><span class="line"></span><br><span class="line">delta2(:,<span class="number">1</span>) = [];</span><br><span class="line">BigDelta1 = delta2' * X;</span><br><span class="line">BigDelta2 = delta3' * a2;</span><br><span class="line"></span><br><span class="line">Theta1_grad = <span class="number">1</span>/m * BigDelta1;</span><br><span class="line">Theta2_grad = <span class="number">1</span>/m * BigDelta2;</span><br></pre></td></tr></table></figure>
+<p>接下来实现带正则化的backprop算法，注意1/m是在外面的</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Theta1_grad = <span class="number">1</span>/m * (BigDelta1 + lambda * noBiasTheta1);</span><br><span class="line">Theta2_grad = <span class="number">1</span>/m * (BigDelta2 + lambda * noBiasTheta2);</span><br></pre></td></tr></table></figure>
+<p>最后的unroll代码文件中也有给出。</p>
+<h1 id="编程作业5-Regularized-Linear-Regression-and-Bias-v-s-Variance"><a href="#编程作业5-Regularized-Linear-Regression-and-Bias-v-s-Variance" class="headerlink" title="编程作业5 Regularized Linear Regression and Bias v.s. Variance"></a>编程作业5 Regularized Linear Regression and Bias v.s. Variance</h1><p>此次练习中，实现正则化的线性回归，并用它取研究带有不同bias-variance特征的模型。</p>
+<h2 id="Regularized-Linear-Regression"><a href="#Regularized-Linear-Regression" class="headerlink" title="Regularized Linear Regression"></a>Regularized Linear Regression</h2><h3 id="费用函数和梯度计算"><a href="#费用函数和梯度计算" class="headerlink" title="费用函数和梯度计算"></a>费用函数和梯度计算</h3><p>正则化的线性回归的费用函数和梯度计算。和前面实现过的类似。</p>
+<p>linearRegCostFunction.m</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="params">[J, grad]</span> = <span class="title">linearRegCostFunction</span><span class="params">(X, y, theta, lambda)</span></span></span><br><span class="line">    m = <span class="built_in">length</span>(y); <span class="comment">% number of training examples</span></span><br><span class="line">    J = <span class="number">0</span>;</span><br><span class="line">    grad = <span class="built_in">zeros</span>(<span class="built_in">size</span>(theta));</span><br><span class="line">    hypothesis = X * theta;</span><br><span class="line">    square_error = sum((hypothesis - y).^<span class="number">2</span>);</span><br><span class="line">    regularized_theta = theta;</span><br><span class="line">    regularized_theta(<span class="number">1</span>) = <span class="number">0</span>;</span><br><span class="line">    regularized_term = regularized_theta' * regularized_theta;</span><br><span class="line">    J = <span class="number">1</span>/(<span class="number">2</span>*m) * square_error + lambda/(<span class="number">2</span>*m) * regularized_term;</span><br><span class="line"></span><br><span class="line">    grad = <span class="number">1</span>/m * X' * (hypothesis - y) + lambda/m * regularized_theta;</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<h2 id="Bias-Variance"><a href="#Bias-Variance" class="headerlink" title="Bias-Variance"></a>Bias-Variance</h2><h3 id="Learning-Curves"><a href="#Learning-Curves" class="headerlink" title="Learning Curves"></a>Learning Curves</h3><p>学习曲线，绘制样本大小与训练集费用和交叉验证集误差之间的关系。要注意的一点是，计算训练集误差的时候用的是动态变化的样本大小（即给定训练集的子集），而计算交叉验证集误差的时候用的是整个验证集。调用trainLinearReg函数计算出theta，再调用前面写好的函数计算误差，注意调用函数计算误差的时候传入$\lambda$为0，不需要带上正则化的项。把算得的结果放进两个向量里面。</p>
+<p>learningCurve.m</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="params">[error_train, error_val]</span> = <span class="title">learningCurve</span><span class="params">(X, y, Xval, yval, lambda)</span></span></span><br><span class="line">    m = <span class="built_in">size</span>(X, <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">    error_train = <span class="built_in">zeros</span>(m, <span class="number">1</span>);</span><br><span class="line">    error_val   = <span class="built_in">zeros</span>(m, <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">for</span> <span class="built_in">i</span> = <span class="number">1</span> : m,</span><br><span class="line">        training_X = X(<span class="number">1</span>:<span class="built_in">i</span>,:);</span><br><span class="line">        training_y = y(<span class="number">1</span>:<span class="built_in">i</span>,:);</span><br><span class="line">        theta = trainLinearReg(training_X,training_y,lambda);</span><br><span class="line">        [J_train, grad_train] = linearRegCostFunction(training_X,training_y,theta,<span class="number">0</span>);</span><br><span class="line">        [J_cv, grad_cv] = linearRegCostFunction(Xval,yval,theta,<span class="number">0</span>);</span><br><span class="line">        error_train(<span class="built_in">i</span>) = J_train;</span><br><span class="line">    error_val(<span class="built_in">i</span>) = J_cv;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<h2 id="Polynomial-Regression"><a href="#Polynomial-Regression" class="headerlink" title="Polynomial Regression"></a>Polynomial Regression</h2><p>根据前面绘制出来的学习曲线，我们发现，当样本容量变大的时候，训练集和交叉验证集的费用都还比较高，属于underfitting(high bias)。因此，尝试一个更复杂的模型。</p>
+<p>实现一个函数，建立X(一维向量) 到其p次幂的映射：<code>X_poly(i,:)=[X(i) X(i)^2 ... X(i)^p]</code></p>
+<p>polyFeatures.m</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="params">[X_poly]</span> = <span class="title">polyFeatures</span><span class="params">(X, p)</span></span></span><br><span class="line">X_poly = <span class="built_in">zeros</span>(<span class="built_in">numel</span>(X), p);</span><br><span class="line">    <span class="keyword">for</span> <span class="built_in">i</span> = <span class="number">1</span> : p,</span><br><span class="line">        X_poly(:,<span class="built_in">i</span>) = X(:,<span class="number">1</span>).^<span class="built_in">i</span>;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<h3 id="用cross-validation-set选择-lambda-值"><a href="#用cross-validation-set选择-lambda-值" class="headerlink" title="用cross validation set选择$\lambda$值"></a>用cross validation set选择$\lambda$值</h3><p>使用cross validation set来评估$\lambda$值选择的好坏。在选好$\lambda$值之后，我们可以用test set来评估模型的预测能力。调用trainLinearReg函数来进行模型的训练，应尝试这样一系列的$\lambda$值：${0,0.001,0.003,0.01,0.03,0.1,0.3,1,3,10}$</p>
+<p>计算随$\lambda$的变化，训练集和交叉验证集的误差。</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="params">[lambda_vec, error_train, error_val]</span> = <span class="title">validationCurve</span><span class="params">(X, y, Xval, yval)</span></span></span><br><span class="line">    lambda_vec = [<span class="number">0</span> <span class="number">0.001</span> <span class="number">0.003</span> <span class="number">0.01</span> <span class="number">0.03</span> <span class="number">0.1</span> <span class="number">0.3</span> <span class="number">1</span> <span class="number">3</span> <span class="number">10</span>]';</span><br><span class="line">    error_train = <span class="built_in">zeros</span>(<span class="built_in">length</span>(lambda_vec),<span class="number">1</span>);</span><br><span class="line">    error_val = <span class="built_in">zeros</span>(<span class="built_in">length</span>(lambda_vec),<span class="number">1</span>)</span><br><span class="line">    <span class="keyword">for</span> <span class="built_in">i</span> = <span class="number">1</span> : <span class="built_in">length</span>(lambda_vec),</span><br><span class="line">        lambda = lambda_vec(<span class="built_in">i</span>);</span><br><span class="line">        theta = trainLinearReg(X,y,lambda);</span><br><span class="line">        [J_train, grad_train] = linearRegCostFunction(X, y, theta, <span class="number">0</span>);</span><br><span class="line">        [J_cv, grad_cv] = linearRegCostFunction(Xval, yval, theta, <span class="number">0</span>);</span><br><span class="line">        error_train(<span class="built_in">i</span>) = J_train;</span><br><span class="line">        error_val(<span class="built_in">i</span>) = J_cv;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<h1 id="编程作业6-Support-Vector-Machines"><a href="#编程作业6-Support-Vector-Machines" class="headerlink" title="编程作业6 Support Vector Machines"></a>编程作业6 Support Vector Machines</h1><h2 id="Support-Vector-Machines"><a href="#Support-Vector-Machines" class="headerlink" title="Support Vector Machines"></a>Support Vector Machines</h2><p>已经给定了svmtrain.m，大多数的svm packages都会自动加上$x_0 =1$这一项，因此传递参数的时候不用另外再加了。</p>
+<p>开始的时候，尝试不同的C值，看看决策边界是怎样的。</p>
+<h3 id="SVM-with-Gaussian-Kernels"><a href="#SVM-with-Gaussian-Kernels" class="headerlink" title="SVM with Gaussian Kernels"></a>SVM with Gaussian Kernels</h3><p>要使用SVM找到一个非线性的决策边界，我们需要实现一个Gaussian kernel。</p>
+<p>gaussianKernel.m</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sim</span> = <span class="title">gaussianKernel</span><span class="params">(x1, x2, sigma)</span></span></span><br><span class="line">	x1 = x1(:); x2 = x2(:);</span><br><span class="line">	sim = <span class="number">0</span>;</span><br><span class="line">	distance = x1-x2;</span><br><span class="line">	sim = <span class="built_in">exp</span>(-(distance'*distance)/(<span class="number">2</span>*sigma^<span class="number">2</span>));</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<p>有了这个之后，就可以画非线性的决策边界了</p>
+<h3 id="Example-Dataset-3"><a href="#Example-Dataset-3" class="headerlink" title="Example Dataset 3"></a>Example Dataset 3</h3><p>我们要为dataset3选择合适的参数C和sigma。使用cross validation set中的数据作为选择参数的依据。我们尝试如下的不同C值和sigma值的组合，每一种组合都进行训练，并计算误差，看那一组参数误差值最小，就选择哪一组参数。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">function [C, sigma] &#x3D; dataset3Params(X, y, Xval, yval)</span><br><span class="line">	C &#x3D; 1;</span><br><span class="line">	sigma &#x3D; 0.3;</span><br><span class="line">	C_vec &#x3D; [0.01;0.03;0.1;0.3;1;2;10;30];</span><br><span class="line">    sigma_vec &#x3D; [0.01;0.03;0.1;0.3;1;2;10;30];</span><br><span class="line">    Errors &#x3D; zeros(length(C_vec),length(sigma_vec));</span><br><span class="line">    for i &#x3D; 1 : length(C_vec),</span><br><span class="line">        for j &#x3D; 1 : length(sigma_vec),</span><br><span class="line">            C &#x3D; C_vec(i);</span><br><span class="line">            sigma &#x3D; sigma_vec(j);</span><br><span class="line">            model&#x3D; svmTrain(X, y, C, @(x1, x2) gaussianKernel(x1, x2, sigma)); </span><br><span class="line">            predictions &#x3D; svmPredict(model,Xval);</span><br><span class="line">            Errors(i,j) &#x3D; mean(double(predictions ~&#x3D; yval));</span><br><span class="line">        end</span><br><span class="line">    end</span><br><span class="line">    value &#x3D; min(min(Errors));</span><br><span class="line">    [row, col] &#x3D; find(value &#x3D;&#x3D; Errors);</span><br><span class="line">    C &#x3D; C_vec(row(1));</span><br><span class="line">    sigma &#x3D; sigma_vec(col(1));</span><br><span class="line">    Errors</span><br><span class="line">    row</span><br><span class="line">    col</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+<h2 id="Spam-Classification"><a href="#Spam-Classification" class="headerlink" title="Spam Classification"></a>Spam Classification</h2><h3 id="处理邮件"><a href="#处理邮件" class="headerlink" title="处理邮件"></a>处理邮件</h3><p>processEmail.m进行邮件的处理，如全换成小写字母，去掉html标签，将URL换成关键词httpaddr，将邮件地址换成关键词emailaddr，把数字换成关键词number，把美元符号换成dollar，提取单词的主干，把缩进和换行等换成一个空格。</p>
+<p>需要我们完成的部分是将邮件中出现的单词映射到给定的单词表的索引上。如下，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">vocabListLength &#x3D; length(vocabList);</span><br><span class="line">for i &#x3D; 1 : vocabListLength,</span><br><span class="line">    flag &#x3D; strcmp(str,vocabList&#123;i&#125;);</span><br><span class="line">    if flag &#x3D;&#x3D; 1,</span><br><span class="line">        word_indices &#x3D; [word_indices i];</span><br><span class="line">        break;</span><br><span class="line">    end</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+<p>这里我用的是for循环，也许有那种find之类的函数可以一下子找到索引</p>
+<h3 id="提取特征"><a href="#提取特征" class="headerlink" title="提取特征"></a>提取特征</h3><p>现在我们已经有了一个邮件中的单词索引列表。接下来，我们需要进行邮件特征的提取。用一个n维的向量表示邮件的特征，其中n是单词表的长度。若邮件中出现了索引为i的单词，那么就将特征向量的第i维设置成1，也就是说，这个n维的特征表示的是邮件中哪些单词出现过，哪些单词没出现过。</p>
+<p>emailFeatures.m</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function x &#x3D; emailFeatures(word_indices)</span><br><span class="line">    n &#x3D; 1899;</span><br><span class="line">    x &#x3D; zeros(n, 1);</span><br><span class="line">    x(word_indices) &#x3D; 1;</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+<p>x是列向量，word_indices是行向量，一行代码就可以完成工作了。事实上，只要两个都是一维向量（不论行列，都可以一步完成类似的给多个指定索引赋值的工作）</p>
+<img src="/2020/03/04/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/ex6-vector.png" class="">
+<p><img src="机器学习笔记/ex6-vector.png" alt=""></p>
+<p>注意，如果x是矩阵的话，会出现如下效果。它把index中的每一个元素都当成了单个的索引，而不是组合起来进行行列索引的。</p>
+<img src="/2020/03/04/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/ex6-index.png" class="">
+<p><img src="机器学习笔记/ex6-index.png" alt=""></p>
+<h1 id="编程作业7-K-means-Clustering-and-Principal-Component-Analysis"><a href="#编程作业7-K-means-Clustering-and-Principal-Component-Analysis" class="headerlink" title="编程作业7 K-means Clustering and Principal Component Analysis"></a>编程作业7 K-means Clustering and Principal Component Analysis</h1><p>第一部分的练习，我们将会实现K-means算法并将其应用到图像压缩中。第二部分的练习，我们将会使用PCA进行分析并找到一个更低维数的向量来表示一张人脸图像。</p>
+<h2 id="K-menas-Clustering"><a href="#K-menas-Clustering" class="headerlink" title="K-menas Clustering"></a>K-menas Clustering</h2><p>我们将从2D的数据集开始，以获得对K-means算法的一种直觉感受。进一步地，我们将使用K-means算法进行图像压缩——通过减少颜色的数量，找到那些出现最多次数的颜色的数量。</p>
+<p>K-means算法由两部分组成：一是找到离每个点最近的centriod，并对样本点进行标记；二是根据样本点的标记移动中心点。</p>
+<p>findClosestCentroid.m</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">idx</span> = <span class="title">findClosestCentroids</span><span class="params">(X, centroids)</span></span></span><br><span class="line">    K = <span class="built_in">size</span>(centroids, <span class="number">1</span>);</span><br><span class="line">    idx = <span class="built_in">zeros</span>(<span class="built_in">size</span>(X,<span class="number">1</span>), <span class="number">1</span>);</span><br><span class="line">    m = <span class="built_in">size</span>(X,<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">for</span> <span class="built_in">i</span> = <span class="number">1</span> : m,</span><br><span class="line">        example = X(<span class="built_in">i</span>,:);</span><br><span class="line">        expand_example = <span class="built_in">repmat</span>(example,K,<span class="number">1</span>);</span><br><span class="line">        measure =  expand_example - centroids;</span><br><span class="line">        distance = sum(measure .* measure,<span class="number">2</span>);</span><br><span class="line">        [val,index] = <span class="built_in">min</span>(distance);</span><br><span class="line">        idx(<span class="built_in">i</span>) = index;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<p>这里使用了for循环，遍历每一个样本，计算它们离各个中心点的距离，并根据它们离得最近的中心点的索引进行标记。</p>
+<p>computeCentroids.m</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">centroids</span> = <span class="title">computeCentroids</span><span class="params">(X, idx, K)</span></span></span><br><span class="line">[m n] = <span class="built_in">size</span>(X);</span><br><span class="line">centroids = <span class="built_in">zeros</span>(K, n);</span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span> = <span class="number">1</span>: K,</span><br><span class="line">    row_index = <span class="built_in">find</span>(idx == <span class="built_in">i</span>);</span><br><span class="line">    class_i = X(row_index,:);</span><br><span class="line">    number = <span class="built_in">size</span>(class_i, <span class="number">1</span>);</span><br><span class="line">    centroids(<span class="built_in">i</span>,:) = <span class="number">1</span>/number * sum(class_i);</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<h2 id="Principal-Component-Analysis"><a href="#Principal-Component-Analysis" class="headerlink" title="Principal Component Analysis"></a>Principal Component Analysis</h2><p>PCA的实现</p>
+<p>pca.m</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="params">[U, S]</span> = <span class="title">pca</span><span class="params">(X)</span></span></span><br><span class="line">    [m, n] = <span class="built_in">size</span>(X);</span><br><span class="line">    U = <span class="built_in">zeros</span>(n);</span><br><span class="line">    S = <span class="built_in">zeros</span>(n);</span><br><span class="line">    Sigma = <span class="number">1</span>/m * X' * X;</span><br><span class="line">    [U,S,V] = svd(Sigma);</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<p>projectData.m</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Z</span> = <span class="title">projectData</span><span class="params">(X, U, K)</span></span></span><br><span class="line">    Z = <span class="built_in">zeros</span>(<span class="built_in">size</span>(X, <span class="number">1</span>), K);</span><br><span class="line">    U_reduced = U(:,<span class="number">1</span>:K);</span><br><span class="line">    Z = X * U_reduced;</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<p>recoverData.m</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">X_rec</span> = <span class="title">recoverData</span><span class="params">(Z, U, K)</span></span></span><br><span class="line">    X_rec = <span class="built_in">zeros</span>(<span class="built_in">size</span>(Z, <span class="number">1</span>), <span class="built_in">size</span>(U, <span class="number">1</span>));</span><br><span class="line">    U_reduced = U(:,<span class="number">1</span>:K);</span><br><span class="line">    X_rec = Z * U_reduced';</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<h1 id="编程作业8-Anomaly-Detection-and-Recommender-Systems"><a href="#编程作业8-Anomaly-Detection-and-Recommender-Systems" class="headerlink" title="编程作业8 Anomaly Detection and Recommender Systems"></a>编程作业8 Anomaly Detection and Recommender Systems</h1><h2 id="Anomaly-Detection"><a href="#Anomaly-Detection" class="headerlink" title="Anomaly Detection"></a>Anomaly Detection</h2><p>在此练习中，我们将要实现一个anomaly detection算法，用于探测在服务器中的异常。</p>
+<h3 id="Gaussian-Distribution"><a href="#Gaussian-Distribution" class="headerlink" title="Gaussian Distribution"></a>Gaussian Distribution</h3><p>我们假定，搜集到的样本绝大部分都是正常的，我们用它们来计算一个高斯分布的参数。函数传入一个m行n列的矩阵X，一行代表一个样本，一列表示一个特征，我们需要计算这些特征的$\mu$和$\sigma$值</p>
+<p>estimateGaussian.m</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="params">[mu sigma2]</span> = <span class="title">estimateGaussian</span><span class="params">(X)</span></span></span><br><span class="line">    [m, n] = <span class="built_in">size</span>(X);</span><br><span class="line">    mu = <span class="built_in">zeros</span>(n, <span class="number">1</span>);</span><br><span class="line">    sigma2 = <span class="built_in">zeros</span>(n, <span class="number">1</span>);</span><br><span class="line">    mu = <span class="number">1</span>/m * sum(X)';</span><br><span class="line">    mu_ext = <span class="built_in">repmat</span>(mu,<span class="number">1</span>,m);</span><br><span class="line">    sigma2 = <span class="number">1</span>/m * sum((X' - mu_ext).^<span class="number">2</span>,<span class="number">2</span>);</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<h2 id="选择阈值-epsilon"><a href="#选择阈值-epsilon" class="headerlink" title="选择阈值$\epsilon$"></a>选择阈值$\epsilon$</h2><p>我们用F1 score来评估阈值的选择，在cross validation set上面进行操作。其中y=1代表异常的样本。其中，yval向量表示每个样本是异常还是非异常，pval表示预测结果的可能性，当pval小于$\epsilon$时，就判定样本异常。因此true positive是yval=1且pval &lt; $\epsilon$的样本，false positive是yval = 0且pval&lt;$\epsilon$的样本，false negative是yval = 1且pval &gt; $\epsilon$的样本</p>
+<p>selectThreshold.m</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="params">[bestEpsilon bestF1]</span> = <span class="title">selectThreshold</span><span class="params">(yval, pval)</span></span></span><br><span class="line">bestEpsilon = <span class="number">0</span>;</span><br><span class="line">bestF1 = <span class="number">0</span>;</span><br><span class="line">F1 = <span class="number">0</span>;</span><br><span class="line">stepsize = (<span class="built_in">max</span>(pval) - <span class="built_in">min</span>(pval)) / <span class="number">1000</span>;</span><br><span class="line"><span class="keyword">for</span> epsilon = <span class="built_in">min</span>(pval):stepsize:<span class="built_in">max</span>(pval)</span><br><span class="line">    predictions = (pval &lt; epsilon);</span><br><span class="line">    <span class="built_in">true</span>_positive = sum(yval &amp; predictions);</span><br><span class="line">    <span class="built_in">false</span>_positive = sum(~yval &amp; predictions);</span><br><span class="line">    <span class="built_in">false</span>_negative = sum(yval &amp; (~predictions));</span><br><span class="line">    precision = <span class="built_in">true</span>_positive / (<span class="built_in">true</span>_positive + <span class="built_in">false</span>_positive);</span><br><span class="line">    recall = <span class="built_in">true</span>_positive / (<span class="built_in">true</span>_positive + <span class="built_in">false</span>_negative);</span><br><span class="line">    F1 = <span class="number">2</span>*precision*recall / (precision + recall);</span><br><span class="line">    <span class="keyword">if</span> F1 &gt; bestF1</span><br><span class="line">       bestF1 = F1;</span><br><span class="line">       bestEpsilon = epsilon;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<h2 id="Recommender-System"><a href="#Recommender-System" class="headerlink" title="Recommender System"></a>Recommender System</h2><p>在这部分练习中，我们将实现collaborative filtering学习算法并将它应用到电影评分上。评分是1-5之间，数据集有943个用户，1682部电影。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/note/" rel="tag"># note</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/12/30/databaseReview/" rel="next" title="数据库复习总结">
+                <i class="fa fa-chevron-left"></i> 数据库复习总结
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2022/07/28/hello-world/" rel="prev" title="Hello World">
+                Hello World <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Essie</p>
+              <p class="site-description motion-element" itemprop="description">哦呼</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/EssieYiu" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#机器学习算法"><span class="nav-number">1.1.</span> <span class="nav-text">机器学习算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#有监督学习"><span class="nav-number">1.1.1.</span> <span class="nav-text">有监督学习</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#无监督学习"><span class="nav-number">1.1.2.</span> <span class="nav-text">无监督学习</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他"><span class="nav-number">1.2.</span> <span class="nav-text">其他</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#单变量线性回归-Linear-Regression-with-One-Variable"><span class="nav-number">2.</span> <span class="nav-text">单变量线性回归(Linear Regression with One Variable)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#模型和费用函数"><span class="nav-number">2.1.</span> <span class="nav-text">模型和费用函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#模型表示"><span class="nav-number">2.1.1.</span> <span class="nav-text">模型表示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#费用函数"><span class="nav-number">2.1.2.</span> <span class="nav-text">费用函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关于费用函数的直觉"><span class="nav-number">2.1.3.</span> <span class="nav-text">关于费用函数的直觉</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参数学习"><span class="nav-number">2.2.</span> <span class="nav-text">参数学习</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#梯度下降"><span class="nav-number">2.2.1.</span> <span class="nav-text">梯度下降</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#线性回归问题的梯度下降方法"><span class="nav-number">2.2.2.</span> <span class="nav-text">线性回归问题的梯度下降方法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#多变量线性回归-Linear-Regression-with-Multiple-Variable"><span class="nav-number">3.</span> <span class="nav-text">多变量线性回归(Linear Regression with Multiple Variable)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#多变量线性回归"><span class="nav-number">3.1.</span> <span class="nav-text">多变量线性回归</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#多特征"><span class="nav-number">3.1.1.</span> <span class="nav-text">多特征</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多变量的梯度下降"><span class="nav-number">3.1.2.</span> <span class="nav-text">多变量的梯度下降</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实践中的梯度下降——特征缩放"><span class="nav-number">3.1.3.</span> <span class="nav-text">实践中的梯度下降——特征缩放</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实践中的梯度下降——学习速率"><span class="nav-number">3.1.4.</span> <span class="nav-text">实践中的梯度下降——学习速率</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#特征和多项式回归"><span class="nav-number">3.1.5.</span> <span class="nav-text">特征和多项式回归</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用解析的方法计算参数"><span class="nav-number">3.2.</span> <span class="nav-text">用解析的方法计算参数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Normal-Equation"><span class="nav-number">3.2.1.</span> <span class="nav-text">Normal Equation</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#编程作业1-Linear-Regression"><span class="nav-number">4.</span> <span class="nav-text">编程作业1 Linear Regression</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Logistic-Regression"><span class="nav-number">5.</span> <span class="nav-text">Logistic Regression</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#分类和表示"><span class="nav-number">5.1.</span> <span class="nav-text">分类和表示</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#分类"><span class="nav-number">5.1.1.</span> <span class="nav-text">分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#假设表示"><span class="nav-number">5.1.2.</span> <span class="nav-text">假设表示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#决策边界"><span class="nav-number">5.1.3.</span> <span class="nav-text">决策边界</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#线性的决策边界"><span class="nav-number">5.1.3.1.</span> <span class="nav-text">线性的决策边界</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#非线性的决策边界-non-linear-decision-boundaries"><span class="nav-number">5.1.3.2.</span> <span class="nav-text">非线性的决策边界(non-linear decision boundaries)</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Logistic-Regression-Model"><span class="nav-number">5.2.</span> <span class="nav-text">Logistic Regression Model</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Cost-Function"><span class="nav-number">5.2.1.</span> <span class="nav-text">Cost Function</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Simplified-Cost-Function-and-Gradient-Descent"><span class="nav-number">5.2.2.</span> <span class="nav-text">Simplified Cost Function and Gradient Descent</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#梯度下降-1"><span class="nav-number">5.2.2.1.</span> <span class="nav-text">梯度下降</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Advanced-Optimization"><span class="nav-number">5.3.</span> <span class="nav-text">Advanced Optimization</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Multiclass-classification"><span class="nav-number">5.4.</span> <span class="nav-text">Multiclass classification</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#正则化-Regularization"><span class="nav-number">6.</span> <span class="nav-text">正则化(Regularization)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#解决过度拟合的问题-solving-the-problem-of-overfitting"><span class="nav-number">6.1.</span> <span class="nav-text">解决过度拟合的问题(solving the problem of overfitting)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#过度拟合的问题"><span class="nav-number">6.1.1.</span> <span class="nav-text">过度拟合的问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#校正过度拟合"><span class="nav-number">6.1.2.</span> <span class="nav-text">校正过度拟合</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#费用函数-1"><span class="nav-number">6.1.3.</span> <span class="nav-text">费用函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#正则化的线性回归"><span class="nav-number">6.1.4.</span> <span class="nav-text">正则化的线性回归</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#费用函数-2"><span class="nav-number">6.1.4.1.</span> <span class="nav-text">费用函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#梯度下降-2"><span class="nav-number">6.1.4.2.</span> <span class="nav-text">梯度下降</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#编程作业2-Logistic-Regression"><span class="nav-number">7.</span> <span class="nav-text">编程作业2: Logistic Regression</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Logistic-Regression"><span class="nav-number">7.1.</span> <span class="nav-text">1 Logistic Regression</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Regularized-logistic-regression"><span class="nav-number">7.2.</span> <span class="nav-text">2 Regularized logistic regression</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#神经网络：表示-Neural-Networks-Representation"><span class="nav-number">8.</span> <span class="nav-text">神经网络：表示(Neural Networks: Representation)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#编程作业3-Multi-class-Classification-and-Neural-Networks"><span class="nav-number">9.</span> <span class="nav-text">编程作业3 Multi-class Classification and Neural Networks</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Multi-class-Classification"><span class="nav-number">9.1.</span> <span class="nav-text">Multi-class Classification</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Nueral-Networks"><span class="nav-number">9.2.</span> <span class="nav-text">Nueral Networks</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#神经网络：学习-Neural-Networks-Learning"><span class="nav-number">10.</span> <span class="nav-text">神经网络：学习(Neural Networks: Learning)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#编程作业4-Neural-Networks-Learning"><span class="nav-number">11.</span> <span class="nav-text">编程作业4 Neural Networks Learning</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Neural-Networks"><span class="nav-number">11.1.</span> <span class="nav-text">Neural Networks</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#费用函数-3"><span class="nav-number">11.1.1.</span> <span class="nav-text">费用函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sigmoidGradient"><span class="nav-number">11.1.2.</span> <span class="nav-text">sigmoidGradient</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#梯度计算"><span class="nav-number">11.1.3.</span> <span class="nav-text">梯度计算</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#编程作业5-Regularized-Linear-Regression-and-Bias-v-s-Variance"><span class="nav-number">12.</span> <span class="nav-text">编程作业5 Regularized Linear Regression and Bias v.s. Variance</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Regularized-Linear-Regression"><span class="nav-number">12.1.</span> <span class="nav-text">Regularized Linear Regression</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#费用函数和梯度计算"><span class="nav-number">12.1.1.</span> <span class="nav-text">费用函数和梯度计算</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Bias-Variance"><span class="nav-number">12.2.</span> <span class="nav-text">Bias-Variance</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Learning-Curves"><span class="nav-number">12.2.1.</span> <span class="nav-text">Learning Curves</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Polynomial-Regression"><span class="nav-number">12.3.</span> <span class="nav-text">Polynomial Regression</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#用cross-validation-set选择-lambda-值"><span class="nav-number">12.3.1.</span> <span class="nav-text">用cross validation set选择$\lambda$值</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#编程作业6-Support-Vector-Machines"><span class="nav-number">13.</span> <span class="nav-text">编程作业6 Support Vector Machines</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Support-Vector-Machines"><span class="nav-number">13.1.</span> <span class="nav-text">Support Vector Machines</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#SVM-with-Gaussian-Kernels"><span class="nav-number">13.1.1.</span> <span class="nav-text">SVM with Gaussian Kernels</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Example-Dataset-3"><span class="nav-number">13.1.2.</span> <span class="nav-text">Example Dataset 3</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spam-Classification"><span class="nav-number">13.2.</span> <span class="nav-text">Spam Classification</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#处理邮件"><span class="nav-number">13.2.1.</span> <span class="nav-text">处理邮件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#提取特征"><span class="nav-number">13.2.2.</span> <span class="nav-text">提取特征</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#编程作业7-K-means-Clustering-and-Principal-Component-Analysis"><span class="nav-number">14.</span> <span class="nav-text">编程作业7 K-means Clustering and Principal Component Analysis</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#K-menas-Clustering"><span class="nav-number">14.1.</span> <span class="nav-text">K-menas Clustering</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Principal-Component-Analysis"><span class="nav-number">14.2.</span> <span class="nav-text">Principal Component Analysis</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#编程作业8-Anomaly-Detection-and-Recommender-Systems"><span class="nav-number">15.</span> <span class="nav-text">编程作业8 Anomaly Detection and Recommender Systems</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Anomaly-Detection"><span class="nav-number">15.1.</span> <span class="nav-text">Anomaly Detection</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Gaussian-Distribution"><span class="nav-number">15.1.1.</span> <span class="nav-text">Gaussian Distribution</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#选择阈值-epsilon"><span class="nav-number">15.2.</span> <span class="nav-text">选择阈值$\epsilon$</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Recommender-System"><span class="nav-number">15.3.</span> <span class="nav-text">Recommender System</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love" id="heart">
+    <i class="fa fa-heartbeat"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Essie</span>
+
+  
+</div>
+
+
+
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>
