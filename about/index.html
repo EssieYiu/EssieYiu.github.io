@@ -79,14 +79,14 @@
 
 
 
-<meta name="description" content="哦呼">
+<meta name="description" content="其实也不知道要写一些什么，这里是个人学习记录+偶尔读点书+也许会瞎写的地方。">
 <meta property="og:type" content="website">
 <meta property="og:title" content="About">
 <meta property="og:url" content="https://essieyiu.github.io/about/index.html">
 <meta property="og:site_name" content="Essie&#39;s Blog">
-<meta property="og:description" content="哦呼">
+<meta property="og:description" content="其实也不知道要写一些什么，这里是个人学习记录+偶尔读点书+也许会瞎写的地方。">
 <meta property="article:published_time" content="2020-01-15T07:44:24.000Z">
-<meta property="article:modified_time" content="2020-01-15T07:50:32.979Z">
+<meta property="article:modified_time" content="2020-01-16T06:47:08.234Z">
 <meta property="article:author" content="Essie">
 <meta name="twitter:card" content="summary">
 
@@ -266,7 +266,8 @@
       <div class="post-body">
         
         
-          
+          <p>其实也不知道要写一些什么，这里是个人学习记录+偶尔读点书+也许会瞎写的地方。</p>
+
         
       </div>
       
@@ -284,6 +285,10 @@
 
 
           
+
+  
+  <div id="gitalk-container">
+  </div>
 
   
 
@@ -324,7 +329,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -341,6 +346,15 @@
               </div>
             
 
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
             
 
           </nav>
@@ -384,7 +398,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
   <span class="with-love" id="heart">
     <i class="fa fa-heartbeat"></i>
   </span>
@@ -403,7 +417,29 @@
 
 
 
+
+
         
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
 
 
 
@@ -557,6 +593,22 @@
 
 
 
+
+   <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+   <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+   <script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+   <script type="text/javascript">
+        var gitalk = new Gitalk({
+          clientID: '1eed3f46899fade6b4ef',
+          clientSecret: '11f553bcf6fac0757d127be333a719c52d71010d',
+          repo: 'blog-comments',
+          owner: 'EssieYiu',
+          admin: ['EssieYiu'],
+          id: md5(window.location.pathname),
+          distractionFreeMode: 'false'
+        })
+        gitalk.render('gitalk-container')
+       </script>
 
   
 
